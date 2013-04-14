@@ -1,0 +1,57 @@
+#frame{
+    border-style: solid;
+    margin-top: 10px;
+}
+
+.arrowContainer{
+    margin-top: 2%;
+}
+.suggestion{
+    border-style: solid;
+}
+
+#frame{
+    position: relative;
+}
+.suggestionRow{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#btnContact{
+    width: 100%;
+}
+
+#contactButtonDiv{
+    position: absolute;
+    float: left;
+    bottom: 20px;
+}
+
+#businessHeader{
+    margin-top: 10px;
+}
+.outline{
+    border-style: solid;
+    width: 100%;
+    height: 100%;
+}
+#businessIcon{
+}
+
+#infoContainer{
+    margin-top: 10px;
+}
+
+#businessInfo{
+}
+#businessName{
+    font-size: 20pt;
+    text-align: center;
+}
+
+.button:hover{
+    border-style: solid;
+}
+.arrowContainer:hover{
+}
