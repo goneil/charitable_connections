@@ -10,13 +10,20 @@
 .suggestion{
 }
 
+.thumbnail:hover{
+  border-color: #0088cc;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+     -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+          box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+
 #frame{
     position: relative;
     padding-left: 5px;
     padding-top: 5px;
     padding-right: 5px;
 }
-.suggestionRow{
+#suggestionRow{
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -68,11 +75,17 @@
     top: 0px;
     background-color: black;
     color: white;
+    font-size: 20px;
+}
+
+#recipients{
+    position: absolute;
+    margin-left: 5px;
 }
 
 .minimizedMessage{
     height: 40px;
-    width: 200px;
+    width: 400px;
     color: white;
     background-color: black;
 }
@@ -92,13 +105,13 @@
     width: 50%;
 }
 
-.icon-minus:hover{
-    background-color: grey;
+#btnAdd{
+    display: inline-block;
+    position: relative;
+    left: 225px;
+    top: 7px;
 }
 
-.icon-plus:hover{
-    background-color: grey;
-}
-.icon-remove:hover{
+.icon:hover{
     background-color: grey;
 }
