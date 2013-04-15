@@ -121,7 +121,6 @@ $(document).ready(function() {
                 $("#messageBody").hide();
             });
             $("#btnRemove").click(function(){
-                console.log("remove clicked");
                 $("#messageRow").remove();
             });
             $("#btnAdd").click(function(){
@@ -158,7 +157,9 @@ $(document).ready(function() {
         } else{
             $("#btnMaximize").click();
         }
-        $("#recipients").val($("#businessName").text());
+        if ($("#recipients").val() === ""){
+            $("#recipients").val($("#businessName").text());
+        }
             
     });
 
@@ -210,7 +211,7 @@ var setSuggestions = function(businessList, index, numSuggestions){
             $("#businessName").html(business.name);
             var keys = Object.keys(business.info);
             for (var i = 0; i < keys.length; i ++){
-                $("#business" + keys[i]).html(business.info[keys[i]]);
+                $("#business" + keys[i]).val(business.info[keys[i]]);
             }
         } else{
             $("#recipients").val($("#recipients").val() + ", " + business.name);
