@@ -1,10 +1,10 @@
 body, input {
-    font-family:"Calibri", "Arial";
+    font-family: "Poiret One", "Montserrat Subrayada", "Calibri", "Arial";
     margin: 0px;
 }
 
 h1 {
-    margin:0 0 0 20px;
+    margin: 0 0 0 20px;
 }
 
 html, body, #container {
@@ -14,12 +14,39 @@ html, body, #container {
 body > #container {
     height: auto;
     min-height: 100%;
+    background-color: #F2F2F2;
+    color: #D9A13B;
 }
 
 #header {
-    height: 50px;
-    background-color: blue;
-    border-bottom: 1px solid #aaa;
+    height: 2.5em;
+    background-color: #3C3F40;
+    color: #6CCED9;
+    border-bottom: .25em solid #389BA6;
     width: 100%;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-style: oblique;
 }
+
+#header-container {
+    height: 2.5em;
+    background-color: #3C3F40;
+}
+
+.category {
+    border: 2px solid black;
+    margin: 2em 0;
+    height: 15em;
+}
+
+h3, h4, h5, h6 {
+    margin-left: 10px;
+    text-align: center;
+}
+
+p {
+    margin-left: 5px;
+}
+
 
