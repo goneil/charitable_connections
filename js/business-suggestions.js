@@ -60,8 +60,10 @@ $(document).ready(function() {
                     <div class="row">\
                         <div class="span3 recipients">\
                                     To:\
+                                    <div id="recipientsContainer">\
                                     <input id="recipients" type="text" placeholder="recipients...">\
-                                    <i class="icon-plus-sign icon-white icon" id="btnAdd"></i>\
+                                        <i class="icon-plus-sign icon" id="btnAdd"></i>\
+                                    </div>\
                         </div>\
                         <div class="span1" id="icons">\
                             <i class="icon-plus icon-white icon" id="btnMaximize"></i>\
@@ -136,7 +138,6 @@ $(document).ready(function() {
                 addMode = !addMode;
                 if (addMode){
                     $("#btnMinimize").click();
-
                     if ($("suggestionRow").attr("data-original-title")!==""){
                         $("#suggestionRow").popover(
                             {placement: "top",
