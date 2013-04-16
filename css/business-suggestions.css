@@ -26,7 +26,10 @@
 }
 
 #btnContact{
-    width: 100%;
+    width: 20%;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
 }
 
 #contactButtonDiv{
@@ -43,13 +46,9 @@
 }
 
 #infoContainer{
-    margin-top: 10px;
 }
 
-#businessInfo{
-}
 #businessName{
-    font-size: 20pt;
     text-align: center;
 }
 

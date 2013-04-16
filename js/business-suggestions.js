@@ -6,31 +6,38 @@ $(document).ready(function() {
     squarifyMe('#frame');
     var businessList = [
         new Business('Trader Joe\'s',
-                     {info:"Trader Joes info",
+                     {location: "748 Memorial Dr Cambridge (617) 491-8582",
+                      info:"Trader Joes info",
                       donations: "Food Baskets"
                      }, './img/businesses/traderjoes.png'),
         new Business('Cambridge Bicycle',
-                     {info:"Cambridge bike info",
+                     {location: "259 Massachusetts Ave  Cambridge, MA 02139 (617) 876-6555",
+                      info:"Cambridge bike info",
                       donations: "Bicycles"
                      }, './img/businesses/cambridgebicycle.png'),
         new Business('Qdoba',
-                     {info:"Qdoba info",
+                     {location: "1290 Massachusetts Ave  Cambridge, MA 02138 (617) 871-1136",
+                      info:"Qdoba info",
                       donations: "Food"
                      }, './img/businesses/qdoba.jpg'),
         new Business('Shaw\'s',
-                     {info:"Shaws info",
+                     {location: "20 Sidney St Cambridge (617) 494-5250",
+                      info:"Shaws info",
                       donations: "Food, Cookware, Beverages, Gift Certificates"
                      }, './img/businesses/shaws.gif'),
         new Business('Eastern Mountain Sports',
-                     {info:"ems info",
+                     {locadtion: "1 Brattle Square #2  Cambridge, MA 02138 (617) 864-2061",
+                      info:"ems info",
                       donations: "Gift Certificates"
                      }, './img/businesses/easternmountainsports.gif'),
         new Business('McDonald\'s',
-                     {info:"McDonald's info",
+                     {location: "463 Massachusetts Ave Cambridge (617) 497-3926",
+                      info:"McDonald's info",
                       donations: "Food, Gift Certificates"
                      }, './img/businesses/mcdonalds.png'),
         new Business('City Sports',
-                     {info:"City Sports info",
+                     {location: "   44 Brattle St  Cambridge, MA 02138 (617) 492-6000",
+                      info:"City Sports info",
                       donations: "Gift Certificates"
                      }, './img/businesses/citysports.jpg')
     ];
@@ -122,6 +129,8 @@ $(document).ready(function() {
             });
             $("#btnRemove").click(function(){
                 $("#messageRow").remove();
+                addMode = false;
+                $("#suggestionRow").popover("destroy");
             });
             $("#btnAdd").click(function(){
                 addMode = !addMode;
@@ -136,7 +145,6 @@ $(document).ready(function() {
                             }
                         ).popover("show");
                     }                    
-                    $(".suggestion").effect("pulsate", {times:3}, 1500);
                 }else{
                     $("#suggestionRow").popover("toggle");
                 }
@@ -211,7 +219,7 @@ var setSuggestions = function(businessList, index, numSuggestions){
             $("#businessName").html(business.name);
             var keys = Object.keys(business.info);
             for (var i = 0; i < keys.length; i ++){
-                $("#business" + keys[i]).val(business.info[keys[i]]);
+                $("#business" + keys[i]).text(business.info[keys[i]]);
             }
         } else{
             $("#recipients").val($("#recipients").val() + ", " + business.name);
