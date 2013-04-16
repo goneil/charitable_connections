@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var highlightedButton = 0; // keeps track of which button is highlighted
+    var numButtons = 4;
     $("#btnFirst").click(function(){
         highlightedButton = 0;
         highlightButton(highlightedButton);
@@ -25,12 +26,16 @@ $(document).ready(function() {
         //TODO implement function
     });
     $("#btnPrev").click(function(){
-        highlightedButton --;
-        highlightButton(highlightedButton);
+        if (highlightedButton > 0){
+            highlightedButton --;
+            highlightedButton = ((highlightedButton % numButtons) + numButtons) % numButtons;
+            highlightButton(highlightedButton);
+        }
         //TODO implement functionality
     });
     $("#btnNext").click(function(){
         highlightedButton ++;
+        highlightedButton = ((highlightedButton % numButtons) + numButtons) % numButtons;
         highlightButton(highlightedButton);
         //TODO implement functionality
     });
