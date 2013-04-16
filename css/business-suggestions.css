@@ -13,12 +13,6 @@
 
 #frame{
     position: relative;
-    background-color: #eeeeee;
-    border-style: solid;
-    border-color: #eeeeee;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
 }
 #suggestionRow{
     margin-top: 20px;
