@@ -7,6 +7,7 @@
         <title>Charitable Connections</title>
         <!-- Load style sheets -->
         <link rel="stylesheet" type="text/css" href="css/myEventsLayout.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
         <!-- Le styles -->
         <link href="./experimental_css/bootstrap.css" rel="stylesheet">
@@ -19,7 +20,7 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
         <script type="text/javascript" src="rules.js"></script> 
-        <script type="text/javascript">
+        <script src="js/my_events.js" type="text/javascript">
         </script>
 
     </head>
@@ -32,18 +33,26 @@
         </div>
 
         <div id="container">
-            <div id="pagehead">
-                <h2>My Events</h2>
+            <div class="row" id="pagehead">
+                <div class="span12">
+                    <h2>My Events</h2>
+                </div>
             </div>
-            <div class="row-fluid" id="top-page-div">
-                <div class="offset1 span5 category" id="current-events">
+            <div class="row" id="category-names">
+                <div class="span6">
                     <h3>Events In Progress</h3>
+                </div>
+                <div class="span6">
+                    <h3>Messages</h3>
+                </div>
+            </div>
+            <div class="row" id="top-page-div">
+                <div class="offset1 span4 category" id="current-events">
                     <button class="container-object">
                         <img> <p>Event1 name, date, location, sponsors, etc.</p>
                     </button>
                 </div>
-                <div class="offset1 span5 category" id="messages">
-                    <h3>Messages</h3>
+                <div class="offset2 span4 category" id="messages">
                     <button class="container-object">
                         <p>Company, title, first couple lines</p>
                     </button>
@@ -74,9 +83,17 @@
                 </div>
             </div>
 
-            <div class="row" id="second-level-div">
-                <div class="offset1 span5 category" id="past-events">
+            <div class="row category-names">
+                <div class="span6">
                     <h3>Past Events</h3>
+                </div>
+                <div class="span6">
+                    <h3>Connections</h3>
+                </div>
+            </div>
+
+            <div class="row" id="second-level-div">
+                <div class="offset1 span4 category" id="past-events">
                     <button class="container-object">
                         <p>Event name, date, charity, list of sponsors</p>
                     </button>
@@ -87,8 +104,7 @@
                         <p>Event name, date, charity, list of sponsors</p>
                     </button>
                 </div>
-                <div class="offset1 span5 category" id="connections">
-                    <h3>Connections</h3>
+                <div class="offset2 span4 category" id="connections">
                     <button class="container-object">
                         <p>Company name, Event name, date, donation</p>
                     </button>
