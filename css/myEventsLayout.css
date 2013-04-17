@@ -9,6 +9,7 @@ h1 {
 
 html, body, #container {
     height: 100%;
+    padding: 0;
 }
 
 body > #container {
@@ -16,10 +17,11 @@ body > #container {
     min-height: 100%;
     background-color: #F2F2F2;
     color: #D9A13B;
+
 }
 
 #header {
-    height: 2.5em;
+    height: 2.75em;
     background-color: #3C3F40;
     color: #6CCED9;
     border-bottom: .25em solid #389BA6;
@@ -27,6 +29,7 @@ body > #container {
     font-size: 1.5em;
     font-weight: bold;
     font-style: oblique;
+    padding: 1px;
 }
 
 #header-container {
@@ -36,17 +39,22 @@ body > #container {
 
 .category {
     border: 2px solid black;
-    margin: 2em 0;
-    height: 15em;
+    margin: 3em 0;
+    height: 20em;
+    overflow: scroll;
+    padding: 5px;
 }
 
-h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
     margin-left: 10px;
     text-align: center;
 }
 
-p {
-    margin-left: 5px;
+button {
+    width: 100%;
+    padding: 20px;
+    margin: 20px;
 }
+
 
 
