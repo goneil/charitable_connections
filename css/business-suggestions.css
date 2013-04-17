@@ -1,9 +1,17 @@
+.hero-unit{
+    padding: 20px;
+    margin-bottom: 0px;
+}
 .arrowContainer{
     margin-top: 2%;
 }
+
 .suggestion{
 }
 
+.thumbnail{
+    background-color: white;
+}
 .thumbnail:hover{
   border-color: #0088cc;
   -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
@@ -16,7 +24,6 @@
 }
 
 .infoText{
-    line-height: 100%;
 }
 
 #frame{
@@ -30,8 +37,8 @@
 #btnContact{
     width: 20%;
     position: absolute;
-    right: 5px;
-    bottom: 5px;
+    right: 20px;
+    bottom: 20px;
 }
 
 #contactButtonDiv{
@@ -44,7 +51,7 @@
     width: 100%;
     height: 100%;
 }
-#businessIcon{
+#businessHeader{
 }
 
 #infoContainer{
@@ -61,7 +68,6 @@
 }
 
 #messageRow{
-    border-style: solid;
     position: fixed;
     right: 15px;
     bottom: 0;
@@ -79,7 +85,7 @@
 
 #recipientsContainer{
     position: absolute;
-    left: 33px;
+    left: 10px;
     top: 2px;
     width: 90%;
 }
@@ -96,7 +102,7 @@
 }
 
 #messageBody{
-    background-color: white;
+    background-color: #eeeeee;
     height: 100%;
 }
 
