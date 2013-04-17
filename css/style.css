@@ -8,12 +8,14 @@ h2,
 h3,
 h4,
 h5,
-h6{
+h6,
+.btn{
     font-family: sans-serif !important;
 }
 
 body{
     font-family:serif !important;
+    background-color: #feedbf;
 }
 
 .navbar{
