@@ -6,6 +6,7 @@ function squarifyRatio(element,ratio) {
     function squareItUp() {
         $(element).height($(element).width()*ratio);
         $("#choicesFrame").height($("#eventFrame").height());
+        $("#searchResultsDiv").height($("#eventFrame").height() - $("#search-box").height() - 15);
     }
 }
 

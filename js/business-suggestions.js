@@ -1,4 +1,4 @@
-
+var message;
 $(document).ready(function() {
     squarifyMe('.suggestionContainer');
     squarifyMe('#btnMessage');
@@ -151,8 +151,10 @@ $(document).ready(function() {
             });
             $("#btnSend").click(function(){
                 addMode = false;
-                $("#messageRow").remove();
-                alert("Send not implemented");
+                $("#icons").remove();
+                $("#messageRow").animate({right: "-800px"}, function(){
+                    $("#messageRow").remove();
+                });
             });
             $("#btnHelp").click(function(){
                 var title = "Have you answered these questions?";
@@ -239,4 +241,14 @@ var Business = function(name, info, imageLink){
     me.name = name;
     me.info = info;
     me.imageLink = imageLink;
+};
+
+var Message = function(recipients, theme, charity, date, size, messageText){
+    me = this;
+    me.recipients = recipients;
+    me.theme = theme;
+    me.charity = charity;
+    me.date = date;
+    me.size = size;
+    me.messageText = messageText;
 };

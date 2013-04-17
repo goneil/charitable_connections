@@ -5,6 +5,7 @@
 
 #search-box{
     background-color: #feedbf;
+    width: 100%;
 }
 
 .choice{
@@ -78,8 +79,13 @@
 #choicesFrame{
     background-color: #FFFFFF;
     margin-top: 0;
-    margin-left: 1em;
     border-style: solid;
+}
+
+#searchDiv{
+}
+#searchResultsDiv{
+    float: left;
     overflow: scroll;
 }
 
