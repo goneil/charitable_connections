@@ -21,9 +21,6 @@
 
 #progressBar{
     margin-top: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #task1, #task2, #task3, #task4{
@@ -53,12 +50,19 @@
 
 #helperTitle{
     margin-left: 0;
-    text-align: left
+    text-align: left;
+    font-size: 1.5em;
+    font-family: sans-serif;
+    margin-bottom: .3em;
 }
 
+
 #choicesTitle{
-    margin-left: 1.5em;
+    margin-left: 1em;
     text-align: left;
+    font-size: 1.5em;
+    font-family: sans-serif;
+    margin-bottom: .3em;
 }
 
 #eventFrame{
