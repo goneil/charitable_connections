@@ -3,7 +3,6 @@ $(document).ready(function() {
     squarifyMe('.suggestionContainer');
     squarifyMe('#btnMessage');
     squarifyMe('#businessIcon');
-    squarifyMe('#frame');
     var businessList = [
         new Business('Trader Joe\'s',
                      {location: "748 Memorial Dr Cambridge (617) 491-8582",
@@ -59,9 +58,11 @@ $(document).ready(function() {
                 <div class="span4" id="messageHeader">\
                     <div class="row">\
                         <div class="span3 recipients">\
+                                    <div id="recipientsContainer">\
                                     To:\
                                     <input id="recipients" type="text" placeholder="recipients...">\
-                                    <i class="icon-plus-sign icon-white icon" id="btnAdd"></i>\
+                                        <i class="icon-plus-sign icon" id="btnAdd"></i>\
+                                    </div>\
                         </div>\
                         <div class="span1" id="icons">\
                             <i class="icon-plus icon-white icon" id="btnMaximize"></i>\
@@ -136,7 +137,6 @@ $(document).ready(function() {
                 addMode = !addMode;
                 if (addMode){
                     $("#btnMinimize").click();
-
                     if ($("suggestionRow").attr("data-original-title")!==""){
                         $("#suggestionRow").popover(
                             {placement: "top",

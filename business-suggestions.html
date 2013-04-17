@@ -7,10 +7,10 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./experimental_css/bootstrap.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
     <link href="./css/business-suggestions.css" rel="stylesheet">
-    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="./experimental_css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -20,8 +20,12 @@
   </head>
 
   <body>
+    <div class="navbar navbar-static-top">
+        <div class="navbar-inner">
+            <a class="brand" href="./home.html">CharitableConnections</a>
+        </div>
+    </div>
     <div class="container">
-
         <div class="row">
             <div class="span3"></div>
             <div class="span6 title"><h2>Business Suggestions</h2></div>
@@ -30,7 +34,7 @@
 
         <div class="row">
             <div class="span3"></div>
-            <div id="frame" class="span6 well">
+            <div id="frame" class="span6 hero-unit">
                 <div class="row" id="businessHeader">
                     <div class="span2" id="businessIcon"><div class="outline"></div></div>
                     <div class="span4" >
@@ -38,15 +42,31 @@
                     </div>
                 </div>
                 <div class="row" id="infoContainer">
-                        <div class="span2"></div>
-                        <div class="span4">
-                            <p>Location: <span id="businesslocation"></span></p>
-                            <p>Info: <span id="businessinfo"></span></p>
-                            <p>Donations: <span id="businessdonations"></span></p>
+                    <div class="row">
+                        <div class="span2 infoLabel">
+                            Location:
                         </div>
+                        <div class="span4 ">
+                            <p id="businesslocation" class="infoText"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span2 infoLabel">
+                            Info:
+                        </div>
+                        <div class="span4">
+                            <p id="businessinfo" class="infoText"></p>
+                        </div>
+                        <div class="span2 infoLabel">
+                            Donations:
+                        </div>
+                        <div class="span4">
+                            <p id="businessdonations" class="infoText"></p>
+                        </div>
+                    </div>
                 </div>
-
-                        <input type="image" class="thumbnail" src="./img/contact.jpeg" id="btnContact">
+                        <input type="image" class="thumbnail"
+                        src="./img/contact.png" id="btnContact">
 
             </div>
             <div class="span3"></div>
@@ -54,7 +74,11 @@
 
         <div class="row" id="suggestionRow">
             <div class="span1 arrowContainer">
-                <input height: '100%' width: '100%' type="image" src="./img/prev.jpg" class="arrow" id="btnPrevious">
+                <div class="pagination">
+                    <ul>
+                        <li><a id="btnPrevious" class="arrow">&laquo;</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="span2 suggestionContainer">
                 <div id="suggestion0" class="suggestion"></div>
@@ -72,7 +96,11 @@
                 <div id="suggestion4" class="suggestion"></div>
             </div>
            <div class="span1 arrowContainer">
-                <input type="image" src="./img/next.jpg" class="arrow" id="btnNext">
+                <div class="pagination">
+                    <ul>
+                        <li><a id="btnNext" class="arrow">&raquo;</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
