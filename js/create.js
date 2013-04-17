@@ -160,6 +160,12 @@ $(document).ready(function() {
 // highlights button indexed by number.  Also takes care of previous and next
 // disabling/text changing
 var highlightButton = function(num){
+    if ($("#btnNext").text() === "Finish"){
+        $("#btnNext").attr("href", "./business-suggestions.html");
+        return;
+    }else{
+        $("#btnNext").removeAttr("href");
+    }
     var progressBar = $("#progressBar");
     var children = progressBar.children();
     num = ((num % children.length) + children.length) % children.length;
