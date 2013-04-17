@@ -9,6 +9,7 @@
     <!-- Le styles -->
     <link href="./experimental_css/bootstrap.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/create_event.css" rel="stylesheet">
     <link href="./experimental_css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -27,12 +28,10 @@
   <body>
     <div class="navbar navbar-static-top">
         <div class="navbar-inner">
-            <a class="brand" href="./home.html">CharitableConnections</a>
+            <a class="brand" href="./home.html">Charitable Connections</a>
         </div>
     </div>
-
     <div class="container">
-
         <div class="row">
             <div class="span4"></div>
             <div id="progressBar" class="btn-group span4">
@@ -82,7 +81,15 @@
             <div class="span6" id="eventFrame">
                 <div id="help_overlay"> Your event details will appear here </div>
             </div>
+
             <div class="span4" id="choicesFrame">
+
+                <div id="searchDiv">
+                <form class="navbar-search" id="searchForm">
+                    <input id="search-box" name="search-box" class="search-query" placeholder="search" value type="text">
+                </form>
+                </div>
+                <div>
                 <ol id="choicesList">
                     <!--<li class="ui-state-default"><img src="img/sample.png"></li>
                     <li class="ui-state-default"><img src="img/sample.png"></li>
@@ -93,6 +100,7 @@
                     <li class="ui-state-default"><img src="img/sample.png"></li>
                     <li class="ui-state-default"><img src="img/sample.png"></li> -->
                 </ol>
+                </div>
 
             </div>
         </div>
@@ -121,8 +129,10 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./external_js/jquery.js"></script>
+    <script src="external_js/jquery-ui-1.10.2.custom.min.js"></script>
     <script src="./external_js/bootstrap.js"></script>
     <script src="./external_js/bootstrap.min.js"></script>
     <script src="./js/create.js"></script>
-    <script src="external_js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script type="text/javascript" src="http://orderedlist.com/demos/quicksilverjs/javascripts/quicksilver.js"></script>
+    <script src="./external_js/livesearch.js"></script>
 </body></html>

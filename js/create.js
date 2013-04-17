@@ -34,12 +34,12 @@ function makeChoiceList(list){
 			.append(caption);
 		$("#choicesList").append(li);
 	}
+    $("#search-box").liveUpdate("#choicesList").focus();
 }
 
 $(document).ready(function() {
     squarifyMe('#eventFrame', .75);
     makeChoiceList(charities);
-
 
     /*$("#choicesFrame").bind('mousewheel DOMMouseScroll', function(e){
     	var scrollTo = null;
