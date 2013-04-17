@@ -15,26 +15,8 @@ html, body, #container {
 body > #container {
     height: auto;
     min-height: 100%;
-    background-color: #F2F2F2;
     color: #D9A13B;
 
-}
-
-#header {
-    height: 2.75em;
-    background-color: #3C3F40;
-    color: #6CCED9;
-    border-bottom: .25em solid #389BA6;
-    width: 100%;
-    font-size: 1.5em;
-    font-weight: bold;
-    font-style: oblique;
-    padding: 1px;
-}
-
-#header-container {
-    height: 2.5em;
-    background-color: #3C3F40;
 }
 
 .category {
@@ -43,18 +25,29 @@ body > #container {
     height: 10em;
     overflow: scroll;
     padding: 5px;
+    background-color: white;
 }
 
-h2, h3, h4, h5, h6 {
-    margin-left: 10px;
+//h2, h3, h4, h5, h6 {
+    //margin-left: 10px;
+    //text-align: center;
+    //color: black !important;
+//}
+
+h1, h2, h3, h4, h5, h6 {
+    color: rgb(62, 107, 133) !important;
     text-align: center;
+    margin-top: 1em !important;
+    margin-bottom: .5em !important;
 }
+
+
 
 button {
     width: 100%;
     height: 1em;
     padding: 0;
     margin: 0 20;
-    background: url('/img/businesses/traderjoes.png');
+   // background: url('/img/businesses/traderjoes.png');
 }
 
