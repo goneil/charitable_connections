@@ -1,8 +1,20 @@
 $(document).ready(function() {
-    var businessList = [
-        new Business('City Sports',
-                     {location: "   44 Brattle St  Cambridge, MA 02138 (617) 492-6000",
-                      info:"City Sports info",
+    var organizationList = [
+        new Organization('Sports Authority',
+            {location: "710 Massachusetts Ave., Cambridge, MA",
+            isBusiness = true,
+            donations: "Gift Certificates"
+            }, './img/businesses/citysports.jpg'),
+        new Organization('Jimmy Fund',
+            {location: "15 Beacon St., Brookline, MA",
+            isBusiness = false,
+            donations: "Money"
+            }, './img/jimmy_fund.png')
+    };
+    var eventList = [
+        new Event('Curl Til You Hurl',
+                     {location: "Cambridge, MA",
+                      businesses,
                       donations: "Gift Certificates"
                      }, './img/businesses/citysports.jpg')
     ];
@@ -16,14 +28,21 @@ $(document).ready(function() {
 
 /**
  * Class Event represents events
- * @param {string} eventName: name of event
- * @param {string} business: name of business sponsor
+ * @param {string} name: name of event
  * @param {object} info: information object (to be setup later)
  * @param {string} imageLink
  */
-var Business = function(name, info, imageLink){
+var Event = function(name, info, imageLink){
     me = this;
     me.name = name;
     me.info = info;
     me.imageLink = imageLink;
 };
+
+var Organization = function(name, info, imageLink){
+    me = this;
+    me.name = name;
+    me.info = info;
+    me.imageLink = imageLink;
+};
+
