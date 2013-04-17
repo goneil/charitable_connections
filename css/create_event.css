@@ -1,3 +1,8 @@
+#searchDiv{
+    margin-left: 5px;
+    width: 100%;
+}
+
 .choice{
     margin:5px;
     width: 23%;
@@ -77,6 +82,7 @@
 #choicesList{
     list-style-type: none;
     margin: 0;
+    margin-top: 15px;
     padding: 0;
 }
 
