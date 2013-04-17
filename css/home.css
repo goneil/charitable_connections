@@ -1,0 +1,4 @@
+body{
+	background: url(../img/background_graphic_shadow.png) no-repeat center center fixed,
+				url(../img/background_tile.png) repeat;
+}
