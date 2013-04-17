@@ -18,7 +18,7 @@ var charities = [
 	{ label: "USO", image: "img/uso.png"}
 ];
 
-var charity_list = []
+var charity_list = [];
 
 
 function makeChoiceList(list){
@@ -38,7 +38,7 @@ function makeChoiceList(list){
 }
 
 $(document).ready(function() {
-    squarifyMe('#eventFrame', .75);
+    squarifyMe('#eventFrame', 0.75);
     makeChoiceList(charities);
 
     /*$("#choicesFrame").bind('mousewheel DOMMouseScroll', function(e){

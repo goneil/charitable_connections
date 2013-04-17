@@ -2,3 +2,19 @@ body{
 	background: url(../img/background_graphic_shadow.png) no-repeat center center fixed,
 				url(../img/background_tile.png) repeat;
 }
+
+
+.btn{
+    width: 110px;
+    bottom: 40px;
+    position: fixed;
+}
+
+#btnCreate{
+    right: 50%;
+    margin-right: -7px;
+}
+#btnMyEvents{
+    left: 50%;
+    margin-left: 12px;
+}
