@@ -37,8 +37,8 @@ var donation_types = [
 ];
 
 
-function makeChoiceList(list){
-    $("#choicesList").empty();
+function makeChoiceList(list, element){
+    //$("#choicesList").empty();
     for(var i = 0; i < list.length; i++){
         var img = new Image();
         img.src = list[i].image;
@@ -49,22 +49,26 @@ function makeChoiceList(list){
             .addClass("ui-state-default")
             .append(img)
             .append(caption);
-        $("#choicesList").append(li);
+        $(element).append(li);
     }
-    $("#search-box").liveUpdate("#choicesList").focus();
+    //$("#search-box").liveUpdate(element).focus();
 }
 
 $(document).ready(function() {
     squarifyRatio('#eventFrame', 0.75);
-    makeChoiceList(charities);
+    makeChoiceList(charities, "#charityList");
+    makeChoiceList(event_types, "#eventList");
+    makeChoiceList(donation_types, "#donationList");
+    $("#eventList").hide();
+    $("#donationList").hide();
 
 
     var $currentlySelected = null;
     var selected = [];
 
-    $('#choicesList').selectable({
+    $('.choicesList').selectable({
         start: function(event, ui){
-            $currentlySelected = $('#choicesList .ui-selected');
+            $currentlySelected = $('.choicesList .ui-selected');
         },
         stop: function(event, ui){
             for(var i = 0; i < selected.length; i++){
@@ -91,6 +95,7 @@ $(document).ready(function() {
         highlightButton(highlightedButton);
         $("#btnPrev").addClass("disabled");
         changeChoicesList(highlightedButton);
+
     });
     //event
     $("#btnSecond").click(function(){
@@ -165,19 +170,32 @@ var highlightButton = function(num){
 // changes contents of choice list based on button number
 function changeChoicesList(btnNum){
     if(btnNum === 0){
-        makeChoiceList(charities);
+        //makeChoiceList(charities);
         $("#choicesTitle").html("Choose your charity");
         $("#choicesFrame").show();
+        $("#charityList").show();
+        $("#eventList").hide();
+        $("#donationList").hide();
+        $("#search-box").liveUpdate($("#charityList")).focus();
+
     }
     else if(btnNum === 1){
-        makeChoiceList(event_types);
+        //makeChoiceList(event_types);
         $("#choicesTitle").html("Choose your event types");
         $("#choicesFrame").show();
+        $("#charityList").hide();
+        $("#eventList").show();
+        $("#donationList").hide();
+        $("#search-box").liveUpdate($("#eventList")).focus();
     }
     else if(btnNum === 3){
-        makeChoiceList(donation_types);
+        //makeChoiceList(donation_types);
         $("#choicesTitle").html("Choose your donation types");
         $("#choicesFrame").show();
+        $("#charityList").hide();
+        $("#eventList").hide();
+        $("#donationList").show();
+        $("#search-box").liveUpdate($("#donationList")).focus();
     }
     else if(btnNum === 2){
         $("#choicesFrame").hide();

@@ -83,23 +83,23 @@
     overflow: scroll;
 }
 
-#choicesList .ui-selecting {
+.choicesList .ui-selecting {
     background: #FECA40;
 }
 
-#choicesList .ui-selected {
+.choicesList .ui-selected {
     background: #F39814;
     color: white;
 }
 
-#choicesList{
+.choicesList{
     list-style-type: none;
     margin: 0;
     margin-top: 15px;
     padding: 0;
 }
 
-#choicesList li {
+.choicesList li {
     margin: 1.75%;
     padding: 2.5%;
     float: left;
