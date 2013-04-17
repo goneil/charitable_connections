@@ -1,9 +1,19 @@
-.colors{
+@font-face{
+    font-family: "Mathlete-Bulky";
+    src: url("../fonts/Mathlete-Bulky.otf") format("opentype");
 }
 
-@font-face{
-    font-family: "Mathlete-Bulky"
-    src: url(fonts/Mathlete-Bulky.otf);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family: sans-serif !important;
+}
+
+body{
+    font-family:serif !important;
 }
 
 .navbar{
