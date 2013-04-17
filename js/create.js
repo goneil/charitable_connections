@@ -5,8 +5,8 @@ function squarifyRatio(element,ratio) {
     };
     function squareItUp() {
         $(element).height($(element).width()*ratio);
+        $("#choicesFrame").height($("#eventFrame").height());
     }
-    $("#choicesFrame").height($("#eventFrame").height());
 }
 
 var charities = [
