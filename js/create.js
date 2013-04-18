@@ -8,7 +8,6 @@ function squarifyRatio(element,ratio) {
         $("#choicesFrame").height($("#eventFrame").height());
         $("#logistics").height($("#eventFrame").height());
         $("#map-canvas").width($("#logistics").width() - 20);
-        $(".ui-datepicker-inline").width($("#logistics").width() - 40);
         $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
         $("#gmaps-canvas").css("height", $("#logistics").height() - 20);
         $("#searchResultsDiv").height($("#eventFrame").height() - $("#search-box").height() - 15);
@@ -133,6 +132,13 @@ $(document).ready(function() {
         changeChoicesList(highlightedButton);
     });
     $("#btnNext").click(function(){
+    if ($("#btnNext").text() === "Finish"){
+        $("#btnNext").attr("href", "./business-suggestions.html");
+        return;
+    }else{
+        $("#btnNext").removeAttr("href");
+    }
+
         highlightedButton ++;
         highlightedButton = ((highlightedButton % numButtons) + numButtons) % numButtons;
         highlightButton(highlightedButton);
@@ -160,12 +166,6 @@ $(document).ready(function() {
 // highlights button indexed by number.  Also takes care of previous and next
 // disabling/text changing
 var highlightButton = function(num){
-    if ($("#btnNext").text() === "Finish"){
-        $("#btnNext").attr("href", "./business-suggestions.html");
-        return;
-    }else{
-        $("#btnNext").removeAttr("href");
-    }
     var progressBar = $("#progressBar");
     var children = progressBar.children();
     num = ((num % children.length) + children.length) % children.length;
@@ -231,11 +231,9 @@ function changeChoicesList(btnNum){
         $("#choicesTitle").html("Choose date and location");
         $("#choicesFrame").hide();
         $("#logistics").show();
-        //$("#date").hide();
         $("#location").hide();
         $("#datepicker").datepicker();
         $("#btnDate").click();
-        $(".ui-datepicker-inline").width($("#logistics").width() - 20);
         $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
         $("#gmaps-canvas").css("height", $("#logistics").height() - 20);
     }
