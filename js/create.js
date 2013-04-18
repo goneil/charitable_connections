@@ -6,6 +6,7 @@ function squarifyRatio(element,ratio) {
     function squareItUp() {
         $(element).height($(element).width()*ratio);
         $("#choicesFrame").height($("#eventFrame").height());
+        $("#eventTable").height($("#eventFrame").height());
         $("#logistics").height($("#eventFrame").height());
         $("#map-canvas").width($("#logistics").width() - 20);
         $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
@@ -60,6 +61,8 @@ function makeChoiceList(list, element){
 }
 
 $(document).ready(function() {
+    var location = null;
+    var date = null;
     squarifyRatio('#eventFrame', 0.75);
     makeChoiceList(charities, "#charityList");
     makeChoiceList(event_types, "#eventList");
@@ -67,6 +70,7 @@ $(document).ready(function() {
     $("#eventList").hide();
     $("#donationList").hide();
     $("#logistics").hide();
+    $("#eventTable").hide();
 
     var $currentlySelected = null;
     var selected = [];
@@ -82,11 +86,19 @@ $(document).ready(function() {
                 }
             }
             selected = [];
+            if (($('.choicesList .ui-selected').length === 0) 
+                && (location == null) 
+                && (date ==null)){
+                $("#eventTable").hide();
+                $("#help_overlay").show();
+            }
         },
         selecting: function(event, ui) {
             $currentlySelected.addClass('ui-selected');
         },
         selected: function(event, ui){
+            $("#eventTable").show();
+            $("#help_overlay").hide();
             selected.push(ui.selected);
         },
         tolerance: 'fit'

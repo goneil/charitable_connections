@@ -25,6 +25,49 @@
     line-height: 1em;
 }
 
+.charity_icon{
+
+}
+
+.event_icon{
+
+}
+
+.donation_icon{
+
+}
+
+.pane_label{
+    text-align: left;
+    vertical-align: top;
+    padding: .3em;
+}
+
+#charity_pane{
+    border-top-style: none;
+    border-left-style: none;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    width: 50%;
+    vertical-align: top;
+}
+
+#event_pane{
+    border-bottom: 2px solid;
+    width: 50%;
+    vertical-align: top;
+}
+
+#logistics_pane{
+    border-right: 2px solid;
+    vertical-align: top;
+}
+
+#donations_pane{
+    vertical-align: top;
+}
+
+
 #progressBar{
     margin-top: 20px;
 }
@@ -93,6 +136,12 @@
     background-color: #FFFFFF;
 }
 
+#eventTable{
+    position:absolute;
+    width: 100%;
+    opacity: .3;
+}
+
 #logistics{
     background-color: #FFFFFF;
     margin-top: 0;
@@ -104,6 +153,7 @@
     background-color: #FFFFFF;
     margin-top: 0;
     border-style: solid;
+    margin-left: 1em;
 }
 
 #searchDiv{
@@ -125,7 +175,7 @@
 .choicesList{
     list-style-type: none;
     margin: 0;
-    margin-top: 15px;
+    margin-top: 10px;
     padding: 0;
 }
 
