@@ -57,3 +57,15 @@ button {
     height: 1.5em;
     font-size: 1em;
 }
+
+.container-button {
+    margin-left: .3em;
+    height: 1.5em;
+    width: 30%;
+    text-align: center;
+}
+
+.container-label {
+    display: inline-block;
+}
+

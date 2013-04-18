@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+    //$( document ).tooltip();
+    alert("ready");
      var businessList = [
         new Business('Trader Joe\'s',
                      {location: "748 Memorial Dr Cambridge (617) 491-8582",
@@ -91,3 +94,6 @@ var Business = function(name, info, imageLink){
     me.info = info;
     me.imageLink = imageLink;
 };
+
+
+});
