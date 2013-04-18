@@ -7,6 +7,7 @@ function squarifyRatio(element,ratio) {
         $(element).height($(element).width()*ratio);
         $("#choicesFrame").height($("#eventFrame").height());
         $("#eventTable").height($("#eventFrame").height());
+        //$("#charity_icons").height($("#eventFrame").height()/2);
         $("#logistics").height($("#eventFrame").height());
         $("#map-canvas").width($("#logistics").width() - 20);
         $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
@@ -42,6 +43,9 @@ var donation_types = [
     { label: "Monetary", image: "img/money.png"}
 ];
 
+var charity_icons = 0;
+var event_icons = 0;
+var donation_icons = 0;
 
 function makeChoiceList(list, element){
     //$("#choicesList").empty();
@@ -72,6 +76,8 @@ $(document).ready(function() {
     $("#logistics").hide();
     $("#eventTable").hide();
 
+    $("#search-box").liveUpdate($("#charityList")).focus();
+
     var $currentlySelected = null;
     var selected = [];
 
@@ -83,6 +89,12 @@ $(document).ready(function() {
             for(var i = 0; i < selected.length; i++){
                 if($.inArray(selected[i],$currentlySelected) >= 0){
                     $(selected[i]).removeClass('ui-selected');
+                    removeIcon($(selected[i]).children("img").attr("src"), highlightedButton);
+                }
+                else{
+                    var img = new Image();
+                    img.src = $(selected[i]).children("img").attr("src");
+                    addIcon(img, highlightedButton);
                 }
             }
             selected = [];
@@ -249,5 +261,69 @@ function changeChoicesList(btnNum){
         $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
         $("#gmaps-canvas").css("height", $("#logistics").height() - 20);
     }
+}
+
+function addIcon(img, pane){
+    if(pane === 0){
+        charity_icons++;
+        $(img).addClass('charity_icon');
+        $('#charity_icons').append(img);
+        changeWidth(charity_icons, '.charity_icon');
+    } 
+    if(pane === 1){
+        event_icons++;
+        $(img).addClass('event_icon');
+        $('#event_icons').append(img);
+        changeWidth(event_icons, '.event_icon');
+    }
+    if(pane === 3){
+        donation_icons++;
+        $(img).addClass('donation_icon');
+        $('#donation_icons').append(img);
+        changeWidth(donation_icons, '.donation_icon');
+    }
+}
+
+function removeIcon(src, pane){
+    var icons;
+    if(pane === 0){
+        charity_icons--;
+        icons = $("#charity_icons").children();
+        for(var i = 0; i < icons.length; i++){
+            if($(icons[i]).attr('src') == src){
+                $(icons[i]).remove();
+            }
+        }
+        changeWidth(charity_icons, '.charity_icon');
+    }
+    if(pane === 1){
+        event_icons--;
+        icons = $("#event_icons").children();
+        for(var i = 0; i < icons.length; i++){
+            if($(icons[i]).attr('src') == src){
+                $(icons[i]).remove();
+            }
+        }
+        changeWidth(event_icons, '.event_icon');
+    }
+    if(pane === 3){
+        donation_icons--;
+        icons = $("#donation_icons").children();
+        for(var i = 0; i < icons.length; i++){
+            if($(icons[i]).attr('src') == src){
+                $(icons[i]).remove();
+            }
+        }
+        changeWidth(donation_icons, '.donation_icon');
+    }
+}
+
+function changeWidth(count, elem){
+    if(count <= 3){
+            $(elem).css('width', (70/count)+'%');
+        }
+        else{
+            $(elem).css('width', (80/3)+'%');
+        }
 }
 

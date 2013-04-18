@@ -25,41 +25,42 @@
     line-height: 1em;
 }
 
-.charity_icon{
-
+.charity_icon, .event_icon, .donation_icon{
+    margin: .5%;
+    padding: 1%;
 }
 
-.event_icon{
-
-}
-
-.donation_icon{
-
-}
 
 .pane_label{
     text-align: left;
     vertical-align: top;
     padding: .3em;
+    color: rgba(62, 107, 133, .35);
+}
+
+#charity_icons, #event_icons, 
+#logistics_icons, #donation_icons{
+    position: absolute;
+    width: 50%;
 }
 
 #charity_pane{
     border-top-style: none;
     border-left-style: none;
-    border-right: 2px solid;
-    border-bottom: 2px solid;
+    border-right: 2px solid rgba(62, 107, 133, .35);
+    border-bottom: 2px solid rgba(62, 107, 133, .35);
     width: 50%;
     vertical-align: top;
 }
 
 #event_pane{
-    border-bottom: 2px solid;
+    border-bottom: 2px solid rgba(62, 107, 133, .35);
     width: 50%;
     vertical-align: top;
 }
 
 #logistics_pane{
-    border-right: 2px solid;
+    border-right: 2px solid rgba(62, 107, 133, .3);
     vertical-align: top;
 }
 
@@ -139,7 +140,6 @@
 #eventTable{
     position:absolute;
     width: 100%;
-    opacity: .3;
 }
 
 #logistics{
