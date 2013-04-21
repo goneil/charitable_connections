@@ -7,7 +7,12 @@ function squarifyRatio(element,ratio) {
         $(element).height($(element).width()*ratio);
         $("#choicesFrame").height($("#eventFrame").height());
         $("#eventTable").height($("#eventFrame").height());
-        //$("#charity_icons").height($("#eventFrame").height()/2);
+        $("#loc_icon").height($("#loc_icon").width());
+        $("#date_icon").height($("#date_icon").width());
+        $("#loc_label").height($("#loc_icon").height());
+        $("#date_label").height($("#date_icon").height());
+        $("#loc_label").width($("#loc_icon").width());
+        $("#date_label").width($("#date_icon").width());
         $("#logistics").height($("#eventFrame").height());
         $("#map-canvas").width($("#logistics").width() - 20);
         $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
@@ -48,7 +53,6 @@ var event_icons = 0;
 var donation_icons = 0;
 
 function makeChoiceList(list, element){
-    //$("#choicesList").empty();
     for(var i = 0; i < list.length; i++){
         var img = new Image();
         img.src = list[i].image;
@@ -61,7 +65,6 @@ function makeChoiceList(list, element){
             .append(caption);
         $(element).append(li);
     }
-    //$("#search-box").liveUpdate(element).focus();
 }
 
 $(document).ready(function() {
@@ -75,6 +78,8 @@ $(document).ready(function() {
     $("#donationList").hide();
     $("#logistics").hide();
     $("#eventTable").hide();
+    $("#loc_icon").hide();
+    $('#date_icon').hide();
 
     $("#search-box").liveUpdate($("#charityList")).focus();
 
@@ -116,6 +121,20 @@ $(document).ready(function() {
         tolerance: 'fit'
     });
 
+    $("#gmaps-input-address").on("autocompleteselect", function(event, ui) {
+        var split = (ui.item.value).split(",");
+        var i = 0;
+        location = split[i];
+        i++;
+        while((i < 2) && (i < split.length)){
+            location += (", " + split[i]);
+            i++;
+        }
+        $("#loc_label").html("Welcome to " + location);
+        $('#loc_icon').show();
+        $('#eventTable').show();
+        $('#help_overlay').hide();
+    });
     var highlightedButton = 0; // keeps track of which button is highlighted
     var numButtons = 4;
     //charities
@@ -256,7 +275,17 @@ function changeChoicesList(btnNum){
         $("#choicesFrame").hide();
         $("#logistics").show();
         $("#location").hide();
-        $("#datepicker").datepicker();
+        $("#datepicker").datepicker({
+            onSelect: function(dateText, inst){
+                date = dateText.split(" ");
+                var display = date[0] + '<br/>' + date[1] + '<br/>' + date[2];
+                $("#date_label").html(display);
+                $("#help_overlay").hide();
+                $("#eventTable").show();
+                $("#date_icon").show();
+            },
+            dateFormat: "M d yy"
+        });
         $("#btnDate").click();
         $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
         $("#gmaps-canvas").css("height", $("#logistics").height() - 20);
@@ -319,11 +348,14 @@ function removeIcon(src, pane){
 }
 
 function changeWidth(count, elem){
-    if(count <= 3){
+    if(count === 1){
+            $(elem).css('width', (60/count)+'%');
+        }
+        else if(count <= 3){
             $(elem).css('width', (70/count)+'%');
         }
         else{
-            $(elem).css('width', (80/3)+'%');
+            $(elem).css('width', (70/3)+'%');
         }
 }
 

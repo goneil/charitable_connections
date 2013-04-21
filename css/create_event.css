@@ -39,9 +39,53 @@
 }
 
 #charity_icons, #event_icons, 
-#logistics_icons, #donation_icons{
+#donation_icons{
     position: absolute;
     width: 50%;
+}
+
+.log_icon{
+    width:35%;
+}
+
+#logistics_icons{
+    display: table-row;
+    position: absolute;
+    width: 50%;
+}
+
+#loc_icon{
+    display: inline-block;
+    background-image: url(../img/city_sign.png);
+    background-size:100%;
+    margin: 1%;
+    padding: 1%;
+    vertical-align: middle;
+}
+
+#loc_label, #date_label{
+    display: table-cell;
+    vertical-align: middle;
+    font-family: sans-serif;
+    font-size: .8em;
+}
+
+#date_label{
+    display: table-cell;
+    vertical-align: bottom;
+    font-family: sans-serif;
+    font-size: .8em;
+    line-height: 1.3em;
+    font-size: 1.1em;
+}
+
+#date_icon{
+    display: inline-block;
+    background-image: url(../img/cal_icon2.png);
+    background-size:100%;
+    margin: 1%;
+    padding: 1%;
+    vertical-align: middle;
 }
 
 #charity_pane{
