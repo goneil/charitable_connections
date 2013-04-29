@@ -6,12 +6,16 @@ var marker;
 function gmaps_init(){
 
   // center of the universe
-  var latlng = new google.maps.LatLng(51.751724,-1.255284);
+  var latlng = new google.maps.LatLng(42.373611, -71.110556);
 
   var options = {
-    zoom: 2,
+    minZoom: 5,
+    maxZoom: 15,
+    zoom: 10,
     center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false,
+    streetViewControl: false
   };
 
   // create our map object
@@ -26,15 +30,48 @@ function gmaps_init(){
     draggable: true
   });
 
+
+  // Bounds for North America
+   var strictBounds = new google.maps.LatLngBounds(
+     new google.maps.LatLng(28.70, -127.50), 
+     new google.maps.LatLng(48.85, -55.90)
+   );
+
+  var dragStartCenter;
+  var markerStartPos;
+
+  google.maps.event.addListener(map, 'dragstart', function(){
+    dragStartCenter = map.getCenter();
+  });
+
+  google.maps.event.addListener(map, 'dragend', function(){
+      if (strictBounds.contains(map.getCenter())){
+        return;
+      } 
+      map.setCenter(dragStartCenter);
+  });
+
+  google.maps.event.addListener(marker, 'dragstart', function() {
+      markerStartPos = marker.getPosition();
+  });
+
   // event triggered when marker is dragged and dropped
   google.maps.event.addListener(marker, 'dragend', function() {
-    geocode_lookup( 'latLng', marker.getPosition() );
+    if(!strictBounds.contains(marker.getPosition())) {
+      marker.setPosition(markerStartPos);
+    }
+    geocode_lookup( 'latLng', marker.getPosition() );  
   });
 
   // event triggered when map is clicked
   google.maps.event.addListener(map, 'click', function(event) {
-    marker.setPosition(event.latLng)
-    geocode_lookup( 'latLng', event.latLng  );
+    if(strictBounds.contains(event.latLng)){
+      marker.setPosition(event.latLng);
+    }
+    else{
+      marker.setPosition(map.getCenter);
+    }
+    geocode_lookup( 'latLng', marker.getPosition()  );
   });
 
   $('#gmaps-error').hide();

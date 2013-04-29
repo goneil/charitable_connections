@@ -14,9 +14,11 @@ function squarifyRatio(element,ratio) {
         $("#loc_label").width($("#loc_icon").width());
         $("#date_label").width($("#date_icon").width());
         $("#logistics").height($("#eventFrame").height());
-        $("#map-canvas").width($("#logistics").width() - 20);
-        $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
-        $("#gmaps-canvas").css("height", $("#logistics").height() - 20);
+        var mapWrapHeight = $("#logistics").height()
+            - ($("#log-navs").height() 
+            + $("#gmaps-input-address").height()); 
+        $("#location").height(mapWrapHeight);
+        $("#gmaps-canvas").height(mapWrapHeight-45);
         $("#searchResultsDiv").height($("#eventFrame").height() - $("#search-box").height() - 15);
     }
 }
@@ -284,11 +286,18 @@ function changeChoicesList(btnNum){
                 $("#eventTable").show();
                 $("#date_icon").show();
             },
-            dateFormat: "M d yy"
+            dateFormat: "M d yy",
+            minDate: +1,
+            maxDate: "+1Y"
         });
         $("#btnDate").click();
-        $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
-        $("#gmaps-canvas").css("height", $("#logistics").height() - 20);
+        var mapHeight = $("#logistics").height()
+            - ($("#log-navs").height() 
+            + $("#gmaps-input-address").height());  
+        $("#location").height(mapHeight);
+        $("#gmaps-canvas").height(mapHeight-45);
+        //$("#gmaps-canvas").css("width",$("#logistics").width() - 20);
+        //$("#gmaps-canvas").css("height", $("#location").height() - 20);
     }
 }
 
