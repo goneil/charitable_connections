@@ -12,8 +12,6 @@
         <!-- Le styles -->
         <link href="./experimental_css/bootstrap.css" rel="stylesheet">
         <link href="./css/style.css" rel="stylesheet">
-        <style>
-    </style>
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
 
         <!-- Load any supplemental Javascript libraries here -->
@@ -21,7 +19,36 @@
         <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
         <script type="text/javascript" src="rules.js"></script> 
         <script src="js/my_events.js" type="text/javascript"></script>
+
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <script src="d3-cloud/lib/d3/d3.js"></script>
+    <script src="d3-cloud/d3.layout.cloud.js"></script>
+
+
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <!--<script src="wordcloud.js"></script>-->
+
+    <script src="d3-cloud/lib/d3/d3.js"></script>
+    <script src="d3-cloud/d3.layout.cloud.js"></script>
+
+
+  <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet" >
+  <link href="assets/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" >
+
+
+
+
+
+
+        <script>
+        $(function() {
+            $( "#tabs" ).tabs();
+        });
         </script>
+
 
     </head>
 
@@ -32,6 +59,99 @@
             </div>
         </div>
 
+
+  <div id="tabs">
+  <ul id="tabs-list">
+    <li><a href="#tabs-1">Messages</a></li>
+    <li><a href="#tabs-2">Current events</a></li>
+    <li><a href="#tabs-3">Past events</a></li>
+    <li><a href="#tabs-4">Business connections</a></li>
+    <li><a href="#tabs-5">Charity connections</a></li>
+    <li><a href="#tabs-6">Event ideas</a></li>
+    <li><a href="#tabs-7">Word cloud</a></li>
+  </ul>
+
+  <div class="tab-content" id="tabs-1">
+    <div class=row-fluid">
+        <div id="tab-header" class="span12"><span id="tab-header-words">Your messages with businesses</span></div>
+    </div>
+    <div class=row-fluid">
+        <div class="span3 box"></div>
+        <div class="span3 box"></div>
+        <div class="span3 box"></div>
+        <div class="span3 box"></div>
+    </div>
+    <div class=row-fluid">
+        <div class="span3 box"></div>
+        <div class="span3 box"></div>
+        <div class="span3 box"></div>
+        <div class="span3 box"></div>
+    </div>
+    <div class=row-fluid">
+        <div class="span3 box"></div>
+        <div class="span3 box"></div>
+        <div class="span3 box"></div>
+        <div class="span3 box"></div>
+    </div>
+  </div>
+
+
+
+
+  <div class="tab-content" id="tabs-2">
+    <div class=row-fluid">
+        <div id="tab-header" class="span12"><span id="tab-header-words">Events you are currently planning</span></div>
+    </div>
+  </div>
+
+
+    <div class="tab-content" id="tabs-3">
+    <div class=row-fluid">
+        <div id="tab-header" class="span12"><span id="tab-header-words">Events you have planned in the past</span></div>
+    </div>
+  </div>
+
+
+    <div class="tab-content" id="tabs-4">
+    <div class=row-fluid">
+        <div id="tab-header" class="span12"><span id="tab-header-words">Businesses that have donated to your events</span></div>
+    </div>
+  </div>
+
+
+    <div class="tab-content" id="tabs-5">
+    <div class=row-fluid">
+        <div id="tab-header" class="span12"><span id="tab-header-words">Charities you have supported</span></div>
+    </div>
+  </div>
+
+
+    <div class="tab-content" id="tabs-6">
+    <div class=row-fluid">
+        <div id="tab-header" class="span12"><span id="tab-header-words">Some inspiration</span></div>
+    </div>
+  </div>
+
+
+    <div class="tab-content" id="tabs-7">
+    <div class=row-fluid">
+        <div id="tab-header" class="span12"><span id="tab-header-words">Your event planning word cloud</span></div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+<!--
         <div id="container">
             <div class="row" id="pagehead">
                 <div class="span12 title">
@@ -54,11 +174,9 @@
                         </div>
 
                     </div>
-                <!--
                     <button class="container-object">
                         <p>Event1 name, date, location, sponsors, etc.</p>
                     </button>
-                    -->
                 </div>
                 <div class="offset2 span4 category" id="messages">
                     <div class="row">
@@ -88,35 +206,6 @@
                     </div>
 
                         
-                   <!-- 
-                    <button class="container-object">
-                        <p>Company, title, first couple lines</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Company, title, first couple lines</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Company, title, first couple lines</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Company, title, first couple lines</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Company, title, first couple lines</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Company, title, first couple lines</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Company, title, first couple lines</p>
-                    </button>
-                    <button class="container-object">
-                            <img src="img/businesses/traderjoes.png"><p>Company, title, first couple lines</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Company, title, first couple lines</p>
-                    </button>
-                    -->
                 </div>
             </div>
 
@@ -137,18 +226,7 @@
                         </div>
 
                     </div>
-                    <!--
-                    <button class="container-object">
-                        <p>Event name, date, charity, list of sponsors</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Event name, date, charity, list of sponsors</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Event name, date, charity, list of sponsors</p>
-                    </button>
-                    -->
-                </div>
+                                   </div>
                 <div class="offset2 span4 category" id="connections">
                     <div class="row">
                         <div id="message1" class="message span4">
@@ -190,22 +268,9 @@
                             <a href="" title="They have agreed to sponsor your current event">Trader Joes</a>
                         </div>
                     </div>
-                <!--
-                    <button class="container-object">
-                        <p>Company name, Event name, date, donation</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Company name, Event name, date, donation</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Company name, Event name, date, donation</p>
-                    </button>
-                    <button class="container-object">
-                        <p>Company name, Event name, date, donation</p>
-                    </button>
-                    -->
-                </div>
+                    </div>
             </div>
+            -->
         </div>
     </body>
 

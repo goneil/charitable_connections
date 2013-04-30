@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="d3-cloud/lib/d3/d3.js"></script>
+<script src="d3-cloud/d3.layout.cloud.js"></script>
+<!--
+<style>
+body {
+    margin: 0 auto;
+}
+
+#wordcloud {
+    margin: none;
+    border: 1px solid black;
+}
+-->
+
+
+</style>
+</head>
+<body>
+<script>
+    
+    var fill = d3.scale.category20();
+
+    /*
+    var layout = cloud()
+      .size([960, 600])
+      .timeInterval(10)
+      //.text(function(d) { return d.key; })
+      .font("Impact")
+      .fontSize(function(d) { return fontSize(+d.value); })
+      .rotate(function(d) { return ~~(Math.random() * 5) * 30 - 60; })
+      .padding(1)
+      .on("word", progress)
+      .on("end", draw)
+      .words([ "ctsv", "CTS", "swag", "NewCar", "escalade", "car", "life",
+        "HandWashOnly", "babyyy", "Camo", "washed", "CarWash", "american",
+        "nicewhips", "clean", "new", "baby", "riding", "ATS", "Hills", "miles", "join", "hair", "drawing", "whipping", "Beauty", "new", "Shell", "turntup", "homie", "red", "like", "see", "fogs", "wehere", "days", "drunk", "toofast", "peace", "Driving"])
+      .start();
+      */
+
+  d3.layout.cloud().size([960, 600])
+      .words([
+        "ctsv", "CTS", "swag", "NewCar", "escalade", "car", "life",
+        "HandWashOnly", "babyyy", "Camo", "washed", "CarWash", "american",
+        "nicewhips", "clean", "new", "baby", "riding", "ATS", "Hills", "miles", "join", "hair", "drawing", "whipping", "Beauty", "new", "Shell", "turntup", "homie", "red", "like", "see", "fogs", "wehere", "days", "drunk", "toofast", "peace", "Driving"].map(function(d) {
+        return {text: d, size: 10 + Math.random() * 90};
+      }))
+      .rotate(function() { return ~~(Math.random() * 2) * 90; })
+      .font("Impact")
+      .fontSize(function(d) { return d.size; })
+      .on("end", draw)
+      .start();
+
+  function draw(words) {
+    d3.select("body").append("svg")
+        .attr("id", "wordcloud")
+        .attr("width", 960)
+        .attr("height", 600)
+      .append("g")
+        .attr("transform", "translate(480,300)scale(1,1)")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size + "px"; })
+        .style("font-family", "Impact")
+        .style("fill", function(d, i) { return fill(i); })
+        .attr("text-anchor", "middle")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+  }
+</script>
+</body>
+</html>
