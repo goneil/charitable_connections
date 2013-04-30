@@ -35,16 +35,6 @@
     margin-bottom: 20px;
 }
 
-#btnContact{
-    right: 15px;
-    bottom: 15px;
-}
-
-#contactButtonDiv{
-    position: absolute;
-    bottom: 10px;
-}
-
 .outline{
     border-style: solid;
     width: 100%;
