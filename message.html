@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <link href="./experimental_css/bootstrap.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/business-suggestions.css" rel="stylesheet">
+    <link href="./experimental_css/bootstrap-responsive.css" rel="stylesheet">
+  </head>
+
+<div id="messageRow" class="row maximizedMessage"  >
+    <div class="span4" id="messageHeader">
+        <div class="row">
+            <div class="span3 recipients">
+                        <div id="recipientsContainer">
+                        To:
+                        <input id="recipients" type="text" placeholder="recipients...">
+                            <i class="icon-plus-sign icon" id="btnAdd"></i>
+                        </div>
+            </div>
+            <div class="span1" id="icons">
+                <i class="icon-plus icon-white icon" id="btnMaximize"></i>
+                <i class="icon-minus icon-white icon" id="btnMinimize"></i>
+                <i class="icon-remove icon-white icon" id="btnRemove"></i>
+            </div>
+        </div>
+    </div>
+    <div id="messageBody">
+        <form class="form-horizontal">
+          <div class="control-group">
+            </br>
+            <label class="control-label" for="theme">Theme</label>
+            <div class="controls">
+              <input type="text" id="theme" placeholder="Education">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="charity">Charity</label>
+            <div class="controls">
+              <input type="text" id="charity" placeholder="Jimmy Fund">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="date">Date</label>
+            <div class="controls">
+              <input type="text" id="date" placeholder="05/14/2013">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="messageToBusiness">Message To Business (recommended)</label>
+            <i class="icon-question-sign icon" id="btnHelp"></i>
+            <div class="controls">
+                <textarea rows="5"></textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <button type="button" id="btnSend" class="btn btn-primary">Send</button>
+            </div>
+          </div>
+        </form>
+    </div>
+</div>
+</html>

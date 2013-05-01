@@ -178,7 +178,7 @@ $(document).ready(function() {
     });
     $("#btnNext").click(function(){
     if ($("#btnNext").text() === "Finish"){
-        $("#btnNext").attr("href", "./business-suggestions.html");
+        $("#btnNext").attr("href", "./business_suggestions");
         return;
     }else{
         $("#btnNext").removeAttr("href");

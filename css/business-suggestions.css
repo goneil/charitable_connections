@@ -29,6 +29,9 @@
 
 #frame{
     position: relative;
+    display: block;
+    float: none;
+    margin: 0 auto;
 }
 #suggestionRow{
     margin-top: 20px;
@@ -56,11 +59,6 @@
     font-size: 20pt;
 }
 
-#messageRow{
-    position: fixed;
-    right: 15px;
-    bottom: 0;
-}
 
 #messageHeader{
     width: 100%;
@@ -96,8 +94,8 @@
 }
 
 #icons{
-    position: fixed;
-    right: 10px;
+    position: absolute;
+    right: 5px;
 }
 
 .maximizedMessage{
@@ -124,4 +122,32 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+#resize{
+    position: absolute;
+    z-index: 1;
+    width: 99%;
+    margin-left: 1%;
+}
+
+.container{
+    width: 100% !important;
+}
+
+#messageRow{
+    position: absolute;
+    z-index: 1;
+    right: 0px;
+    width: 25%;
+    min-height: 100%;
+    top: 55px;
+}
+
+html, body{
+}
+
+#messageForm{
+    width: 90%;
+    margin: 0 auto;
 }
