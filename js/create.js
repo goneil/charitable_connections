@@ -6,11 +6,19 @@ function squarifyRatio(element,ratio) {
     function squareItUp() {
         $(element).height($(element).width()*ratio);
         $("#choicesFrame").height($("#eventFrame").height());
+        $("#eventTable").height($("#eventFrame").height());
+        $("#loc_icon").height($("#loc_icon").width());
+        $("#date_icon").height($("#date_icon").width());
+        $("#loc_label").height($("#loc_icon").height());
+        $("#date_label").height($("#date_icon").height());
+        $("#loc_label").width($("#loc_icon").width());
+        $("#date_label").width($("#date_icon").width());
         $("#logistics").height($("#eventFrame").height());
-        $("#map-canvas").width($("#logistics").width() - 20);
-        $(".ui-datepicker-inline").width($("#logistics").width() - 40);
-        $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
-        $("#gmaps-canvas").css("height", $("#logistics").height() - 20);
+        var mapWrapHeight = $("#logistics").height()
+            - ($("#log-navs").height() 
+            + $("#gmaps-input-address").height()); 
+        $("#location").height(mapWrapHeight);
+        $("#gmaps-canvas").height(mapWrapHeight-45);
         $("#searchResultsDiv").height($("#eventFrame").height() - $("#search-box").height() - 15);
     }
 }
@@ -42,9 +50,11 @@ var donation_types = [
     { label: "Monetary", image: "img/money.png"}
 ];
 
+var charity_icons = 0;
+var event_icons = 0;
+var donation_icons = 0;
 
 function makeChoiceList(list, element){
-    //$("#choicesList").empty();
     for(var i = 0; i < list.length; i++){
         var img = new Image();
         img.src = list[i].image;
@@ -57,10 +67,11 @@ function makeChoiceList(list, element){
             .append(caption);
         $(element).append(li);
     }
-    //$("#search-box").liveUpdate(element).focus();
 }
 
 $(document).ready(function() {
+    var location = null;
+    var date = null;
     squarifyRatio('#eventFrame', 0.75);
     makeChoiceList(charities, "#charityList");
     makeChoiceList(event_types, "#eventList");
@@ -68,6 +79,11 @@ $(document).ready(function() {
     $("#eventList").hide();
     $("#donationList").hide();
     $("#logistics").hide();
+    $("#eventTable").hide();
+    $("#loc_icon").hide();
+    $('#date_icon').hide();
+
+    $("#search-box").liveUpdate($("#charityList")).focus();
 
     var $currentlySelected = null;
     var selected = [];
@@ -80,19 +96,47 @@ $(document).ready(function() {
             for(var i = 0; i < selected.length; i++){
                 if($.inArray(selected[i],$currentlySelected) >= 0){
                     $(selected[i]).removeClass('ui-selected');
+                    removeIcon($(selected[i]).children("img").attr("src"), highlightedButton);
+                }
+                else{
+                    var img = new Image();
+                    img.src = $(selected[i]).children("img").attr("src");
+                    addIcon(img, highlightedButton);
                 }
             }
             selected = [];
+            if (($('.choicesList .ui-selected').length === 0) 
+                && (location == null) 
+                && (date ==null)){
+                $("#eventTable").hide();
+                $("#help_overlay").show();
+            }
         },
         selecting: function(event, ui) {
             $currentlySelected.addClass('ui-selected');
         },
         selected: function(event, ui){
+            $("#eventTable").show();
+            $("#help_overlay").hide();
             selected.push(ui.selected);
         },
         tolerance: 'fit'
     });
 
+    $("#gmaps-input-address").on("autocompleteselect", function(event, ui) {
+        var split = (ui.item.value).split(",");
+        var i = 0;
+        location = split[i];
+        i++;
+        while((i < 2) && (i < split.length)){
+            location += (", " + split[i]);
+            i++;
+        }
+        $("#loc_label").html("Welcome to " + location);
+        $('#loc_icon').show();
+        $('#eventTable').show();
+        $('#help_overlay').hide();
+    });
     var highlightedButton = 0; // keeps track of which button is highlighted
     var numButtons = 4;
     //charities
@@ -133,6 +177,13 @@ $(document).ready(function() {
         changeChoicesList(highlightedButton);
     });
     $("#btnNext").click(function(){
+    if ($("#btnNext").text() === "Finish"){
+        $("#btnNext").attr("href", "./business-suggestions.html");
+        return;
+    }else{
+        $("#btnNext").removeAttr("href");
+    }
+
         highlightedButton ++;
         highlightedButton = ((highlightedButton % numButtons) + numButtons) % numButtons;
         highlightButton(highlightedButton);
@@ -160,12 +211,6 @@ $(document).ready(function() {
 // highlights button indexed by number.  Also takes care of previous and next
 // disabling/text changing
 var highlightButton = function(num){
-    if ($("#btnNext").text() === "Finish"){
-        $("#btnNext").attr("href", "./business-suggestions.html");
-        return;
-    }else{
-        $("#btnNext").removeAttr("href");
-    }
     var progressBar = $("#progressBar");
     var children = progressBar.children();
     num = ((num % children.length) + children.length) % children.length;
@@ -231,13 +276,95 @@ function changeChoicesList(btnNum){
         $("#choicesTitle").html("Choose date and location");
         $("#choicesFrame").hide();
         $("#logistics").show();
-        //$("#date").hide();
         $("#location").hide();
-        $("#datepicker").datepicker();
+        $("#datepicker").datepicker({
+            onSelect: function(dateText, inst){
+                date = dateText.split(" ");
+                var display = date[0] + '<br/>' + date[1] + '<br/>' + date[2];
+                $("#date_label").html(display);
+                $("#help_overlay").hide();
+                $("#eventTable").show();
+                $("#date_icon").show();
+            },
+            dateFormat: "M d yy",
+            minDate: +1,
+            maxDate: "+1Y"
+        });
         $("#btnDate").click();
-        $(".ui-datepicker-inline").width($("#logistics").width() - 20);
-        $("#gmaps-canvas").css("width",$("#logistics").width() - 20);
-        $("#gmaps-canvas").css("height", $("#logistics").height() - 20);
+        var mapHeight = $("#logistics").height()
+            - ($("#log-navs").height() 
+            + $("#gmaps-input-address").height());  
+        $("#location").height(mapHeight);
+        $("#gmaps-canvas").height(mapHeight-45);
+        //$("#gmaps-canvas").css("width",$("#logistics").width() - 20);
+        //$("#gmaps-canvas").css("height", $("#location").height() - 20);
     }
+}
+
+function addIcon(img, pane){
+    if(pane === 0){
+        charity_icons++;
+        $(img).addClass('charity_icon');
+        $('#charity_icons').append(img);
+        changeWidth(charity_icons, '.charity_icon');
+    } 
+    if(pane === 1){
+        event_icons++;
+        $(img).addClass('event_icon');
+        $('#event_icons').append(img);
+        changeWidth(event_icons, '.event_icon');
+    }
+    if(pane === 3){
+        donation_icons++;
+        $(img).addClass('donation_icon');
+        $('#donation_icons').append(img);
+        changeWidth(donation_icons, '.donation_icon');
+    }
+}
+
+function removeIcon(src, pane){
+    var icons;
+    if(pane === 0){
+        charity_icons--;
+        icons = $("#charity_icons").children();
+        for(var i = 0; i < icons.length; i++){
+            if($(icons[i]).attr('src') == src){
+                $(icons[i]).remove();
+            }
+        }
+        changeWidth(charity_icons, '.charity_icon');
+    }
+    if(pane === 1){
+        event_icons--;
+        icons = $("#event_icons").children();
+        for(var i = 0; i < icons.length; i++){
+            if($(icons[i]).attr('src') == src){
+                $(icons[i]).remove();
+            }
+        }
+        changeWidth(event_icons, '.event_icon');
+    }
+    if(pane === 3){
+        donation_icons--;
+        icons = $("#donation_icons").children();
+        for(var i = 0; i < icons.length; i++){
+            if($(icons[i]).attr('src') == src){
+                $(icons[i]).remove();
+            }
+        }
+        changeWidth(donation_icons, '.donation_icon');
+    }
+}
+
+function changeWidth(count, elem){
+    if(count === 1){
+            $(elem).css('width', (60/count)+'%');
+        }
+        else if(count <= 3){
+            $(elem).css('width', (70/count)+'%');
+        }
+        else{
+            $(elem).css('width', (70/3)+'%');
+        }
 }
 

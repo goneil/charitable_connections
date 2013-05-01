@@ -1,6 +1,6 @@
 body, input {
-    font-family: "Tangerine", "Arial";
-    margin: 0px;
+    //font-family: "Tangerine", "Arial";
+   //margin: 0px;
 }
 
 h1 {
@@ -10,13 +10,13 @@ h1 {
 html, body, #container {
     height: 100%;
     padding: 0;
+    background: url(../img/flowers.jpg) no-repeat 100% !important;
 }
 
 body > #container {
     height: auto;
     min-height: 100%;
     color: #D9A13B;
-
 }
 
 .category {
@@ -28,27 +28,23 @@ body > #container {
     background-color: white;
 }
 
-//h2, h3, h4, h5, h6 {
-    //margin-left: 10px;
-    //text-align: center;
-    //color: black !important;
-//}
-
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
     color: rgb(62, 107, 133) !important;
     text-align: center;
     margin-top: 1em !important;
     margin-bottom: .5em !important;
 }
 
-
+h5, h6 {
+    color: rgb(62, 107, 113) !important;
+    display: inline !important;
+}
 
 button {
     width: 100%;
     height: 1em;
     padding: 0;
     margin: 0 20;
-   // background: url('/img/businesses/traderjoes.png');
 }
 
 .message {
@@ -72,6 +68,9 @@ button {
 #tabs {
     margin: 30px;
     margin-top: 40px;
+    opacity: 0.85;
+    height: 100% !important;
+   // background: white;
 }
 
 // Styling for tabs
@@ -105,7 +104,7 @@ body {
 .ui-widget-header {
     border: none !important;
     //border-bottom: 1px solid black !important;
-    background: none !important;
+    //background: none !important;
 }
 
 #tabs-list {
@@ -116,13 +115,13 @@ body {
 }
 
 .ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr, .ui-corner-br {
-    border-top-right-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
+    //border-top-right-radius: 0px !important;
+    //border-bottom-right-radius: 0px !important;
 }
 
 .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl, .ui-corner-bl {
-    border-top-left-radius: 0px !important;
-    border-bottom-left-radius: 0px !important;
+    //border-top-left-radius: 0px !important;
+    //border-bottom-left-radius: 0px !important;
 }
 
 #tab-header {
@@ -137,9 +136,10 @@ body {
 }
 
 li {
-    //line-height: 1.5em !important;
+    line-height: 1.5em !important;
     //font-family: "Oswald", "Arial Narrow", "Arial", "sans-serif" !important;
     font-weight: bolder !important;
+    font-size: 1.1em;
 }
 
 .box {
@@ -156,14 +156,45 @@ li {
 #wordcloud-image {
     width: 1056 !important;
     height: 660 !important;
-    margin-left: 100px !important;
-    overflow: hidden !important;
-    border: none !important;
+   //width: 100%;
+   //height: 100%;
+    //margin-left: 100px !important;
+   // overflow: hidden !important;
+    //border: none !important;
+    //z-index: 999;
 }
 
-#iframe-row {
-    margin-top: 5em !important;
+.hero-unit {
+    margin-top: 3.5em !important;
 }
 
+.thread {
+    border-bottom: 1px solid black;
+    height: 3em;
+    overflow: hidden;
+    margin-left: 4px;
+}
 
+.thread-checkbox {
+    vertical-align: center;
+}
 
+.thread-table {
+    font-size: .9em;
+    line-height: 1.3em;
+}
+
+.splitpane {
+    border: 1px solid black;
+    overflow-y: scroll;
+    height: 15em;
+}
+
+#wordcloud {
+    width: 100%;
+    height: 100%;
+}
+
+.pane-container {
+    margin: 10px;
+}
