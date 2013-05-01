@@ -100,7 +100,6 @@ body {
    // padding: 0 !important;
 }
 
-
 .ui-widget-header {
     border: none !important;
     //border-bottom: 1px solid black !important;
@@ -135,11 +134,17 @@ body {
     font-style: oblique;
 }
 
-li {
+.tab-title {
+    font-family: "Mathlete-Bulky";
+    src: url("../fonts/Mathlete-Bulky.otf") format("opentype");
     line-height: 1.5em !important;
-    //font-family: "Oswald", "Arial Narrow", "Arial", "sans-serif" !important;
     font-weight: bolder !important;
-    font-size: 1.1em;
+    font-size: 2em;
+    letter-spacing: .03em;
+    padding-top: .05em !important;
+    padding-bottom: .05em !important;
+    padding-left: .5em !important;
+    padding-right: .5em !important;
 }
 
 .box {
