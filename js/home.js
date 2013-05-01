@@ -1,5 +1,5 @@
-var CREATE_LINK = "create.html";
-var MY_EVENTS_LINK = "my_events.html";
+var CREATE_LINK = "create";
+var MY_EVENTS_LINK = "my_events";
 
 $(document).ready(function() {
     squarifyMe('.box');
