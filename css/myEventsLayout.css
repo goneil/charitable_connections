@@ -206,5 +206,46 @@ body {
     background-color: white !important;
 }
 
+#feedback { 
+    font-size: 1.4em;
+}
+
+#selectable .ui-selecting {
+    background: #FECA40;
+}
+
+#selectable .ui-selected { 
+    background: #F39814;
+    color: white; 
+}
+
+#selectable { 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 90%; 
+}
+
+#selectable li {
+    margin: 3px;
+    padding: 0.4em;
+    font-size: 1.1em;
+    height: 18px;
+}
 
 
+#wordcloud-image {
+    width: 1056px !important;
+    height: 660px !important;
+    margin-left: 100px !important;
+    overflow: hidden !important;
+    //overflow: hidden !important;
+    border: 1px solid black !important;
+    background-color: white !important;
+}
+
+#wordcloud-container {
+    z-index: 999 !important;
+    opacity: 1 !important;
+    background-color: white !important;
+}

@@ -27,11 +27,41 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
     <script src="d3-cloud/lib/d3/d3.js"></script>
     <script src="d3-cloud/d3.layout.cloud.js"></script>
+<<<<<<< HEAD
+
         <script>
         $(function() {
             $( "#tabs" ).tabs();
         });
         </script>
+
+
+    </head>
+
+    <body>
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <a class="brand" href="./home">Charitable Connections</a>
+                <ul class="nav pull-right">
+                    <li class="active"><a href="./home">Home</a></li>
+                    <li><a href="./create">Create Event</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown"
+                        id="btnAccount">
+                                <i class="icon-user icon-white"></i><span
+                                id="btnAccountText">Login</span><b class="caret"></b>
+                         </a>
+                        <ul class="dropdown-menu" role="menu"
+                          aria-labelledby="dLabel">
+
+                            <li id="btnMyEventsTab"><a href="./my_events">My Events</a></li>
+                            <li id="btnLogout"><a href="./logout">Logout</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+=======
 </head>
 
 <body>
@@ -49,6 +79,7 @@
                     </ul>
                 </li>
             </ul>
+>>>>>>> eedcd85ee8d6cb225b06a4c8b3a3370704792144
         </div>
     </div>
 
