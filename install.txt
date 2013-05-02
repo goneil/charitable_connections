@@ -1,0 +1,26 @@
+install node.js
+sudo npm install express
+brew update
+brew install mongodb
+npm install mongojs
+npm install crypto
+
+
+// Now to play with the db:
+mongod
+
+// open new terminal
+mongo
+> gil = {name: "gil", password:"asdf"}
+> emily = {name:"emily", password:"asdf"}
+> max = {name: "max", password:"asdf"}
+> db.users.insert(gil)
+> db.users.insert(emily)
+> db.users.insert(max)
+> db.users.find()
+{ "_id" : ObjectId("51758cae05209a66213a9b0e"), "sex" : "female", "name" : "sarah" }
+{ "_id" : ObjectId("51758d1905209a66213a9b0f"), "name" : "gil", "password" : "asdf" }
+{ "_id" : ObjectId("51758d2105209a66213a9b10"), "name" : "emily", "password" : "asdf" }
+{ "_id" : ObjectId("51758d2405209a66213a9b11"), "name" : "max", "password" : "asdf" }
+> db.users.find({name: "gil"})
+{ "_id" : ObjectId("51758d1905209a66213a9b0f"), "name" : "gil", "password" : "asdf" }
