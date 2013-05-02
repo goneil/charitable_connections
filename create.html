@@ -32,13 +32,60 @@
         <div class="navbar-inner">
             <a class="brand" href="./home">Charitable Connections</a>
             <ul class="nav pull-right">
-                <li ><a href="./home">Home</a></li>
-                <li class="active"><a href="./create">Create Event</a></li>
-                <li><a href="./my_events">My Events</a></li>
+                <li class="active"><a href="./home">Home</a></li>
+                <li><a href="./create">Create Event</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"
+                    id="btnAccount">
+                            <i class="icon-user icon-white"></i><i
+                            id="btnAccountText">Login</i><b class="caret"></b>
+                     </a>
+                    <ul class="dropdown-menu" role="menu"
+                      aria-labelledby="dLabel">
+
+                        <li id="btnMyEventsTab"><a href="./my_events">My Events</a></li>
+                        <li id="btnLogout"><a href="./logout">Logout</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
     </div>
+
     <div class="container">
+        <div class="content" style="display: none;">
+            <div class="forms">
+                <div class="login-form">
+                  <h2>Login</h2>
+                  <form onsubmit="return loginValidate()">
+                    <fieldset>
+                      <div class="clearfix">
+                        <input id="loginUsername" name="username" type="text" placeholder="Username">
+                      </div>
+                      <div class="clearfix">
+                        <input id="loginPassword" name="password" type="password" placeholder="Password">
+                      </div>
+                      <button id="btnSignIn" class="btn primary" type="submit">Sign in</button>
+                    </fieldset>
+                  </form>
+                </div>
+                <div class="create-form">
+                  <h2>Create Account</h2>
+                  <form id="createForm" action="./register" onsubmit="return registerValidate()" method="post">
+                    <fieldset>
+                      <div class="clearfix">
+                        <input id="createUsername" name="username" type="text" placeholder="Username">
+                      </div>
+                      <div class="clearfix">
+                        <input name="password" type="password" placeholder="Password">
+                      </div>
+                      <button id="btnRegister" class="btn primary" type="submit">Create</button>
+                    </fieldset>
+                  </form>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="span4"></div>
             <div id="progressBar" class="btn-group span4">
@@ -169,6 +216,7 @@
     <script src="external_js/jquery-ui-1.10.2.custom.min.js"></script>
     <script src="./external_js/bootstrap.js"></script>
     <script src="./external_js/bootstrap.min.js"></script>
+    <script src="./js/login.js"></script>
     <script src="./js/create.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="http://orderedlist.com/demos/quicksilverjs/javascripts/quicksilver.js"></script>
