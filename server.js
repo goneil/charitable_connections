@@ -1,11 +1,41 @@
 var express = require("express");
 var app = express();
 var databaseURL = "mydb";
-var collections = ["users", "reports"];
+var collections = ["users"];
 var fs = require("fs");
 var db = require("mongojs").connect(databaseURL, collections);
 var hash = require("./password.js");
 
+// proposed DATABASE STRUCTURE: 
+// there are several "tables" in the database
+//
+// Table: users
+// each user is an object: {username: "uname", passwordHash: "pwhash"}
+//
+// Table: businesses
+// business object: 
+// { name: "name",
+//   info: {},
+//   imageLink: "href"
+// }
+//
+// Table: event
+// { owner: "username",
+//   charities: ["list", "of", "charity names"],
+//   type: "event type",
+//   date: "event date",
+//   location: "event location string (maybe lat and lng would be good",
+//   donations: ["list", "of", "donation types"],
+//   isCurrent: bool,
+// }
+//
+// Table: Messages
+// { from: "username",
+//   to: "username",
+//   content: "string",
+//   date: "date",
+//   event: "event __id"
+// }
 
 // allow app to use static content
 app.use(express.static(__dirname));

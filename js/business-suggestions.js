@@ -55,6 +55,7 @@ $(document).ready(function() {
         index = prevFunc(businessList, index, numSuggestions);
     });
     $("#btnContact").click(function(){
+        $("#messageRow").css("top", $(".navbar").height() + "px");
         $("#messageRow").show();
         $("#resize").width("70%");
 
