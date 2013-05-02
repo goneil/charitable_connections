@@ -234,3 +234,18 @@ body {
 }
 
 
+#wordcloud-image {
+    width: 1056px !important;
+    height: 660px !important;
+    margin-left: 100px !important;
+    overflow: hidden !important;
+    //overflow: hidden !important;
+    border: 1px solid black !important;
+    background-color: white !important;
+}
+
+#wordcloud-container {
+    z-index: 999 !important;
+    opacity: 1 !important;
+    background-color: white !important;
+}
