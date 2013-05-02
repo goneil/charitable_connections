@@ -24,22 +24,7 @@ body {
     
     var fill = d3.scale.category20();
 
-    /*
-    var layout = cloud()
-      .size([960, 600])
-      .timeInterval(10)
-      //.text(function(d) { return d.key; })
-      .font("Impact")
-      .fontSize(function(d) { return fontSize(+d.value); })
-      .rotate(function(d) { return ~~(Math.random() * 5) * 30 - 60; })
-      .padding(1)
-      .on("word", progress)
-      .on("end", draw)
-      .words([ "ctsv", "CTS", "swag", "NewCar", "escalade", "car", "life",
-        "HandWashOnly", "babyyy", "Camo", "washed", "CarWash", "american",
-        "nicewhips", "clean", "new", "baby", "riding", "ATS", "Hills", "miles", "join", "hair", "drawing", "whipping", "Beauty", "new", "Shell", "turntup", "homie", "red", "like", "see", "fogs", "wehere", "days", "drunk", "toofast", "peace", "Driving"])
-      .start();
-      */
+
 
   d3.layout.cloud().size([960, 600])
       .words([

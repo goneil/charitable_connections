@@ -31,9 +31,9 @@
         <script>
         $(function() {
             $( "#tabs" ).tabs();
+            $( "#selectable" ).selectable();
         });
         </script>
-
 
     </head>
 
@@ -79,17 +79,37 @@
         <div id="tab-header" class="span12"><span id="tab-header-words">Your messages with businesses</span></div>
     </div>
     <div class="hero-unit">
-        
-
         <div class="row-fluid">
-        <div class="span6 splitpane">
-        <div class="pane-container">
-        <table class="thread-table">
+            <div class="span4 splitpane">
+                <div class="pane-container">
+
+                 
+                    <ol id="selectable">
+                        <li class="ui-widget-content">Item 1</li>
+                        <li class="ui-widget-content">Item 2</li>
+                        <li class="ui-widget-content">Item 3</li>
+                        <li class="ui-widget-content">Item 4</li>
+                        <li class="ui-widget-content">Item 5</li>
+                        <li class="ui-widget-content">Item 6</li>
+                        <li class="ui-widget-content">Item 7</li>
+                    </ol>
+
+
+
+
+
+
+
+<!--
+                    <table class="thread-table">
             <tr class="thread-row">
                 <td><input class="thread-checkbox" id="chkbx_0" type="checkbox" onclick=""></input></td>
                 <td>
                     <div class="thread">
                        <h5>Trader Joe's</h5> - Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you!                    </div>
+                </td>
+                <td>
+                    Apr 30
                 </td>
             </tr>
             <tr>
@@ -97,6 +117,9 @@
                 <td>
                     <div class="thread">
                         <h5>Trader Joe's</h5> - Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you!                    </div>
+                </td>
+                <td>
+                    Apr 30
                 </td>
             </tr>
             <tr>
@@ -106,6 +129,9 @@
                         <h5>Trader Joe's</h5> - Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you!
                     </div>
                 </td>
+                <td>
+                    Apr 30
+                </td>
             </tr>
             <tr>
                 <td><input class="thread-checkbox" id="chkbx_0" type="checkbox" onclick=""></input></td>
@@ -113,12 +139,8 @@
                     <div class="thread">
                         <h5>Trader Joe's</h5> -Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you!                    </div>
                 </td>
-            </tr>
-            <tr>
-                <td><input class="thread-checkbox" id="chkbx_0" type="checkbox" onclick=""></input></td>
                 <td>
-                    <div class="thread">
-                       <h5>Trader Joe's</h5> -Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you!                    </div>
+                    Apr 30
                 </td>
             </tr>
             <tr>
@@ -127,18 +149,37 @@
                     <div class="thread">
                        <h5>Trader Joe's</h5> -Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you!                    </div>
                 </td>
+                <td>
+                    Apr 30
+                </td>
             </tr>
             <tr>
                 <td><input class="thread-checkbox" id="chkbx_0" type="checkbox" onclick=""></input></td>
                 <td>
                     <div class="thread">
                        <h5>Trader Joe's</h5> -Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you!                    </div>
+                </td>
+                <td>
+                    Apr 30
+                </td>
+            </tr>
+            <tr>
+                <td><input class="thread-checkbox" id="chkbx_0" type="checkbox" onclick=""></input></td>
+                <td>
+                    <div class="thread">
+                       <h5>Trader Joe's</h5> -Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you!                    </div>
+                </td>
+                <td>
+                    Apr 30
                 </td>
             </tr>
         </table>
+        -->
+
+
         </div>
         </div>
-        <div class="span6 splitpane">
+        <div class="span8 splitpane">
         <div class="pane-container">
             <div class="row-fluid">
             <div class="message-header">
@@ -168,6 +209,7 @@
             <div class="span10">    
             <div class="message-body">
                 Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you! 
+            </div>
             </div>
             </div>
             </div>
@@ -213,7 +255,9 @@
     <div class=row-fluid">
         <div id="tab-header" class="span12"><span id="tab-header-words">Events you are currently planning</span></div>
     </div>
-    <div class="hero-unit"></div>
+    <div class="hero-unit">
+        
+    </div>
   </div>
 
 
@@ -230,6 +274,11 @@
         <div id="tab-header" class="span12"><span id="tab-header-words">Businesses that have donated to your events</span></div>
     </div>
     <div class="hero-unit"></div>
+    <iframe src="simple.html" width="100%" height="300">
+
+<p>Your browser does not support iframes.</p>
+
+</iframe>
   </div>
 
 
@@ -253,7 +302,6 @@
         <div class=row-fluid">
             <div id="tab-header" class="span12"><span id="tab-header-words">Your event planning word cloud</span></div>
         </div>
-            <iframe src="simple.html" id="wordcloud-image"></iframe>
     </div>
 
 
