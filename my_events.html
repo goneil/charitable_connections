@@ -29,10 +29,6 @@
     <script src="d3-cloud/d3.layout.cloud.js"></script>
 
         <script>
-        $(function() {
-            $( "#tabs" ).tabs();
-            $( "#selectable" ).selectable();
-        });
         </script>
 
     </head>
@@ -82,16 +78,14 @@
         <div class="row-fluid">
             <div class="span4 splitpane">
                 <div class="pane-container">
-
-                 
                     <ol id="selectable">
-                        <li class="ui-widget-content">Item 1</li>
-                        <li class="ui-widget-content">Item 2</li>
-                        <li class="ui-widget-content">Item 3</li>
-                        <li class="ui-widget-content">Item 4</li>
-                        <li class="ui-widget-content">Item 5</li>
-                        <li class="ui-widget-content">Item 6</li>
-                        <li class="ui-widget-content">Item 7</li>
+                        <li id="message1" class="ui-widget-content"><u>Trader Joe's</u> - Apr 30</li>
+                        <li id="message2" class="ui-widget-content"><u>City Sports</u> - Apr 29</li>
+                        <li id="message3" class="ui-widget-content"><u>Shaws</u> - Apr 20</li>
+                        <li id="message4" class="ui-widget-content"><u>Chipotle</u> - Apr 20</li>
+                        <li id="message5" class="ui-widget-content"><u>McDonald's</u> - Apr 20</li>
+                        <li id="message6" class="ui-widget-content"><u>Qdoba</u> - Apr 10</li>
+                        <li id="message7" class="ui-widget-content"><u>Cambridge Bicycle</u> - Apr 9</li>
                     </ol>
 
 
@@ -183,8 +177,8 @@
         <div class="pane-container">
             <div class="row-fluid">
             <div class="message-header">
-                <div class="span3"><h4>Trader Joe's<h4></div>
-                <div class="offset6 span3">Apr 30</div>
+                <div id="business_label" class="span3"></div>
+                <div id="date_label" class="offset6 span3"></div>
             </div>
             <!--
             <div id="" class="">

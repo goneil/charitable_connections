@@ -1,12 +1,17 @@
 $(function() {
     $( "#tabs" ).tabs();
-    //$( "#selectable" ).selectable();
-    $("#selectable").selectable({
-        selected: function(event, ui) { 
-            var thread = $(ui.selected);
-            $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");           
-        }                   
+    $( "#selectable" ).selectable();
+    /*
+    $("#selectable li").click(function() {
+        $(this).addClass("selected").siblings().removeClass("selected");
     });
+    */
+    $("#selectable").selectable({
+    selected: function(event, ui) { 
+        $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");           
+    }                   
+});
+
 });   
     
     
