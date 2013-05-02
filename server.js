@@ -3,50 +3,82 @@ var app = express();
 var databaseURL = "mydb";
 var collections = ["users", "reports"];
 var fs = require("fs");
-//var db = require("mongojs").connect(databaseURL, collections);
+var db = require("mongojs").connect(databaseURL, collections);
 var hash = require("./password.js");
 
 
 // allow app to use static content
 app.use(express.static(__dirname));
+// parse forms
+app.use(express.bodyParser());
+// store cookies
+app.use(express.cookieParser("mashthekeyboard"));
+app.use(express.cookieSession());
+
+app.get("/get_user", function(req, res){
+    res.end(req.session.username);
+});
+
+app.get("/user_exists", function(req, res){
+    var username = req.query.username;
+    console.log(username);
+    db.users.find({username:username}, function(err, users){
+        if (err){
+            throw err;
+        }
+        if (users.length > 0){
+            res.end(JSON.stringify({exists:true}));
+        } else{
+            res.end(JSON.stringify({exists:false}));
+        }
+    });
+});
 
 // create account
 // TODO make post
-app.get('/register', function (req, res) {
-    var username= req.query.user;
+app.post('/register', function (req, res) {
+    var username= req.body.username;
     db.users.find({username:username}, function(err, users){
-        console.log(users.length);
         if (users.length === 0){
-            var passwordHash = hash.hash(req.query.password);
+            var passwordHash = hash.hash(req.body.password);
             var user = {username: username, passwordHash: passwordHash};
-            db.users.insert(user);
-            res.end("User created");
+            db.users.insert(user, function(err, inserted){
+                if (err){
+                    throw err;
+                }
+            });
+            req.session.username = username;
+            res.redirect('/home');
         } else{
-            console.log("user exists");
             res.end("user exists");
         }
     });
 });
 
-
-// basic login
-app.get('/login', function (req, res) {
-    var currUser = req.query.user;
-    var password = hash.hash(req.query.password);
-    console.log("Curr user: " + currUser);
-    console.log("Password hash: " + password);
-    res.end();
+app.post('/login', function (req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    db.users.find({username:username}, function(err, users){
+        if (err){
+            throw err;
+        }
+        if (users.length > 0 && hash.validate(users[0].passwordHash, password)){
+            req.session.username = username;
+            res.end(JSON.stringify({error:false}));
+        } else{
+            res.end(JSON.stringify({error:true}));
+        }
+    });
 });
+
+app.get('/logout', function (req, res) {
+  delete req.session.username;
+  res.redirect('/home');
+}); 
 
 // Home screen
 app.get('/', function (req, res) {
-    fs.readFile("./home.html", function(err, html){
-        if (err){
-            throw err;
-        } else{
-            res.end(html);
-        }
-    });
+    res.redirect("/home");
 });
 
 // home
