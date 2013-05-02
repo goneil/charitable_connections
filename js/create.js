@@ -1,3 +1,12 @@
+var myEvent = {charities:[], 
+               types:[],
+               donations:[],
+               date:0,
+               lat:0,
+               lng:0,
+               location:""
+              };
+
 function squarifyRatio(element,ratio) {
     squareItUp();
     window.onresize = function(element) {
@@ -101,6 +110,7 @@ $(document).ready(function() {
                 else{
                     var img = new Image();
                     img.src = $(selected[i]).children("img").attr("src");
+                    img.name = $(selected[i]).children("div").text();
                     addIcon(img, highlightedButton);
                 }
             }
@@ -123,8 +133,8 @@ $(document).ready(function() {
         tolerance: 'fit'
     });
 
-    $("#gmaps-input-address").on("autocompleteselect", function(event, ui) {
-        var split = (ui.item.value).split(",");
+    var selectLocation = function(locationString){
+        var split = (locationString).split(",");
         var i = 0;
         location = split[i];
         i++;
@@ -136,6 +146,25 @@ $(document).ready(function() {
         $('#loc_icon').show();
         $('#eventTable').show();
         $('#help_overlay').hide();
+
+        myEvent.location = locationString;
+        var address = locationString;
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode( { 'address': address}, function(results, status) {
+          var location = results[0].geometry.location;
+          myEvent.lat = location.lat();
+          myEvent.lng = location.lng();
+        });
+    };
+
+    $("#gmaps-input-address").on("autocompleteselect", function(event, ui) {
+        selectLocation(ui.item.value);
+    }).keyup(function(e, ui){
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if(code == 13) {
+            selectLocation($(this).val());
+        }
     });
     var highlightedButton = 0; // keeps track of which button is highlighted
     var numButtons = 4;
@@ -178,8 +207,18 @@ $(document).ready(function() {
     });
     $("#btnNext").click(function(){
     if ($("#btnNext").text() === "Finish"){
-        $("#btnNext").attr("href", "./business_suggestions");
-        return;
+        var url = "./add_event";
+        $.ajax({
+            type: "post",
+            url: url,
+            data: myEvent,
+            success:function(data){
+                data = $.parseJSON(data);
+                window.location.href = "./business_suggestions?event_id=" + data.id;
+            },
+            async: false
+        });
+
     }else{
         $("#btnNext").removeAttr("href");
     }
@@ -285,6 +324,8 @@ function changeChoicesList(btnNum){
                 $("#help_overlay").hide();
                 $("#eventTable").show();
                 $("#date_icon").show();
+                var unix = (new Date(dateText)).getTime();
+                myEvent.date = unix;
             },
             dateFormat: "M d yy",
             minDate: +1,
@@ -307,18 +348,21 @@ function addIcon(img, pane){
         $(img).addClass('charity_icon');
         $('#charity_icons').append(img);
         changeWidth(charity_icons, '.charity_icon');
+        myEvent.charities.push(img.name);
     } 
     if(pane === 1){
         event_icons++;
         $(img).addClass('event_icon');
         $('#event_icons').append(img);
         changeWidth(event_icons, '.event_icon');
+        myEvent.types.push(img.name);
     }
     if(pane === 3){
         donation_icons++;
         $(img).addClass('donation_icon');
         $('#donation_icons').append(img);
         changeWidth(donation_icons, '.donation_icon');
+        myEvent.donations.push(img.name);
     }
 }
 
@@ -330,6 +374,7 @@ function removeIcon(src, pane){
         for(var i = 0; i < icons.length; i++){
             if($(icons[i]).attr('src') == src){
                 $(icons[i]).remove();
+                remove(myEvent.charities, icons[i].name);
             }
         }
         changeWidth(charity_icons, '.charity_icon');
@@ -340,6 +385,7 @@ function removeIcon(src, pane){
         for(var i = 0; i < icons.length; i++){
             if($(icons[i]).attr('src') == src){
                 $(icons[i]).remove();
+                remove(myEvent.types, icons[i].name);
             }
         }
         changeWidth(event_icons, '.event_icon');
@@ -350,6 +396,7 @@ function removeIcon(src, pane){
         for(var i = 0; i < icons.length; i++){
             if($(icons[i]).attr('src') == src){
                 $(icons[i]).remove();
+                remove(myEvent.donations, icons[i].name);
             }
         }
         changeWidth(donation_icons, '.donation_icon');
@@ -368,3 +415,13 @@ function changeWidth(count, elem){
         }
 }
 
+// found at http://stackoverflow.com/questions/9792927/javascript-array-search-and-remove-string
+function remove(arr, what) {
+    console.log(what);
+    var found = arr.indexOf(what);
+
+    while (found !== -1) {
+        arr.splice(found, 1);
+        found = arr.indexOf(what);
+    }
+}

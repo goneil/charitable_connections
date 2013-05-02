@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var databaseURL = "mydb";
-var collections = ["users"];
+var collections = ["users", "businesses", "messages", "events"];
 var fs = require("fs");
 var db = require("mongojs").connect(databaseURL, collections);
 var hash = require("./password.js");
@@ -156,11 +156,44 @@ app.get('/business_suggestions', function (req, res) {
 });
 
 
+// returns list of businesses matching event
+// pass eventID through request
+app.get("/get_businesses", function(req, res){
+    var eventID = req.query.eventID;
+    var myEvent;
 
+    db.events.find({_id:eventID}, function(err, eventCursor){
+        if (err){
+            throw err;
+        }
+        myEvent = eventCursor[0];
+    });
 
+    var businessList = [];
+    db.businesses.find({}, function(err, businessCursor){
+        for (var i = 0; i < businessCursor.length; i ++){
+            businessList.push(businessCursor[i]);
+        }
+        res.end(JSON.stringify(businessList));
+    });
 
-app.get('/hi', function (req, res) {
-    res.end("Hi, world!");   
+});
+
+app.post("/add_event", function(req, res){
+    var myEvent = req.body;
+    var currentUser = req.session.username;
+    if(currentUser){
+        myEvent.user = currentUser;
+    }
+    db.events.insert(myEvent, function(err, inserted){
+        if (err){
+            throw err;
+        }
+        var data = JSON.stringify({id: inserted[0]._id})
+        console.log(data);
+        res.end(data);
+    });
+
 });
 
 app.listen(3000, function () {
