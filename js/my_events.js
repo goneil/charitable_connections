@@ -9,9 +9,8 @@ $(function() {
             var message_content = $(" #message-body ");
             $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");           
             // normally would get message based on message_id...  thread.attr("id");
-            alert(thread.html());
             date.html(thread.html().split("-")[2]);
-            business.html(thread.html().split("-")[0]);
+            //business.html(thread.html().split("-")[0]);
             message_content.html(
              "Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you!" 
             )
