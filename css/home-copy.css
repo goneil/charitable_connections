@@ -11,14 +11,14 @@ body{
 }
 
 #btnCreate{
-    position: relative;
-    top: -50;
+    width: 50px;
+    height: 20px;
     //right: 50%;
     //margin-right: -7px;
 }
 #btnMyEvents{
-    left: 50%;
-    margin-left: 12px;
+   // left: 50%;
+    //margin-left: 12px;
 }
 
 /* The white background content wrapper */
