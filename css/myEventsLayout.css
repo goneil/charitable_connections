@@ -198,6 +198,8 @@ body {
 .pane-container {
     margin: 10px;
     background-color: white !important;
+    -moz-box-shadow:0 0 90px 5px #000;
+    -webkit-box-shadow: 0 0 90px #000;
 }
 
 #feedback { 
@@ -221,7 +223,7 @@ body {
 }
 
 #selectable li {
-    margin: 3px;
+    margin: 4px;
     padding: 0.4em;
     padding-top: 0;
     font-size: .8em;
@@ -229,6 +231,8 @@ body {
     word-spacing: -.03em;
     height: 3em;
     border-radius: 10px !important;
+    -moz-box-shadow:0 0 90px 5px #000;
+    -webkit-box-shadow: 0 0 90px #000;
 }
 
 
@@ -274,24 +278,9 @@ body {
 .thread-header {
 }
 
-.thread-block {
-    padding: -5;
-    position: relative;
-    display: block;
-    margin: -5;
-}
-
-.thread-event-content {
-    top: -10px;
-}
-
-.thread-component {
-    display: inline-block;
-    margin-top: -5em;
-}
-
 .thread-date {
-    margin-left: 12em;
+    //float: right;
+    text-align: right;
     font-style: oblique;
 }
 
@@ -300,4 +289,16 @@ body {
 }
 
 .thread-event {
+    text-align: center;
+    margin-top: -.6em;
+}
+
+#event-label {
+    text-align: center;
+    text-decoration: underline;
+}
+
+#message-content {
+    margin: 20px;
+    font-family: serif;
 }

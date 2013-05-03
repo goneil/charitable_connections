@@ -4,13 +4,15 @@ $(function() {
     $("#selectable").selectable({
         selected: function(event, ui) { 
             var thread = $(ui.selected);
-            var date = $(" #date-label ");
-            var business = $(" #business-id ");
-            var message_content = $(" #message-body ");
+            var date = $("#date-label");
+            var business = $("#business-label");
+            var eventName = $("#event-label");
+            var message_content = $("#message-body");
             $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");           
             // normally would get message based on message_id...  thread.attr("id");
-            date.html(thread.html().split("-")[2]);
-            //business.html(thread.html().split("-")[0]);
+            date.html(thread.find(".thread-date").html());
+            business.html(thread.find(".thread-business").html());
+            eventName.html(thread.find(".thread-event").html());
             message_content.html(
              "Hi Max, thanks for reaching out! I'm glad you chose to contact us here at Trader Joe's! In the past, we've mostly supported local community charity events with donations of around $50 or so. We also provide the equivalent amount in gift baskets. We would be happy to do the same for your event. You can give us a call at 617-343-6637. Looking forward to talking with you!" 
             )
@@ -18,6 +20,13 @@ $(function() {
     });
     $(" .overlay-link[rel] ").overlay();
 });   
+
+function addMessage(business, date, eventName, message) {
+    $("#selectable").append(); // add info to thread selectable
+    //associate message_id in db with message body
+}
+
+
     
     
     
