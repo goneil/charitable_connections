@@ -198,8 +198,6 @@ body {
 .pane-container {
     margin: 10px;
     background-color: white !important;
-    -moz-box-shadow:0 0 90px 5px #000;
-    -webkit-box-shadow: 0 0 90px #000;
 }
 
 #feedback { 
@@ -231,8 +229,6 @@ body {
     word-spacing: -.03em;
     height: 3em;
     border-radius: 10px !important;
-    -moz-box-shadow:0 0 90px 5px #000;
-    -webkit-box-shadow: 0 0 90px #000;
 }
 
 
@@ -266,7 +262,6 @@ body {
 }
 
 .min-thread-business {
-
 }
 
 .min-thread-date {
