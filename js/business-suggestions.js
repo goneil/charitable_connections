@@ -69,10 +69,16 @@ $(document).ready(function() {
 
         $("#btnSend").click(function(){
             addMode = false;
+            $("#messageRow").hide();
+            $("#resize").width("99%");
+            addMode = false;
+            $("#suggestionRow").popover("destroy");
+
             $("#messageRow").animate({right: "-800px"}, function(){
                 $("#recipients").text("");
                 $("#messageRow").attr("style", "");
                 $("#messageRow").hide();
+
             });
         });
 
