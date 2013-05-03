@@ -302,3 +302,7 @@ body {
     margin: 20px;
     font-family: serif;
 }
+
+ul {
+    list-style-type: none;
+}
