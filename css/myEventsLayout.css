@@ -161,12 +161,6 @@ body {
 #wordcloud-image {
     width: 1056 !important;
     height: 660 !important;
-   //width: 100%;
-   //height: 100%;
-    //margin-left: 100px !important;
-   // overflow: hidden !important;
-    //border: none !important;
-    //z-index: 999;
 }
 
 .hero-unit {
@@ -223,14 +217,18 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 90%; 
+    width: 100%; 
 }
 
 #selectable li {
     margin: 3px;
     padding: 0.4em;
-    font-size: 1.1em;
-    height: 18px;
+    padding-top: 0;
+    font-size: .8em;
+    letter-spacing: -.03em;
+    word-spacing: -.03em;
+    height: 3em;
+    border-radius: 10px !important;
 }
 
 
@@ -248,4 +246,58 @@ body {
     z-index: 999 !important;
     opacity: 1 !important;
     background-color: white !important;
+}
+
+.simple-overlay {
+    display: none;
+    z-index: 9999;
+    background-color: #333;
+    width: 1056px;
+    height 660px;
+    border: 1px solid #666;
+}
+
+.thread-table {
+    text-align: center;
+}
+
+.min-thread-business {
+
+}
+
+.min-thread-date {
+}
+
+.min-thread-event {
+}
+
+.thread-header {
+}
+
+.thread-block {
+    padding: -5;
+    position: relative;
+    display: block;
+    margin: -5;
+}
+
+.thread-event-content {
+    top: -10px;
+}
+
+.thread-component {
+    display: inline-block;
+    margin-top: -5em;
+}
+
+.thread-date {
+    margin-left: 12em;
+    font-style: oblique;
+}
+
+.thread-business {
+    font-weight: bold;
+}
+
+.thread-event {
 }

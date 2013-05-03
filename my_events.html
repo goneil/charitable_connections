@@ -56,7 +56,7 @@
     <div id="tabs">
         <ul id="tabs-list">
             <li><a class="tab-title" href="#tabs-1"><u>Messages</u></a></li>
-            <li><a class="tab-title" href="#tabs-2"><u>Current events</u></a></li>
+            <li><a class="tab-title" href="#tabs-2"><u>Events in Planning</u></a></li>
             <li><a class="tab-title" href="#tabs-3"><u>Past events</u></a></li>
             <!-- TODO: implement these in later iterations
             <li><a class="tab-title" href="#tabs-4"><u>Business connections</u></a></li>
@@ -76,13 +76,63 @@
                     <div class="span4 splitpane">
                         <div class="pane-container">
                             <ol id="selectable">
-                                <li id="message1" class="ui-widget-content"><u>Trader Joe's</u> - Apr 30</li>
-                                <li id="message2" class="ui-widget-content"><u>City Sports</u> - Apr 29</li>
+                                <!--<li id="message1" class="ui-widget-content"><u>Trader Joe's</u> - Apr 30</li>-->
+                                <li id="message1" class="ui-widget-content">
+                                    <div class="thread-header thread-block">
+                                        <div class="thread-business thread-component">
+                                            Trader Joe's
+                                        </div>
+                                        <div class="thread-date thread-component">
+                                            Apr 30
+                                        </div>
+                                    </div>
+                                    <div class="thread-event-content thread-block">
+                                        <div class="thread-subject thread-component">
+                                            Event:
+                                        </div>
+                                        <div class="thread-event thread-component">
+                                            Ice-Cream Scoopathon for Dana Farber
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <!--
+                                    <table class="thread-table">
+                                        <tr>
+                                            <td id="thread#1-business" class="min-thread-business" >Trader Joe's</td>
+                                            <td id="thread#1-date" class="min-thread-date" > - Apr 30</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="min-thread-event" >Run for Jimmy</td>
+                                        </tr>
+                                    </table>
+                                    -->
+                                </li>
+                                <!--
+                                <li id="message1" class="ui-widget-content">
+                                    <div class="row-fluid">
+                                        <div class="span4 min-thread-business">Trader Joe's</div>
+                                        <div class="offset4 span4 min-thread-date">Apr 30</div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12 min-thread-event">Run for Jimmy</div>
+                                    </div>
+                                </li>
+                                -->
+       
+       
+
+                                <!--
+                                <li id="message2" class="ui-widget-content"></li>
                                 <li id="message3" class="ui-widget-content"><u>Shaws</u> - Apr 20</li>
                                 <li id="message4" class="ui-widget-content"><u>Chipotle</u> - Apr 20</li>
                                 <li id="message5" class="ui-widget-content"><u>McDonald's</u> - Apr 20</li>
                                 <li id="message6" class="ui-widget-content"><u>Qdoba</u> - Apr 10</li>
                                 <li id="message7" class="ui-widget-content"><u>Cambridge Bicycle</u> - Apr 9</li>
+                                -->
                             </ol>
                         </div>
                     </div>
@@ -110,18 +160,33 @@
             <div class="hero-unit"></div>
         </div>
 
+        <div class="tab-content" id="tabs-3">
+            <div class=row-fluid">
+                <div id="tab-header" class="span12"><span id="tab-header-words">Events you have planned in the past</span></div>
+            </div>
+            <div class="hero-unit"></div>
+        </div>
+
         <div class="tab-content" id="tabs-8">
             <div class=row-fluid">
                 <div id="tab-header" class="span12"><span id="tab-header-words">View your connections, get inspired!</span></div>
             </div>
             <div class="hero-unit">
                 <ul id="visual-list">
-                    <li><a href="charity-wc.html">Your charity wordcloud</a></li>
-                    <li><a href="business-wc.html">Your business wordcloud</a></li>
+                    <!--<li><a href="charity-wc.html">Your charity wordcloud</a></li>-->
+                    <li><a class="overlay-link" rel="#charity-wc">Your charity wordcloud</a><li>
+                    <li><a class="overlay-link" rel="#business-wc">Your business wordcloud</a></li>
                     <li><a>Your heatmap</a></li>
                     <li><a>Your bubblemap</a></li>
                 </ul>
             </div>
+        </div>
+        <div class="simple-overlay" id="charity-wc">
+            <iframe src="charity-wc.html"></iframe>
+        </div>
+        <div class="simple-overlay" id="business-wc">
+            <img src="img/polar-bear.jpg" />
+            <!--<iframe src="business-wc.html"></iframe>-->
         </div>
     </div>
 
