@@ -1,0 +1,103 @@
+<!Doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Charitable Connections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./experimental_css/bootstrap.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./experimental_css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="./css/home-copy.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="./js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="./ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="img/leaf.ico" >
+  </head>
+
+  <body>
+    <div class="navbar navbar-static-top">
+        <div class="navbar-inner">
+            <a class="brand" href="./home">Charitable Connections</a>
+            <ul class="nav pull-right">
+                <li class="active"><a href="./home">Home</a></li>
+                <li><a href="./create">Create Event</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"
+                    id="btnAccount">
+                            <i class="icon-user icon-white"></i><span
+                            id="btnAccountText">Login</span><b class="caret"></b>
+                     </a>
+                    <ul class="dropdown-menu" role="menu"
+                      aria-labelledby="dLabel">
+
+                        <li id="btnMyEventsTab"><a href="./my_events">My Events</a></li>
+                        <li id="btnLogout"><a href="./logout">Logout</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content" style="display: none;">
+            <div class="forms">
+                <div class="login-form">
+                  <h2>Login</h2>
+                  <form onsubmit="return loginValidate()">
+                    <fieldset>
+                      <div class="clearfix">
+                        <input id="loginUsername" name="username" type="text" placeholder="Username">
+                      </div>
+                      <div class="clearfix">
+                        <input id="loginPassword" name="password" type="password" placeholder="Password">
+                      </div>
+                      <button id="btnSignIn" class="btn primary" type="submit">Sign in</button>
+                    </fieldset>
+                  </form>
+                </div>
+                <div class="create-form">
+                  <h2>Create Account</h2>
+                  <form id="createForm" action="./register" onsubmit="return registerValidate()" method="post">
+                    <fieldset>
+                      <div class="clearfix">
+                        <input id="createUsername" name="username" type="text" placeholder="Username">
+                      </div>
+                      <div class="clearfix">
+                        <input name="password" type="password" placeholder="Password">
+                      </div>
+                      <button id="btnRegister" class="btn primary" type="submit">Create</button>
+                    </fieldset>
+                  </form>
+                </div>
+            </div>
+        </div>
+        <div id="buttonDiv">
+            <button id="btnCreate" class="btn navbtn">Create Event</button>
+            <button id="btnMyEvents" class="btn navbtn">My Events</button>
+        </div>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./external_js/jquery.js"></script>
+    <script src="./external_js/jquery.js"></script>
+    <script src="./external_js/jquery-ui-1.10.2.custom.min.js"></script>
+
+    <script src="./external_js/bootstrap.js"></script>
+    <script src="./js/functions.js"></script>
+    <script src="./js/home.js"></script>
+    <script src="./js/login.js"></script>
+</body></html>
