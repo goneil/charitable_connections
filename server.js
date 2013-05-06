@@ -64,6 +64,9 @@ app.get("/user_exists", function(req, res){
     });
 });
 
+app.get("/create_message", function(req, res)){
+});
+
 // create account
 // TODO make post
 app.post('/register', function (req, res) {

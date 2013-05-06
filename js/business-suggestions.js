@@ -42,6 +42,7 @@ $(document).ready(function() {
         $("#messageRow").css("top", $(".navbar").height() + "px");
         $("#messageRow").show();
         $("#resize").width("70%");
+        squarifyAll();
 
         $("#btnRemove").click(function(){
             $("#recipients").text("");
@@ -49,6 +50,7 @@ $(document).ready(function() {
             $("#resize").width("99%");
             addMode = false;
             $("#suggestionRow").popover("destroy");
+            squarifyAll();
         });
 
         $("#btnAdd").click(function(){
@@ -80,6 +82,7 @@ $(document).ready(function() {
                 $("#messageRow").hide();
 
             });
+            squarifyAll();
         });
 
         $("#btnHelp").click(function(){
@@ -179,4 +182,10 @@ var getBusinesses = function(eventObject){
     });
     return businessList;
 
+};
+
+var squarifyAll = function(){
+    squarifyMe('.suggestionContainer');
+    squarifyMe('#btnMessage');
+    squarifyMe('#businessIcon');
 };
