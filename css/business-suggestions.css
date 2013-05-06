@@ -65,7 +65,7 @@
 
 #messageHeader{
     width: 100%;
-    height: 10%;
+    height: auto;
     margin-left: 0px;
     top: 0px;
     background-color: #3e6b85;
@@ -104,11 +104,6 @@
 .maximizedMessage{
     height:75%;
     width: 40%;
-}
-
-#btnAdd{
-    display: inline-block;
-    margin-left: -25px;
 }
 
 .icon:hover{
@@ -153,4 +148,25 @@ html, body{
 #messageForm{
     width: 90%;
     margin: 0 auto;
+}
+
+#recipientRow{
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+td {
+  padding-bottom: 13px;
+}
+
+
+.recipient{
+    padding: 3px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    color: #3e6b85;
+    background-color: #eeeeee;
+    border: 1px solid #d9d9d9;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 }

@@ -35,10 +35,11 @@ var hash = require("./password.js");
 //   content: "string",
 //   date: "date",
 //   event: "event __id"
+//   prev: "reply to message id"
 // }
 
 // allow app to use static content
-app.use(express.static(__dirname));
+app.use(express["static"](__dirname));
 // parse forms
 app.use(express.bodyParser());
 // store cookies
@@ -51,7 +52,6 @@ app.get("/get_user", function(req, res){
 
 app.get("/user_exists", function(req, res){
     var username = req.query.username;
-    console.log(username);
     db.users.find({username:username}, function(err, users){
         if (err){
             throw err;
@@ -64,7 +64,31 @@ app.get("/user_exists", function(req, res){
     });
 });
 
-app.get("/create_message", function(req, res)){
+app.post("/create_message", function(req, res){
+    var from , recipients, content, eventID, prev;
+    from = req.body.from;
+    recipients = req.body.recipients;
+    content = req.body.content;
+    eventID = req.body.eventID;
+    prev = null;
+
+    for (var i = 0; i < recipients.length; i ++){
+        var to = recipients[i];
+        var message = {
+            from: from,
+            to: to,
+            content: content,
+            eventID: eventID,
+            prev: prev
+        };
+        db.messages.insert(message, function(err, inserted){
+            if (err){
+                res.end(JSON.stringify({error: true}));
+                throw err;
+            }
+            res.end(JSON.stringify({error: false}));
+        });
+    }
 });
 
 // create account
@@ -192,8 +216,7 @@ app.post("/add_event", function(req, res){
         if (err){
             throw err;
         }
-        var data = JSON.stringify({id: inserted[0]._id})
-        console.log(data);
+        var data = JSON.stringify({id: inserted[0]._id});
         res.end(data);
     });
 

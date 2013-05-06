@@ -1,3 +1,8 @@
+var GET_BUSINESSES = "./get_businesses";
+var CREATE_MESSAGE = "./create_message";
+
+var recipients = {};
+
 //This script extracts parameters from the URL
 //from jquery-howto.blogspot.com
 $.extend({
@@ -22,9 +27,7 @@ var message;
 $(document).ready(function() {
     $("#messageRow").hide();
     $("#resize").width("99%");
-    squarifyMe('.suggestionContainer');
-    squarifyMe('#btnMessage');
-    squarifyMe('#businessIcon');
+    squarifyAll();
     var businessList = getBusinesses();
     
     var index = 0;
@@ -53,36 +56,31 @@ $(document).ready(function() {
             squarifyAll();
         });
 
-        $("#btnAdd").click(function(){
-            addMode = !addMode;
-            if (addMode){
-                if ($("suggestionRow").attr("data-original-title")!==""){
-                    $("#suggestionRow").popover(
-                        {placement: "top",
-                         trigger: "manual",
-                         content:"Click business icons to add them as recipients to your message. Click the add button again to stop adding businesses."
-                        }
-                    ).popover("show");
-                }                    
-            }else{
-                $("#suggestionRow").popover("toggle");
-            }
-        });
 
         $("#btnSend").click(function(){
-            addMode = false;
-            $("#messageRow").hide();
-            $("#resize").width("99%");
-            addMode = false;
-            $("#suggestionRow").popover("destroy");
+            var message = {};
+            message.recipients = $("#recipients").val().split("\,\ ");
+            message.from = $("#btnAccountText").text();
+            message.content = $("#messageContent").val();
+            message.eventID = $.getUrlVar("event_id");
+            console.log(message);
+            $.post(CREATE_MESSAGE, message, function(data){
+                data = $.parseJSON(data);
+                if (data.error){
+                    $(".error").text("Message failed to send, try again");
+                } else{
+                    addMode = false;
 
-            $("#messageRow").animate({right: "-800px"}, function(){
-                $("#recipients").text("");
-                $("#messageRow").attr("style", "");
-                $("#messageRow").hide();
-
+                    $("#messageRow").animate({right: "-800px"}, function(){
+                        $("#recipients").text("");
+                        $("#messageRow").attr("style", "");
+                        $("#resize").width("99%");
+                        $("#suggestionRow").popover("destroy");
+                        $("#messageRow").hide();
+                        squarifyAll();
+                    });
+                }
             });
-            squarifyAll();
         });
 
         $("#btnHelp").click(function(){
@@ -94,8 +92,8 @@ $(document).ready(function() {
             }
         });
 
-        if ($("#recipients").val() === ""){
-            $("#recipients").val($("#businessName").text());
+        if (Object.keys(recipients).length === 0){
+            addRecipient($("#businessName").text());
         }
             
     });
@@ -151,7 +149,7 @@ var setSuggestions = function(businessList, index, numSuggestions){
                 $("#business" + keys[i]).text(business.info[keys[i]]);
             }
         } else{
-            $("#recipients").val($("#recipients").val() + ", " + business.name);
+            addRecipient(business.name);
         }
     });
 };
@@ -172,11 +170,10 @@ var getBusinesses = function(eventObject){
     var businessList;
     $.ajax({
         type: "get",
-        url: "./get_businesses",
+        url: GET_BUSINESSES,
         data: eventObject,
         success: function(data){
             businessList = $.parseJSON(data);
-            console.log(businessList);
         },
         async: false
     });
@@ -185,7 +182,50 @@ var getBusinesses = function(eventObject){
 };
 
 var squarifyAll = function(){
-    squarifyMe('.suggestionContainer');
-    squarifyMe('#btnMessage');
-    squarifyMe('#businessIcon');
+    squareItUp($('.suggestionContainer'));
+    squareItUp($('.imageThumbnail'));
+    squareItUp($('#btnMessage'));
+    squareItUp($('#businessIcon'));
+};
+
+var addRecipient = function(businessName){
+    console.log("adding");
+    if (recipients[businessName] === undefined){
+        recipients[businessName] = true;
+        var add = $("#addColumn");
+        add.remove();
+
+        var newRow = $("<tr>");
+        newRow.attr("id", "recipient" + businessName);
+        newRow.append("<td><span class='recipient'>" + businessName + "</span></td>");
+        var removeIcon = $("<i class='icon-remove icon'></i>");
+        removeIcon.click(function(){
+            recipients[businessName] = undefined;
+            if ($(this).find("#btnAdd")){
+                var table = $("table");
+                table.children()[table.children().length - 1].append($("#btnAdd").parent());
+            }
+            this.parentElement.parentElement.parentElement.remove();
+        });
+        newRow.find("span").append(removeIcon);
+        newRow.append(add);
+        $("#recipientTable tr:last").after(newRow);
+        $("#btnAdd").click(function(){
+            console.log("add clicked");
+            addMode = !addMode;
+            if (addMode){
+                if ($("suggestionRow").attr("data-original-title")!==""){
+                    $("#suggestionRow").popover(
+                        {placement: "top",
+                         trigger: "manual",
+                         content:"Click business icons to add them as recipients to your message. Click the add button again to stop adding businesses."
+                        }
+                    ).popover("show");
+                }                    
+            }else{
+                $("#suggestionRow").popover("toggle");
+            }
+        });
+
+    }
 };
