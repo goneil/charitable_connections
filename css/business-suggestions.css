@@ -80,8 +80,8 @@
     width: 90%;
 }
 
-#recipients{
-    width: 80%;
+.recipients{
+    margin-left: 1em !important;
 }
 
 .minimizedMessage{
@@ -159,7 +159,22 @@ td {
   padding-bottom: 13px;
 }
 
+ul.horizontal-slide {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+}
 
+ul.horizontal-slide li[class*="span"] {
+    display: inline-block;
+    float: none;
+}
+
+ul.horizontal-slide li[class*="span"]:first-child {
+    margin-left: 0;
+}
 .recipient{
     padding: 3px;
     margin-right: 5px;

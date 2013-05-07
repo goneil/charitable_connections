@@ -52,6 +52,13 @@ app.get("/get_user", function(req, res){
     res.end(req.session.username);
 });
 
+app.get("/get_event", function(req, res){
+    var _id = req.query.id;
+    db.events.find({_id: new ObjectId(_id)}, function(err, inserted){
+        res.end(JSON.stringify(inserted[0]));
+    });
+});
+
 app.get("/user_exists", function(req, res){
     var username = req.query.username;
     db.users.find({username:username}, function(err, users){
@@ -270,6 +277,7 @@ app.post("/add_event", function(req, res){
     });
 
 });
+
 
 app.listen(3000, function () {
     console.log('Server started at http://localhost:3000/');

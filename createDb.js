@@ -68,7 +68,22 @@ var businessList = [
                  {location: "   44 Brattle St  Cambridge, MA 02138",
                   info:"City Sports offers the latest in athletic performance apparel, shoes, and accessories. Shop online to find top brand names and everything you need",
                   donations: "Gift Certificates"
-                 }, './img/businesses/citysports.jpg')
+                 }, './img/businesses/citysports.jpg'),
+    new Business('Apple Store', 
+                 {location: "815 Boylston St Boston",
+                 info: "Loving it is easy. That's why so many people do",
+                 donations: "Gift Certificates"
+                 }, "./img/businesses/apple.png"),
+    new Business('REI', 
+                 {location: "401 Park Dr, Boston, MA",
+                 info: "From backpacking to running to staying in shape and more, outfit your winter activities with the latest gear, clothing & footwear at REI.",
+                 donations: "Gift Certificates"
+                 }, "./img/businesses/rei.jpg"),
+    new Business('Macy\'s', 
+                 {location: "450 Washington St Boston, MA",
+                 info: "Macy's has the latest fashion brands on Women's and Men's Clothing, Accessories, Jewelry, Beauty, Shoes and Home Decor!",
+                 donations: "Clothing, Gift Certificates"
+                 }, "./img/businesses/macys.gif")
 ];
 
 var intvl = setInterval(function(){

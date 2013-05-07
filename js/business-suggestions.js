@@ -37,17 +37,22 @@ $(document).ready(function() {
         $("#results").hide();
     }
     
-    var index = 0;
-    var numSuggestions = 5;
     addMode = false; // should be global
 
-    $("#btnNext").click(function(){
-        index = nextFunc(businessList, index, numSuggestions);
+    $("#btnNext").hover(function(){
+        var hs = $(".horizontal-slide");
+        hs.stop().animate({scrollLeft: hs.scrollLeft() + 100000}, 100000);
+    },function(){
+        $(".horizontal-slide").stop();
     });
 
-     $("#btnPrevious").click(function(){
-        index = prevFunc(businessList, index, numSuggestions);
+    $("#btnPrevious").hover(function(){
+        var hs = $(".horizontal-slide");
+        hs.stop().animate({scrollLeft: hs.scrollLeft() -+ 100000}, 100000);
+    },function(){
+        $(".horizontal-slide").stop();
     });
+
     $("#btnContact").click(function(){
         $("#messageRow").css("top", $(".navbar").height() + "px");
         $("#messageRow").show();
@@ -105,37 +110,46 @@ $(document).ready(function() {
         }
     });
 
-    setSuggestions(businessList, index, numSuggestions);
+    setSuggestions(businessList);
+    squarifyAll();
+    $.get("./get_event", {id: $.getUrlVar("event_id")}, function(data){
+        data = $.parseJSON(data);
+        console.log(data);
+        if (data.types !== null){
+            $("#theme").val(data.types.join(", "));
+        }else{
+            $("#theme").val("None Specified");
+        }
+        if (data.charities !== null){
+            $("#charities").val(data.charities.join(", "));
+        } else{
+            $("#charities").val("None Specified");
+        }
+        if (data.date !== "0"){
+            $("#date").val((new Date(parseInt(data.date, 10))).toString().split(" ").slice(0, 4).join(" "));
+        } else{
+            $("#date").val("None Specified");
+        }
+    });
 });
-
-var nextFunc = function(businessList, index, numSuggestions){
-    setSuggestions(businessList, index + 1, numSuggestions);
-    return index + 1;
-};
-
-var prevFunc = function(businessList, index, numSuggestions){
-    setSuggestions(businessList, index - 1, numSuggestions);
-    return index - 1;
-};
 
 Number.prototype.mod = function(n) {
     return ((this%n)+n)%n;
 };
 
-var setSuggestions = function(businessList, index, numSuggestions){
-    if (!numSuggestions){
-        numSuggestions = 5;
-    }
+var setSuggestions = function(businessList){
     var i = 0;
-    while (i < numSuggestions){
-        var j = (i + index).mod(businessList.length);
-        var img = $('<input type="image" class="imageThumbnail thumbnail">');
-        img.attr("src", businessList[j].imageLink);
-        img.attr("index", j);
+    while (i < businessList.length){
+        console.log("looping");
+        var img = $('<img class="imageThumbnail thumbnail"/>');
+        img.attr("src", businessList[i].imageLink);
+        img.attr("index", i);
         img.width("100%");
         img.height("100%");
-        $("#suggestion" + i).html(img);
-        i ++;
+        var row = $("<li class='span2'>");
+        row.append(img);
+        $(".horizontal-slide").append(row);
+        i++;
     }
 
     $(".imageThumbnail").click(function(){
@@ -197,8 +211,6 @@ var squarifyAll = function(){
 var addRecipient = function(businessName){
     if (recipients[businessName] === undefined){
         recipients[businessName] = true;
-        var add = $("#addColumn");
-        add.remove();
 
         var newRow = $("<tr>");
         newRow.attr("id", "recipient" + businessName);
@@ -206,14 +218,9 @@ var addRecipient = function(businessName){
         var removeIcon = $("<i class='icon-remove icon'></i>");
         removeIcon.click(function(){
             delete recipients[businessName];
-            if ($(this).find("#btnAdd")){
-                var table = $("tbody");
-                $(table.children()[table.children().length - 2]).append($("#btnAdd").parent());
-            }
             this.parentElement.parentElement.parentElement.remove();
         });
         newRow.find("span").append(removeIcon);
-        newRow.append(add);
         $("#recipientTable tr:last").after(newRow);
         $("#btnAdd").click(function(){
             addMode = !addMode;
