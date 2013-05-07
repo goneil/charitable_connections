@@ -30,7 +30,7 @@
 .infoText{
 }
 
-#frame{
+#frame, #firstFrame{
     position: relative;
     display: block;
     float: none;

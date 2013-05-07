@@ -25,10 +25,17 @@ $.extend({
 
 var message;
 $(document).ready(function() {
+    $("#frame").hide();
     $("#messageRow").hide();
     $("#resize").width("99%");
     squarifyAll();
-    var businessList = getBusinesses();
+    var businessList = getBusinesses({eventID: $.getUrlVar("event_id")});
+    $("#matches").text(businessList.length);
+     $("#noResults").hide();
+    if (businessList.length === 0){
+        $("#noResults").show();
+        $("#results").hide();
+    }
     
     var index = 0;
     var numSuggestions = 5;
@@ -47,61 +54,58 @@ $(document).ready(function() {
         $("#resize").width("70%");
         squarifyAll();
 
-        $("#btnRemove").click(function(){
-            $("#recipients").text("");
-            $("#messageRow").hide();
-            $("#resize").width("99%");
-            addMode = false;
-            $("#suggestionRow").popover("destroy");
-            squarifyAll();
-        });
-
-
-        $("#btnSend").click(function(){
-            var message = {};
-            message.recipients = $("#recipients").val().split("\,\ ");
-            message.from = $("#btnAccountText").text();
-            message.content = $("#messageContent").val();
-            message.eventID = $.getUrlVar("event_id");
-            console.log(message);
-            $.post(CREATE_MESSAGE, message, function(data){
-                data = $.parseJSON(data);
-                if (data.error){
-                    $(".error").text("Message failed to send, try again");
-                } else{
-                    addMode = false;
-
-                    $("#messageRow").animate({right: "-800px"}, function(){
-                        $("#recipients").text("");
-                        $("#messageRow").attr("style", "");
-                        $("#resize").width("99%");
-                        $("#suggestionRow").popover("destroy");
-                        $("#messageRow").hide();
-                        squarifyAll();
-                    });
-                }
-            });
-        });
-
-        $("#btnHelp").click(function(){
-            var title = "Have you answered these questions?";
-            var content = "Describe your charity...\n\nDescribe the event...\n\n" +
-                          "Explain the logistics...\n\nExplain how you'll use the donations...";
-            if ($(this).attr("data-original-title")!==""){
-                $(this).popover({title: title, content: content}).popover("show");
-            }
-        });
 
         if (Object.keys(recipients).length === 0){
             addRecipient($("#businessName").text());
         }
             
     });
+    $("#btnRemove").click(function(){
+        var rows = $("tr");
+        $("#messageRow").hide();
+        $("#resize").width("99%");
+        addMode = false;
+        $("#suggestionRow").popover("destroy");
+        squarifyAll();
+        rows.find(".icon-remove").click();
+    });
 
-   
+
+    $("#btnSend").click(function(){
+        var message = {};
+        message.recipients = Object.keys(recipients);
+        message.from = $("#btnAccountText").text();
+        message.content = $("#messageContent").val();
+        message.eventID = $.getUrlVar("event_id");
+        $.post(CREATE_MESSAGE, message, function(data){
+            data = $.parseJSON(data);
+            if (data.error){
+                $(".error").text("Message failed to send, try again");
+            } else{
+                addMode = false;
+
+                $("#messageRow").animate({right: "-800px"}, function(){
+                    $("#messageRow").attr("style", "");
+                    $("#resize").width("99%");
+                    $("#suggestionRow").popover("destroy");
+                    $("#messageRow").hide();
+                    squarifyAll();
+                    $("tr").find(".icon-remove").click();
+                });
+            }
+        });
+    });
+
+    $("#btnHelp").click(function(){
+        var title = "Have you answered these questions?";
+        var content = "Describe your charity...\n\nDescribe the event...\n\n" +
+                      "Explain the logistics...\n\nExplain how you'll use the donations...";
+        if ($(this).attr("data-original-title")!==""){
+            $(this).popover({title: title, content: content}).popover("show");
+        }
+    });
 
     setSuggestions(businessList, index, numSuggestions);
-    $("[index='2']").click();
 });
 
 var nextFunc = function(businessList, index, numSuggestions){
@@ -135,6 +139,9 @@ var setSuggestions = function(businessList, index, numSuggestions){
     }
 
     $(".imageThumbnail").click(function(){
+        $("#firstFrame").hide();
+        $("#frame").show();
+        squarifyAll();
         var business = businessList[$(this).attr("index")];
         if (addMode === false){
             var img = $("<img>");
@@ -144,10 +151,9 @@ var setSuggestions = function(businessList, index, numSuggestions){
 
             $("#businessIcon").html(img);
             $("#businessName").html(business.name);
-            var keys = Object.keys(business.info);
-            for (var i = 0; i < keys.length; i ++){
-                $("#business" + keys[i]).text(business.info[keys[i]]);
-            }
+            $("#businesslocation").text(business.location);
+            $("#businessinfo").text(business.description);
+            $("#businessdonations").text(business.donations.join(", "));
         } else{
             addRecipient(business.name);
         }
@@ -189,7 +195,6 @@ var squarifyAll = function(){
 };
 
 var addRecipient = function(businessName){
-    console.log("adding");
     if (recipients[businessName] === undefined){
         recipients[businessName] = true;
         var add = $("#addColumn");
@@ -200,10 +205,10 @@ var addRecipient = function(businessName){
         newRow.append("<td><span class='recipient'>" + businessName + "</span></td>");
         var removeIcon = $("<i class='icon-remove icon'></i>");
         removeIcon.click(function(){
-            recipients[businessName] = undefined;
+            delete recipients[businessName];
             if ($(this).find("#btnAdd")){
-                var table = $("table");
-                table.children()[table.children().length - 1].append($("#btnAdd").parent());
+                var table = $("tbody");
+                $(table.children()[table.children().length - 2]).append($("#btnAdd").parent());
             }
             this.parentElement.parentElement.parentElement.remove();
         });
@@ -211,7 +216,6 @@ var addRecipient = function(businessName){
         newRow.append(add);
         $("#recipientTable tr:last").after(newRow);
         $("#btnAdd").click(function(){
-            console.log("add clicked");
             addMode = !addMode;
             if (addMode){
                 if ($("suggestionRow").attr("data-original-title")!==""){

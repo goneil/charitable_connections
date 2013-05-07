@@ -4,6 +4,7 @@ brew update
 brew install mongodb
 npm install mongojs
 npm install crypto
+npm install geocoder
 
 
 // Now to play with the db:

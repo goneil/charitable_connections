@@ -5,6 +5,7 @@ var collections = ["users", "businesses", "messages", "events"];
 var fs = require("fs");
 var db = require("mongojs").connect(databaseURL, collections);
 var hash = require("./password.js");
+var ObjectId = require("mongojs").ObjectId;
 
 // proposed DATABASE STRUCTURE: 
 // there are several "tables" in the database
@@ -185,24 +186,36 @@ app.get('/business_suggestions', function (req, res) {
 
 // returns list of businesses matching event
 // pass eventID through request
+// location has tolerance of .1 degrees (about 7 miles
 app.get("/get_businesses", function(req, res){
     var eventID = req.query.eventID;
-    var myEvent;
+    var id = new ObjectId(eventID);
 
-    db.events.find({_id:eventID}, function(err, eventCursor){
+    db.events.find({_id: id}, function(err, eventCursor){
         if (err){
             throw err;
         }
-        myEvent = eventCursor[0];
+        var myEvent = eventCursor[0];
+        var lat = parseFloat(myEvent.lat, 10);
+        var lng = parseFloat(myEvent.lng, 10);
+        console.log(lat);
+        console.log(lng);
+        var query = {};
+        if (lat !== 0 && lng !== 0){
+            query.lat = {$gt: lat - 0.1, $lt: lat + 0.1};
+            query.lng = {$gt: lng - 0.1, $lt: lng + 0.1};
+        }
+
+        var businessList = [];
+        db.businesses.find(query, function(err, businessCursor){
+            for (var i = 0; i < businessCursor.length; i ++){
+                businessList.push(businessCursor[i]);
+            }
+            res.end(JSON.stringify(businessList));
+        });
+
     });
 
-    var businessList = [];
-    db.businesses.find({}, function(err, businessCursor){
-        for (var i = 0; i < businessCursor.length; i ++){
-            businessList.push(businessCursor[i]);
-        }
-        res.end(JSON.stringify(businessList));
-    });
 
 });
 
