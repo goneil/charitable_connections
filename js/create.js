@@ -1,10 +1,31 @@
+//This script extracts parameters from the URL
+//from jquery-howto.blogspot.com
+$.extend({
+    getUrlVars : function() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(
+                window.location.href.indexOf('?') + 1).split('&');
+        for ( var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    },
+    getUrlVar : function(name) {
+        return $.getUrlVars()[name];
+    }
+});
+
+
 var myEvent = {charities:[], 
                types:[],
                donations:[],
                date:0,
                lat:0,
                lng:0,
-               location:""
+               location:"",
+               _id: $.getUrlVar("event_id")
               };
 
 function squarifyRatio(element,ratio) {
@@ -79,6 +100,9 @@ function makeChoiceList(list, element){
 }
 
 $(document).ready(function() {
+    if (!$.getUrlVar("event_id")){
+        window.location.href = window.location.href + "?event_id=" + $("#eventId").attr("eventId");
+    }
     var location = null;
     var date = null;
     squarifyRatio('#eventFrame', 0.75);

@@ -6,6 +6,7 @@ var fs = require("fs");
 var db = require("mongojs").connect(databaseURL, collections);
 var hash = require("./password.js");
 var ObjectId = require("mongojs").ObjectId;
+var template = require("swig");
 
 // proposed DATABASE STRUCTURE: 
 // there are several "tables" in the database
@@ -150,15 +151,34 @@ app.get('/home', function (req, res) {
     });
 });
 
-// Create screen
-app.get('/create', function (req, res) {
-    fs.readFile("./create.html", function(err, html){
+app.post("/create_event",function(req, res){
+  db.events.insert({}, function(err, inserted){
         if (err){
             throw err;
-        } else{
-            res.end(html);
         }
+        res.end(JSON.stringify({id: inserted[0]._id}));
     });
+});
+
+// Create screen
+app.get('/create', function (req, res) {
+    if (!req.query.event_id){
+        db.events.insert({}, function(err, inserted){
+            if (err){
+                throw err;
+            }
+
+            var tmpl = template.compileFile(__dirname + "/create.html");
+            res.end(tmpl.render({
+                eventId: inserted[0]._id
+            }));
+        });
+    }else{
+        var tmpl = template.compileFile(__dirname + "/create.html");
+        res.end(tmpl.render({
+            eventId: req.query.event_id
+        }));
+    }
 });
 
 // my_events screen
@@ -198,8 +218,6 @@ app.get("/get_businesses", function(req, res){
         var myEvent = eventCursor[0];
         var lat = parseFloat(myEvent.lat, 10);
         var lng = parseFloat(myEvent.lng, 10);
-        console.log(lat);
-        console.log(lng);
         var query = {};
         if (lat !== 0 && lng !== 0){
             query.lat = {$gt: lat - 0.1, $lt: lat + 0.1};
@@ -220,16 +238,34 @@ app.get("/get_businesses", function(req, res){
 });
 
 app.post("/add_event", function(req, res){
-    var myEvent = req.body;
-    var currentUser = req.session.username;
-    if(currentUser){
-        myEvent.user = currentUser;
-    }
-    db.events.insert(myEvent, function(err, inserted){
+    var date, lat, lng, location, user, _id, charities, donations, types;
+    date = req.body.date;
+    lat = req.body.lat;
+    lng = req.body.lng;
+    location = req.body.location;
+    _id = req.body._id;
+    charities = req.body.charities;
+    donations = req.body.donations;
+    types = req.body.types;
+    user = req.session.username;
+
+    console.log(_id);
+
+    db.events.update({_id: new ObjectId(_id)}, {$set:{
+        date: date,
+        lat: lat,
+        lng: lng,
+        location: location,
+        charities: charities,
+        donations: donations,
+        types: types,
+        user: user
+    }},
+    function(err, updated){
         if (err){
             throw err;
         }
-        var data = JSON.stringify({id: inserted[0]._id});
+        var data = JSON.stringify({id: _id});
         res.end(data);
     });
 

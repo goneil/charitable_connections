@@ -6,7 +6,15 @@ $(document).ready(function() {
     squarifyMe('.box');
     $(".dropdown-toggle").dropdown();
     $("#btnCreate").click(function(){
-        document.location.href = CREATE_LINK;
+        $.ajax({
+            url:"./create_event",
+            type: "post",
+            success: function(data){
+                var id = $.parseJSON(data).id;
+                document.location.href = CREATE_LINK + "?event_id=" + id;
+            }
+        });
+
     });
     $("#btnMyEvents").click(function(){
         document.location.href = MY_EVENTS_LINK;
