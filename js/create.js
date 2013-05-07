@@ -49,7 +49,7 @@ function squarifyRatio(element,ratio) {
             + $("#gmaps-input-address").height()); 
         $("#location").height(mapWrapHeight);
         $("#gmaps-canvas").height(mapWrapHeight-45);
-        $("#searchResultsDiv").height($("#eventFrame").height() - $("#search-box").height() - 15);
+        $("#searchResultsDiv").height($("#eventFrame").height() - $("#search-box").height() - 20);
     }
 }
 
@@ -306,7 +306,7 @@ var highlightButton = function(num){
 function changeChoicesList(btnNum){
     if(btnNum === 0){
         //makeChoiceList(charities);
-        $("#choicesTitle").html("Choose your charity");
+        $("#choicesTitle").html("Select your charity");
         $("#choicesFrame").show();
         $("#charityList").show();
         $("#eventList").hide();
@@ -315,9 +315,9 @@ function changeChoicesList(btnNum){
         $("#search-box").liveUpdate($("#charityList")).focus();
 
     }
-    else if(btnNum === 1){
+    else if(btnNum === 2){
         //makeChoiceList(event_types);
-        $("#choicesTitle").html("Choose your event types");
+        $("#choicesTitle").html("Select your event types");
         $("#choicesFrame").show();
         $("#charityList").hide();
         $("#logistics").hide();
@@ -327,7 +327,7 @@ function changeChoicesList(btnNum){
     }
     else if(btnNum === 3){
         //makeChoiceList(donation_types);
-        $("#choicesTitle").html("Choose your donation types");
+        $("#choicesTitle").html("Select desired donation types");
         $("#choicesFrame").show();
         $("#charityList").hide();
         $("#eventList").hide();
@@ -335,8 +335,8 @@ function changeChoicesList(btnNum){
         $("#donationList").show();
         $("#search-box").liveUpdate($("#donationList")).focus();
     }
-    else if(btnNum === 2){
-        $("#choicesTitle").html("Choose date and location");
+    else if(btnNum === 1){
+        $("#choicesTitle").html("Indicate date and location");
         $("#choicesFrame").hide();
         $("#logistics").show();
         $("#location").hide();

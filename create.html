@@ -91,8 +91,8 @@
             <div class="span4"></div>
             <div id="progressBar" class="btn-group span4">
                 <button id="btnFirst" class="btn btn-warning active">Charity</button>
-                <button id="btnSecond" class="btn">Event</button>
-                <button id="btnThird" class="btn">Logistics</button>
+                <button id="btnSecond" class="btn">Logistics</button>
+                <button id="btnThird" class="btn">Event</button>
                 <button id="btnFourth" class="btn">Donations</button>
             </div>
             <div class="span4"></div>
@@ -104,10 +104,10 @@
 
         <div class="row">
             <div class="span1"></div>
-            <div class="span6" id="btnPrevSpan">
+            <div class="span4" id="btnPrevSpan">
                 <a href="#" id="btnPrev" class="btn">◄ Back</a>
             </div>
-            <div class="span4" id="btnNextSpan">
+            <div class="span6" id="btnNextSpan">
                 <a href="#" id="btnNext" class="btn">Next ►</a>
             </div>
         </div>
@@ -127,44 +127,14 @@
 
         <div class="row">
             <div class="span1"></div>
-            <div id="helperTitle" class="span6" style="text-align:left"> Find businesses by choosing event details </div>
-            <div id="choicesTitle" class="span4"> Choose your charity </div>
+            <div id="choicesTitle" class="span4" style="text-align:left"> Select your charity </div>
+
+            <div id="helperTitle" class="span6"> Business sugesstions based on selections shown below</div>
+            
         </div>
 
         <div class="row">
             <div class="span1"></div>
-            <div class="span6" id="eventFrame">
-                <div id="help_overlay"> Your event details will appear here </div>
-                <table id="eventTable">
-                    <tr>
-                        <td id="charity_pane" class="pane">
-                            <div class="pane_label">Charity</div>
-                            <div id="charity_icons"></div>
-                        </td>
-                        <td id="event_pane" class="pane">
-                            <div class="pane_label">Event Types</div>
-                            <div id="event_icons"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="logistics_pane" class="pane">
-                            <div class="pane_label">Logistics</div>
-                            <div id="logistics_icons">
-                                <div id="date_icon" class="log_icon">
-                                    <div id ="date_label"></div>
-                                </div>
-                                <div id="loc_icon" class="log_icon">
-                                    <div id="loc_label">Welcome To</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td id="donations_pane" class="pane">
-                            <div class="pane_label">Donation Types</div>
-                            <div id="donation_icons"></div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
 
             <div class="span4" id="choicesFrame">
 
@@ -204,6 +174,40 @@
                     <div id='gmaps-canvas'></div>
                 </div>
                 <div id="date"><div id="datepicker"></div></div>
+            </div>
+
+            <div class="span6" id="eventFrame">
+                <div id="help_overlay"> Your event details will appear here </div>
+                <table id="eventTable">
+                    <tr>
+                        <td id="charity_pane" class="pane">
+                            <div class="pane_label">Charity</div>
+                            <div id="charity_icons"></div>
+                        </td>
+                        <td id="logistics_pane" class="pane">
+                            <div class="pane_label">Logistics</div>
+                            <div id="logistics_icons">
+                                <div id="date_icon" class="log_icon">
+                                    <div id ="date_label"></div>
+                                </div>
+                                <div id="loc_icon" class="log_icon">
+                                    <div id="loc_label">Welcome To</div>
+                                </div>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td id="event_pane" class="pane">
+                            <div class="pane_label">Event</div>
+                            <div id="event_icons"></div>
+                        </td>
+                        <td id="donations_pane" class="pane">
+                            <div class="pane_label">Donations</div>
+                            <div id="donation_icons"></div>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
         </div>
