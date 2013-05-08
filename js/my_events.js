@@ -2,20 +2,17 @@ $(function() {
     $( "#tabs" ).tabs();
 
     var messages = getMessages();
-    //generateThreads(messages);
     var messageContainerID = "#msg-selectable";
     var eventContainerID = "#event-selectable";
     var eventFrameContainerID = "#event-frame-container";
-    generateEventPane(eventFrameContainerID);
-    
-    generateNewThread(messageContainerID,"Mockasins", "today", "eating");
-    generateNewThread(eventContainerID,"Mockasins", "today", "eating");
+    //generateNewThread(messageContainerID,"Mockasins", "today", "eating");
+    //generateNewThread(eventContainerID,"Mockasins", "today", "eating");
 
     $(messageContainerID).selectable({
         selected: function(event, ui) { 
             var thread = $(ui.selected);
-            var messageID = parseInt(thread.attr("id").split("message")[1]);
-            var content = messages[messageID].content;
+            //var messageID = parseInt(thread.attr("id").split("message")[1]);
+            //var content = messages[messageID].content;
             var date = $("#msg-date-label");
             var business = $("#msg-business-label");
             var eventName = $("#msg-event-label");
@@ -24,7 +21,8 @@ $(function() {
             date.html(thread.find(".thread-date").html());
             business.html(thread.find(".thread-business").html());
             eventName.html(thread.find(".thread-event").html());
-            message_content.html("hi"
+            message_content.html(
+            "hello hola mi hola"
             )
         }                   
     });
@@ -40,12 +38,14 @@ $(function() {
             date.html(thread.find(".thread-date").html());
             business.html(thread.find(".thread-business").html());
             eventName.html(thread.find(".thread-event").html());
-            message_content.html(
-            "Hi blah yes"
-            )
+            generateEventPane(containerID);
+            //message_content.html(
+            //"Hi blah yes"
+            //)
         }                   
     });
 
+    /*
     $("#vis-selectable").selectable({
         selected: function(event, ui) { 
             var thread = $(ui.selected);
@@ -59,10 +59,11 @@ $(function() {
             date.html(thread.find(".thread-date").html());
             business.html(thread.find(".thread-business").html());
             eventName.html(thread.find(".thread-event").html());
-            //clearContainer(message_content);
             )
         }                   
     });
+    */
+
  });   
                              
 /*
@@ -95,13 +96,14 @@ function generateEventPane(containerID) {
     $(containerID).append(eventFrame);
 }
 
+function fillEventPane() {
+}
+
 function clearContainer(containerID) {
     $(containerID).empty();
 }
 
 /*
-
-
  <li id="message1" class="ui-widget-content">
                                     <div class="row-fluid">
                                         <div class="span12 thread-business">
