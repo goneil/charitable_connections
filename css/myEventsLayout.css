@@ -318,3 +318,72 @@ body {
 ul {
     list-style-type: none;
 }
+
+#temp-display {
+    margin-top: 100px;
+}
+
+
+
+//////////////////////////////
+
+#eventFrame{
+    //margin: 0 !important;
+    border: 3px solid red !important;
+    text-align: center;
+    font-size: 50px;
+}
+
+#eventTable{
+    position:absolute;
+    width: 100%;
+}
+
+#charity_pane {
+}
+
+.pane {
+}
+
+
+
+
+
+
+
+/*
+ <div class="span11" id="eventFrame">
+                                <div id="help_overlay"> Your event details will appear here </div>
+                                    <table id="eventTable">
+                                    <tr>
+                                        <td id="charity_pane" class="pane">
+                                            <div class="pane_label">Charity</div>
+                                            <div id="charity_icons"></div>
+                                        </td>
+                                        <td id="logistics_pane" class="pane">
+                                            <div class="pane_label">Logistics</div>
+                                            <div id="logistics_icons">
+                                                <div id="date_icon" class="log_icon">
+                                                    <div id ="date_label"></div>
+                                                </div>
+                                                <div id="loc_icon" class="log_icon">
+                                                    <div id="loc_label">Welcome To</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td id="event_pane" class="pane">
+                                            <div class="pane_label">Event</div>
+                                            <div id="event_icons"></div>
+                                        </td>
+                                        <td id="donations_pane" class="pane">
+                                            <div class="pane_label">Donations</div>
+                                            <div id="donation_icons"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+

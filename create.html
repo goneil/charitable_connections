@@ -35,6 +35,7 @@
             <ul class="nav pull-right">
                 <li><a href="./home">Home</a></li>
                 <li class="active"><a href="./create">Create Event</a></li>
+                <li><a href="./my_events">My Events</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown"
                     id="btnAccount">
@@ -88,30 +89,26 @@
         </div>
 
         <div class="row">
-            <div class="span4"></div>
+            <div class="span1"></div>
+            <div class="span3" id="btnPrevSpan">
+                <a href="" id="btnPrev" class="btn">◄ Back</a>
+            </div>
             <div id="progressBar" class="btn-group span4">
                 <button id="btnFirst" class="btn btn-warning active">Charity</button>
                 <button id="btnSecond" class="btn">Logistics</button>
                 <button id="btnThird" class="btn">Event</button>
                 <button id="btnFourth" class="btn">Donations</button>
             </div>
-            <div class="span4"></div>
+            <div class="span3" id="btnNextSpan">
+                <a href="" id="btnNext" class="btn">Next ►</a>
+            </div>
+            <div class="span1"></div>
         </div>
 
         <div class="row">
             <div class="span12" style="height:5px"></div>
         </div>
-
-        <div class="row">
-            <div class="span1"></div>
-            <div class="span4" id="btnPrevSpan">
-                <a id="btnPrev" class="btn">◄ Back</a>
-            </div>
-            <div class="span6" id="btnNextSpan">
-                <a id="btnNext" class="btn">Next ►</a>
-            </div>
-        </div>
-
+            
         <!-- <ul class="pager">
             <li class="previous">
                 <a href="" id="btnPrev" class="btn">&larr;Previous</a>
@@ -155,25 +152,24 @@
 
             </div>
             <div class="span4" id="logistics">
-                <ul id = "log-navs" class="nav nav-tabs">
-                  <li class="active">
-                    <a id="btnDate">Date</a>
-                  </li>
-                  <li>
-                    <a id="btnLocation">City</a>
-                  </li>
-                </ul>
-                <div id="location">
-                    <div id='input'>
-                      <input id='gmaps-input-address' 
-                             placeholder='Start typing a place name...'
-                             type='text' />
-                      <div id='gmaps-error'></div>
-                    </div>
-
-                    <div id='gmaps-canvas'></div>
-                </div>
-                <div id="date"><div id="datepicker"></div></div>
+                <table id="logs">
+                    <tr>
+                        <td><div id="date">Date: <input type="text"id="datepicker"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div id="location">
+                            <div id='gmaps'>
+                                <div id='gmaps-error'></div>
+                                <div id="gmap-wrap">
+                                    <div id='gmaps-canvas'></div>
+                                    <input id='gmaps-input-address' 
+                                placeholder='Start typing a place name...'
+                                type='text' />
+                                </div>
+                            </div>
+                        </div></td>
+                    </tr>
+                </table>
             </div>
 
             <div class="span6" id="eventFrame">

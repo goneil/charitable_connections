@@ -2,19 +2,32 @@ $(function() {
     $( "#tabs" ).tabs();
 
     var messages = getMessages();
+    //generateThreads(messages);
+    var messageContainerID = "#msg-selectable";
+
+    /*
+
+
+
+    */
+
+
+    generateNewThread(messageContainerID,"Mockasins", "today", "eating");
 
     $("#msg-selectable").selectable({
         selected: function(event, ui) { 
             var thread = $(ui.selected);
+            var messageID = parseInt(thread.attr("id").split("message")[1]);
+            var content = messages[messageID].content;
             var date = $("#msg-date-label");
             var business = $("#msg-business-label");
             var eventName = $("#msg-event-label");
             var message_content = $("#msg-message-body");
-            $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");           
+            $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");         
             date.html(thread.find(".thread-date").html());
             business.html(thread.find(".thread-business").html());
             eventName.html(thread.find(".thread-event").html());
-            message_content.html(""            
+            message_content.html(content            
             )
         }                   
     });
@@ -72,32 +85,33 @@ $(function() {
                                     */
 
 /*
-var $new_li = $('<li class="ui-widget-content"/>');
-var $new_row = $('div class="row-fluid"/>');
-var $new_thread_business = $('<div class="span10 thread-business" />');
-var $new_thread_date= $('<div class="span2 thread-date" />');
-var $new_thread_container = $('<div class="row-fluid thread-event-container" />');
-var $new_thread_event = $('<div class="span12 thread-event" />');
-
-function addMessage(business, date, eventName, message) {
-    $($new_li).append(
-        $($new_row).append(
-            $($new_thread_business).text("Hello")
-        ).append(
-            $($new_thread_date).text("Hello") 
-        )
-    ).append(
-        $($new_thread_container).append(
-            $($new_thread_event)//.text("Hello")
-        )
-    ).appendTo("#msg-selectable");
+function generateMessageThreads(messageList, containerID, business, date, eventName) {
+    for (int i = 0; i < messageList.length; i++) {
+        var message = messageList[i];
+        generateNewThread(containerID, message.to, message.from, eventName);
+    }
 }
 */
 
-function addTest() {
-    //alert();
-    //$("#msg-selectable").append($new_li);
+
+function generateNewThread(containerID, business, date, eventName) {
+    var threadID = getNewThreadID(containerID);
+    if (threadID == 1) {
+        clearContainer(containerID);
+    }
+    var new_thread = '<li id="message' + threadID + '" class="ui-widget-content"><div class="row-fluid"><div class="span10 thread-business">' + business + '</div><div class="span2 thread-date">' + date + '</div></div><div class="row-fluid thread-event-container"><div class="span12 thread-event">' + eventName + '</div></div></li>';
+    $(containerID).append(new_thread);
 }
+
+function getNewThreadID(containerID) {
+    var children = $(containerID).children("li");
+    return children.length + 1;
+}
+
+function clearContainer(containerID) {
+    $(containerID).empty();
+}
+
 
 var getMessages = function(){
     var messages;
@@ -111,18 +125,6 @@ var getMessages = function(){
     return messages;
 };
 
-function generateThread() {
 
-}
-
-function generateMultipleThreads(number) {
-    //for (int i = 0; i < number; i++) {
-        //$("#msg-selectable").append("");
-   // }
-}
-
-function generateThreadContent(thread_element, content) {
-    //alert();
-}
 
 

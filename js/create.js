@@ -17,7 +17,6 @@ $.extend({
     }
 });
 
-
 var myEvent = {charities:[], 
                types:[],
                donations:[],
@@ -44,11 +43,13 @@ function squarifyRatio(element,ratio) {
         $("#loc_label").width($("#loc_icon").width());
         $("#date_label").width($("#date_icon").width());
         $("#logistics").height($("#eventFrame").height());
-        var mapWrapHeight = $("#logistics").height()
-            - ($("#log-navs").height() 
-            + $("#gmaps-input-address").height()); 
-        $("#location").height(mapWrapHeight);
-        $("#gmaps-canvas").height(mapWrapHeight-45);
+        $("#logs").height($("#logistics").height());
+        $("#location").height($("#logistics").height() - ($("#date").height() + 10));
+        //var mapWrapHeight = $("#logistics").height()
+            //- ($("#log-navs").height() 
+            //+ $("#gmaps-input-address").height()); 
+        //$("#location").height(mapWrapHeight);
+        //$("#gmaps-canvas").height(mapWrapHeight-45);
         $("#searchResultsDiv").height($("#eventFrame").height() - $("#search-box").height() - 20);
     }
 }
@@ -253,7 +254,7 @@ $(document).ready(function() {
         changeChoicesList(highlightedButton);
     });
 
-    $("#btnDate").click(function(){
+    /*$("#btnDate").click(function(){
         $("#location").hide();
         $("#date").show();
         $($(this).parent()).addClass("active");
@@ -266,7 +267,7 @@ $(document).ready(function() {
         $($("#btnDate").parent()).removeClass("active");
         gmaps_init();
 
-    });
+    });*/
 
     $("#btnPrev").addClass("disabled");
 });
@@ -336,13 +337,24 @@ function changeChoicesList(btnNum){
         $("#search-box").liveUpdate($("#donationList")).focus();
     }
     else if(btnNum === 1){
+        gmaps_init();
+        $("#gmaps-canvas").height("340px");
+        var inputWidth = $("#gmaps-input-address").width();
+        console.log($("#logs").width());
+        console.log($(inputWidth));
+        $("#gmaps-input-address").css("left",($("#logistics").width() - (inputWidth + 15))/2 );
         $("#choicesTitle").html("Indicate date and location");
         $("#choicesFrame").hide();
         $("#logistics").show();
-        $("#location").hide();
+        //$("#location").hide();
         $("#datepicker").datepicker({
+            showOn: "both",
+            buttonImage: "img/calendar.gif",
+            buttonImageOnly: true,
             onSelect: function(dateText, inst){
-                date = dateText.split(" ");
+                console.log(inst);
+                console.log($("#datepicker").datepicker("getDate"));
+                date = dateText.replace(",", "").split(" ");
                 var display = date[0] + '<br/>' + date[1] + '<br/>' + date[2];
                 $("#date_label").html(display);
                 $("#help_overlay").hide();
@@ -351,16 +363,16 @@ function changeChoicesList(btnNum){
                 var unix = (new Date(dateText)).getTime();
                 myEvent.date = unix;
             },
-            dateFormat: "M d yy",
+            dateFormat: "M d, yy",
             minDate: +1,
             maxDate: "+1Y"
         });
         $("#btnDate").click();
-        var mapHeight = $("#logistics").height()
+        /*var mapHeight = $("#logistics").height()
             - ($("#log-navs").height() 
             + $("#gmaps-input-address").height());  
         $("#location").height(mapHeight);
-        $("#gmaps-canvas").height(mapHeight-45);
+        $("#gmaps-canvas").height(mapHeight-45);*/
         //$("#gmaps-canvas").css("width",$("#logistics").width() - 20);
         //$("#gmaps-canvas").css("height", $("#location").height() - 20);
     }
