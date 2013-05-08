@@ -19,8 +19,9 @@ $(function() {
             }
             generateNewThread(messageContainerID, message.to, date, message.content.substring(0,40).trim()+"...");
         }
-    } else {
+    } 
 
+    /*
     var events = getEvents();
     var hasEvents = false;
     alert(events.length);
@@ -36,6 +37,7 @@ $(function() {
     } else {
         alert("no events");
     }
+    */
 
     
     //generateNewThread(eventContainerID,"Ice Cream Scoop-athon", "May 25", "Dana Farber");
