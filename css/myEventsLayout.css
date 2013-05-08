@@ -329,6 +329,14 @@ iframe {
     height: 100%;
 }
 
+#vis-splitpane {
+    height: 40em !important;
+}
+
+#vis-thread-pane {
+    margin: auto 0;
+}
+
 
 
 //////////////////////////////
