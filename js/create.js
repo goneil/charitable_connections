@@ -55,30 +55,30 @@ function squarifyRatio(element,ratio) {
 }
 
 var charities = [
-    { label: "American Cancer Society", image: "img/acs.png" },
-    { label: "American Red Cross", image: "img/red_cross.png"},
-    { label: "Green Laces", image: "img/green_laces.png" },
-    { label: "Jimmy Fund", image: "img/jimmy_fund.png"},
-    { label: "Partners in Health", image: "img/partners.png" },
-    { label: "USO", image: "img/uso.png"}
+    { label: "American Cancer Society", image: "img/charity/acs.png" },
+    { label: "American Red Cross", image: "img/charity/red_cross.png"},
+    { label: "Green Laces", image: "img/charity/green_laces.png" },
+    { label: "Jimmy Fund", image: "img/charity/jimmy_fund.png"},
+    { label: "Partners in Health", image: "img/charity/partners.png" },
+    { label: "USO", image: "img/charity/uso.png"}
 ];
 
 var event_types = [
-    { label: "Automotive", image: "img/car.png" },
-    { label: "Basketball", image: "img/bball.png" },
-    { label: "Cooking", image: "img/cooking.png" },
-    { label: "Education", image: "img/edu.png" },
-    { label: "Reading", image: "img/reading.png" },
-    { label: "Soccer", image: "img/soccer.png" }
+    { label: "Automotive", image: "img/event/car.png" },
+    { label: "Basketball", image: "img/event/bball.png" },
+    { label: "Cooking", image: "img/event/cooking.png" },
+    { label: "Education", image: "img/event/edu.png" },
+    { label: "Reading", image: "img/event/reading.png" },
+    { label: "Soccer", image: "img/event/soccer.png" }
 ];
 
 var donation_types = [
-    { label: "Beverages", image: "img/drinks.png" },
-    { label: "Clothes", image: "img/clothes.png" },
-    { label: "Food", image: "img/food.png" },
-    { label: "General", image: "img/general.png" },
-    { label: "Gift Cards", image: "img/gift_cards.png" },
-    { label: "Monetary", image: "img/money.png"}
+    { label: "Beverages", image: "img/donation/drinks.png" },
+    { label: "Clothes", image: "img/donation/clothes.png" },
+    { label: "Food", image: "img/donation/food.png" },
+    { label: "General", image: "img/donation/general.png" },
+    { label: "Gift Cards", image: "img/donation/gift_cards.png" },
+    { label: "Monetary", image: "img/donation/money.png"}
 ];
 
 var charity_icons = 0;
