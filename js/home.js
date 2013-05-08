@@ -2,7 +2,6 @@ var CREATE_LINK = "create";
 var MY_EVENTS_LINK = "my_events";
 
 $(document).ready(function() {
-
     squarifyMe('.box');
     $(".dropdown-toggle").dropdown();
     $("#btnCreate").click(function(){
@@ -30,7 +29,6 @@ $(document).ready(function() {
                 $("#btnMyEvents").popover("destroy");
             }, 2000);
             $(".content").show();
- 
         }
     });
 });
