@@ -13,6 +13,23 @@ html, body, #container {
     background: url(../img/flowers.jpg) no-repeat 100% !important;
 }
 
+/*
+#background .stretch-image {
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background: url(https://a1.lscdn.net/imgs/689d624f-ebcb-441c-85c3-a0be9656e0e9/original_q60.jpg) center center fixed !important;
+}
+*/
+
 body > #container {
     height: auto;
     min-height: 100%;
@@ -204,23 +221,23 @@ body {
     font-size: 1.4em;
 }
 
-#selectable .ui-selecting {
+.selectable .ui-selecting {
     background: #FECA40;
 }
 
-#selectable .ui-selected { 
+.selectable .ui-selected { 
     background: #F39814;
     color: white; 
 }
 
-#selectable { 
+.selectable { 
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 100%; 
 }
 
-#selectable li {
+.selectable li {
     margin: 4px;
     padding: 0.4em;
     padding-top: 0;
@@ -288,12 +305,12 @@ body {
     margin-top: -.6em;
 }
 
-#event-label {
+.event-label {
     text-align: center;
     text-decoration: underline;
 }
 
-#message-content {
+.message-content {
     margin: 20px;
     font-family: serif;
 }

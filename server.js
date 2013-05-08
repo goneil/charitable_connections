@@ -190,13 +190,23 @@ app.get('/create', function (req, res) {
 
 // my_events screen
 app.get('/my_events', function (req, res) {
-    fs.readFile("./my_events.html", function(err, html){
-        if (err){
+
+    if (!req.query.user_id){
+        // TODO: throw error: should only be able to access my_events if registered user
+    } else {
+        var tmpl = template.compileFile(__dirname + "/my_events.html");
+        res.end(tmpl.render({
+            userId: req.query.user_id
+        }));
+    }
+
+    //fs.readFile("./my_events.html", function(err, html){
+     //   if (err){
             throw err;
-        } else{
+      //  } else{
             res.end(html);
-        }
-    });
+       // }
+    //});
 });
 
 // business_suggestions screen
@@ -240,8 +250,59 @@ app.get("/get_businesses", function(req, res){
         });
 
     });
+});
+
+app.get("/get_messages", function(req, res){
+
+    if (!req.query.user_id){
+        db.users.insert({}, function(err, inserted){
+            if (err){
+                throw err;
+            }
+
+            var tmpl = template.compileFile(__dirname + "/create.html");
+            res.end(tmpl.render({
+                eventId: inserted[0]._id
+            }));
+        });
+    } else{
+        var tmpl = template.compileFile(__dirname + "/create.html");
+        res.end(tmpl.render({
+            eventId: req.query.event_id
+        }));
+    }
 
 
+    var userID = req.query.userID; // how to access?
+    var messageList = [];
+
+    db.messages.find({_to: userID}, function(err, messages){
+        if (err){
+            throw err;
+        }
+        for (var i = 0; i < messages; i++ ) {
+            messageList.push(messages[i]);
+        }
+    }
+
+    db.messages.find({_from: userID}, function(err, messages) {
+        if (err){
+            throw err;
+        }
+        for (var i=0; i<messages; i++) {
+            messageList.push(messages[i]);
+        }
+    }
+
+        /*
+        var message = {
+            from: from,
+            to: to,
+            content: content,
+            eventID: eventID,
+            prev: prev
+        };
+        */
 });
 
 app.post("/add_event", function(req, res){
