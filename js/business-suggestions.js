@@ -40,6 +40,21 @@ $(document).ready(function() {
     }
     
     addMode = false; // should be global
+        $("#btnAdd").click(function(){
+            addMode = !addMode;
+            if (addMode){
+                if ($("suggestionRow").attr("data-original-title")!==""){
+                    $("#suggestionRow").popover(
+                        {placement: "top",
+                         trigger: "manual",
+                         content:"Click business icons to add them as recipients to your message. Click the add button again to stop adding businesses."
+                        }
+                    ).popover("show");
+                }                    
+            }else{
+                $("#suggestionRow").popover("toggle");
+            }
+        });
 
     $("#btnNext").hover(function(){
         var hs = $(".horizontal-slide");
@@ -285,21 +300,6 @@ var addRecipient = function(businessName){
         });
         newRow.find("span").append(removeIcon);
         $("#recipientTable tr:last").after(newRow);
-        $("#btnAdd").click(function(){
-            addMode = !addMode;
-            if (addMode){
-                if ($("suggestionRow").attr("data-original-title")!==""){
-                    $("#suggestionRow").popover(
-                        {placement: "top",
-                         trigger: "manual",
-                         content:"Click business icons to add them as recipients to your message. Click the add button again to stop adding businesses."
-                        }
-                    ).popover("show");
-                }                    
-            }else{
-                $("#suggestionRow").popover("toggle");
-            }
-        });
 
     }
 };
