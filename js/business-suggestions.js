@@ -24,13 +24,16 @@ $.extend({
 
 
 var message;
+var eventObject;
 $(document).ready(function() {
+    window.onresize = function(event){
+        squarifyAll();
+    };
     $("#frame").hide();
     $("#messageRow").hide();
     $("#resize").width("99%");
     squarifyAll();
     var businessList = getBusinesses({eventID: $.getUrlVar("event_id")});
-    $("#matches").text(businessList.length);
      $("#noResults").hide();
     if (businessList.length === 0){
         $("#noResults").show();
@@ -110,11 +113,9 @@ $(document).ready(function() {
         }
     });
 
-    setSuggestions(businessList);
-    squarifyAll();
     $.get("./get_event", {id: $.getUrlVar("event_id")}, function(data){
         data = $.parseJSON(data);
-        console.log(data);
+        eventObject = data;
         if (data.types !== null){
             $("#theme").val(data.types.join(", "));
         }else{
@@ -130,6 +131,9 @@ $(document).ready(function() {
         } else{
             $("#date").val("None Specified");
         }
+        setSuggestions(businessList);
+        squarifyAll();
+
     });
 });
 
@@ -139,8 +143,8 @@ Number.prototype.mod = function(n) {
 
 var setSuggestions = function(businessList){
     var i = 0;
+    var matches = 0;
     while (i < businessList.length){
-        console.log("looping");
         var img = $('<img class="imageThumbnail thumbnail"/>');
         img.attr("src", businessList[i].imageLink);
         img.attr("index", i);
@@ -148,10 +152,32 @@ var setSuggestions = function(businessList){
         img.height("100%");
         var row = $("<li class='span2'>");
         row.append(img);
-        $(".horizontal-slide").append(row);
+        var donationMatches = getDonationMatches(businessList[i]);
+        if (donationMatches.length > 0 || eventObject.donations === null){
+            matches ++;
+            var popoverContent;
+            if (donationMatches.length > 0){
+                popoverContent = businessList[i].name + " matches the donation types: " + donationMatches.join(", ");
+            } else{
+                popoverContent = businessList[i].name + " does not match your event\'s donation types";
+            }
+            img.popover({placement: "top",
+                             trigger: "manual",
+                             content:popoverContent,
+                             container: "body"
+            });
+            img.hover(function(){
+                x = this;
+                $(this).popover("show");
+            },function(){
+                $(this).popover("hide");
+            });
+            $(".horizontal-slide").append(row);
+        }
         i++;
     }
 
+    $("#matches").text(matches);
     $(".imageThumbnail").click(function(){
         $("#firstFrame").hide();
         $("#frame").show();
@@ -239,4 +265,23 @@ var addRecipient = function(businessName){
         });
 
     }
+};
+
+var getDonationMatches = function(business){
+    var bDonations = business.donations;
+    var eDonations = eventObject.donations;
+    console.log("b: " + bDonations);
+    console.log("e: " + eDonations);
+
+    var arr = bDonations.concat(eDonations);
+    var sorted_arr = arr.sort(); // You can define the comparing function here. 
+                                 // JS by default uses a crappy string compare.
+    var results = [];
+    for (var i = 0; i < arr.length - 1; i++) {
+        if (sorted_arr[i + 1] == sorted_arr[i]) {
+            results.push(sorted_arr[i]);
+        }
+    }
+    console.log(results);
+    return results;
 };

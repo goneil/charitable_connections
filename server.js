@@ -74,7 +74,7 @@ app.get("/user_exists", function(req, res){
 });
 
 app.post("/create_message", function(req, res){
-    var from , recipients, content, eventID, prev;
+    var from, recipients, content, eventID, prev;
     from = req.body.from;
     recipients = req.body.recipients;
     content = req.body.content;

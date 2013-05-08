@@ -374,7 +374,7 @@ function addIcon(img, pane){
         changeWidth(charity_icons, '.charity_icon');
         myEvent.charities.push(img.name);
     } 
-    if(pane === 1){
+    if(pane === 2){
         event_icons++;
         $(img).addClass('event_icon');
         $('#event_icons').append(img);
@@ -403,7 +403,7 @@ function removeIcon(src, pane){
         }
         changeWidth(charity_icons, '.charity_icon');
     }
-    if(pane === 1){
+    if(pane === 2){
         event_icons--;
         icons = $("#event_icons").children();
         for(var i = 0; i < icons.length; i++){
