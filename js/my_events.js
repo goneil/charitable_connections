@@ -112,7 +112,6 @@ var $new_thread_event = $('<div class="span12 thread-event" />');
                                     */
 
 
-
 function addMessage(business, date, eventName, message) {
     $("#msg-selectable").append($new_li); // add info to thread selectable
     $(new_li).append($new_row);
