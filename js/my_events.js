@@ -20,18 +20,17 @@ $(function() {
             generateNewThread(messageContainerID, message.to, date, message.content.substring(0,40).trim()+"...");
         }
     } else {
-        alert("no messages");
-    }
 
     var events = getEvents();
     var hasEvents = false;
-    alert();
+    alert(events.length);
 
     if (events.length >= 1) {
         alert("true");
         hasEvents = true;
         for (var i = 0; i < events.length; i++) {
             var newEvent = events[i];
+            var eventList = ""; // add each String from charities to this
             generateNewThread(eventContainerID, newEvent.type, newEvent.date, newEvent.charities.substring(0,40).trim()+"...");
         }
     } else {
@@ -63,6 +62,7 @@ $(function() {
         }                   
     });
 
+/*
     $(eventContainerID).selectable({
         selected: function(event, ui) { 
             var thread = $(ui.selected);
@@ -80,6 +80,7 @@ $(function() {
             //)
         }                   
     });
+    */
 
 
  });   
