@@ -252,6 +252,7 @@ app.get("/get_businesses", function(req, res){
     });
 });
 
+/*
 app.get("/get_messages", function(req, res){
 
     if (!req.query.user_id){
@@ -294,7 +295,7 @@ app.get("/get_messages", function(req, res){
         }
     }
 
-        /*
+        // message jquery object
         var message = {
             from: from,
             to: to,
@@ -302,8 +303,8 @@ app.get("/get_messages", function(req, res){
             eventID: eventID,
             prev: prev
         };
-        */
 });
+    */
 
 app.post("/add_event", function(req, res){
     var date, lat, lng, location, user, _id, charities, donations, types;
