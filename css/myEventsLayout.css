@@ -334,38 +334,6 @@ iframe {
 //////////////////////////////
 
 
-
-
-#date,
-#location{
-    display: block;
-    padding-left: 2%;
-    padding-right: 2%;
-    overflow: scroll;
-}
-
-#searchDiv{
-    margin-left: 5px;
-    width: 100%;
-}
-
-#search-box{
-    background-color: #feedbf;
-    width: 100%;
-}
-
-.choice{
-    margin:5px;
-    width: 23%;
-}
-
-.choice_label{
-    text-align: center;
-    word-wrap: break-word;
-    font-size: 1em;
-    line-height: 1em;
-}
-
 .charity_icon, .event_icon, .donation_icon{
     margin: .5%;
     padding: 1%;
@@ -380,7 +348,7 @@ iframe {
 }
 
 .pane{
-    opacity: .6;
+    opacity: 1;
 }
 
 #charity_icons, #event_icons, 
@@ -395,6 +363,7 @@ iframe {
 
 #logistics_icons{
     display: table-row;
+    display: none;
     position: absolute;
     width: 50%;
 }
@@ -409,9 +378,10 @@ iframe {
     display: inline-block;
     background-image: url(../img/city_sign.png);
     background-size:100%;
-    margin: 1%;
-    padding: 1%;
+    margin:0;
+    padding:0;
     vertical-align: middle;
+    height: 100%;
 }
 
 #loc_label, #date_label{
@@ -446,6 +416,7 @@ iframe {
     border-bottom: 2px solid #3e6b85;
     width: 50%;
     vertical-align: top;
+    height: 6em;
 }
 
 #logistics_pane{
@@ -457,39 +428,11 @@ iframe {
 #event_pane{
     border-right: 2px solid #3e6b85;
     vertical-align: top;
+    height: 6em;
 }
 
 #donations_pane{
     vertical-align: top;
-}
-
-#task1, #task2, #task3, #task4{
-    padding: 0px;
-    margin: 0px !important;
-    width: 23%;
-    display: inline-block;
-    text-align: center;
-    border-style: solid;
-}
-
-#helperTitle{
-    margin-left: 1em;
-    text-align: left;
-    font-size: 1.5em;
-    font-family: sans-serif;
-    margin-bottom: .3em;
-    margin-top: 1.5%;
-}
-
-
-#choicesTitle{
-    margin-left: 0;
-    text-align: left;
-    font-size: 1.5em;
-    font-family: sans-serif;
-    margin-bottom: .3em;
-    margin-right: 6px;
-    margin-top: 1.5%;
 }
 
 #eventFrame{
@@ -520,4 +463,39 @@ iframe {
     border-style: solid;
     margin-left: 0;
 }
+
+/*
+<div class="span6" id="eventFrame">
+                <div id="help_overlay"> Your event details will appear here </div>
+                <table id="eventTable">
+                    <tr>
+                        <td id="charity_pane" class="pane">
+                            <div class="pane_label">Charity</div>
+                            <div id="charity_icons"></div>
+                        </td>
+                        <td id="logistics_pane" class="pane">
+                            <div class="pane_label">Logistics</div>
+                            <div id="logistics_icons">
+                                <div id="date_icon" class="log_icon">
+                                    <div id ="date_label"></div>
+                                </div>
+                                <div id="loc_icon" class="log_icon">
+                                    <div id="loc_label">Welcome To</div>
+                                </div>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td id="event_pane" class="pane">
+                            <div class="pane_label">Event</div>
+                            <div id="event_icons"></div>
+                        </td>
+                        <td id="donations_pane" class="pane">
+                            <div class="pane_label">Donations</div>
+                            <div id="donation_icons"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 

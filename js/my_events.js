@@ -6,7 +6,7 @@ $(function() {
     var eventContainerID = "#event-selectable";
     var eventFrameContainerID = "#event-frame-container";
     //generateNewThread(messageContainerID,"Mockasins", "today", "eating");
-    //generateNewThread(eventContainerID,"Mockasins", "today", "eating");
+    generateNewThread(eventContainerID,"Mockasins", "today", "eating");
 
     $(messageContainerID).selectable({
         selected: function(event, ui) { 
@@ -38,7 +38,8 @@ $(function() {
             date.html(thread.find(".thread-date").html());
             business.html(thread.find(".thread-business").html());
             eventName.html(thread.find(".thread-event").html());
-            generateEventPane(containerID);
+            generateEventPane(eventFrameContainerID);
+            //generateEventPane(containerID);
             //message_content.html(
             //"Hi blah yes"
             //)
