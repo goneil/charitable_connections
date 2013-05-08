@@ -7,7 +7,8 @@
     margin-bottom: 0px;
 }
 .arrowContainer{
-    margin-top: 2%;
+    height: 50px;
+    margin-top: 4%;
 }
 
 .suggestion{
@@ -57,7 +58,7 @@
 }
 
 .arrow{
-    height: 100%;
+    height: 50px;
     font-size: 20pt;
 }
 

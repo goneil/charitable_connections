@@ -32,7 +32,6 @@ $(document).ready(function() {
     $("#frame").hide();
     $("#messageRow").hide();
     $("#resize").width("99%");
-    squarifyAll();
     var businessList = getBusinesses({eventID: $.getUrlVar("event_id")});
      $("#noResults").hide();
     if (businessList.length === 0){
@@ -85,6 +84,18 @@ $(document).ready(function() {
         message.from = $("#btnAccountText").text();
         message.content = $("#messageContent").val();
         message.eventID = $.getUrlVar("event_id");
+        if (message.recipients.length === 0){
+            $("#btnSend").popover({
+                placement: "top",
+                trigger: "manual",
+                content: "Please select a recipient",
+                container: "body"
+            }).popover("show");
+            setTimeout(function(){
+                $("#btnSend").popover("destroy");
+            }, 2000);
+            return;
+        }
         $.post(CREATE_MESSAGE, message, function(data){
             data = $.parseJSON(data);
             if (data.error){
@@ -97,8 +108,8 @@ $(document).ready(function() {
                     $("#resize").width("99%");
                     $("#suggestionRow").popover("destroy");
                     $("#messageRow").hide();
-                    squarifyAll();
                     $("tr").find(".icon-remove").click();
+                    squarifyAll();
                 });
             }
         });
@@ -126,6 +137,12 @@ $(document).ready(function() {
         } else{
             $("#charities").val("None Specified");
         }
+        if (data.donations !== null){
+            $("#donations").val(data.donations.join(", "));
+        } else{
+            $("#donations").val("None Specified");
+        }
+
         if (data.date !== "0"){
             $("#date").val((new Date(parseInt(data.date, 10))).toString().split(" ").slice(0, 4).join(" "));
         } else{
@@ -135,6 +152,7 @@ $(document).ready(function() {
         squarifyAll();
 
     });
+    squarifyAll();
 });
 
 Number.prototype.mod = function(n) {
@@ -232,6 +250,8 @@ var squarifyAll = function(){
     squareItUp($('.imageThumbnail'));
     squareItUp($('#btnMessage'));
     squareItUp($('#businessIcon'));
+    $(".arrowContainer").css("margin-top",
+                              $(".span2").width() / 2 - $(".arrow").height() / 2);
 };
 
 var addRecipient = function(businessName){
@@ -270,8 +290,6 @@ var addRecipient = function(businessName){
 var getDonationMatches = function(business){
     var bDonations = business.donations;
     var eDonations = eventObject.donations;
-    console.log("b: " + bDonations);
-    console.log("e: " + eDonations);
 
     var arr = bDonations.concat(eDonations);
     var sorted_arr = arr.sort(); // You can define the comparing function here. 
@@ -282,6 +300,5 @@ var getDonationMatches = function(business){
             results.push(sorted_arr[i]);
         }
     }
-    console.log(results);
     return results;
 };

@@ -142,22 +142,14 @@
 
         <div class="row-fluid" id="suggestionRow">
             <div class="span1 arrowContainer">
-                <div class="pagination">
-                    <ul>
-                        <li><a id="btnPrevious" class="arrow">&laquo;</a></li>
-                    </ul>
-                </div>
+                <button id="btnPrevious" class="arrow btn pull-right">&laquo;</button>
             </div>
             <div class="span10">
                 <ul class="horizontal-slide">
                 </ul>
             </div>
             <div class="span1 arrowContainer">
-                <div class="pagination">
-                    <ul>
-                        <li><a id="btnNext" class="arrow">&raquo;</a></li>
-                    </ul>
-                </div>
+                        <button id="btnNext" class="arrow btn pull-left">&raquo;</button>
             </div>
         </div>
     </div> <!-- /container -->
@@ -201,6 +193,13 @@
                   <input type="text" id="charities" placeholder="Jimmy Fund">
                 </div>
               </div>
+              <div class="control-group">
+                <label class="control-label" for="donations">Donations:</label>
+                <div class="controls">
+                  <input type="text" id="donations" placeholder="General">
+                </div>
+              </div>
+
               <div class="control-group">
                 <label class="control-label" for="date">Date</label>
                 <div class="controls">
