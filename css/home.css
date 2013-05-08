@@ -1,8 +1,17 @@
 body{
-	background: url(../img/background_graphic_shadow.png) no-repeat center center fixed,
-				url(../img/background_tile.png) repeat;
+	background:	url(../img/background_tile.png) repeat;
 }
 
+#well{
+    position: relative;
+    top: 150px;
+    font-size: 12pt;
+}
+
+.btnRow{
+    padding-top: 100px;
+    text-align: center;
+}
 
 .navbtn{
     width: 110px;
@@ -11,12 +20,8 @@ body{
 }
 
 #btnCreate{
-    right: 50%;
-    margin-right: -7px;
 }
 #btnMyEvents{
-    left: 50%;
-    margin-left: 12px;
 }
 
 /* The white background content wrapper */
