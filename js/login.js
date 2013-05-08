@@ -1,12 +1,14 @@
 var CREATE_LINK = "create";
 var MY_EVENTS_LINK = "my_events";
 
+var user;
 $(document).ready(function() {
 
     $(".dropdown-toggle").dropdown();
     $.get("./get_user", {}, function(username){
     if (username){
         $("#btnAccountText").text(username);
+        user = username;
     } else{
         $("#btnAccount").click(function(){
             $(".dropdown-menu").hide();
@@ -15,6 +17,26 @@ $(document).ready(function() {
         });
     }
     });
+    $("a[href='./my_events']").click(function(){
+        if (user){
+            document.location.href = MY_EVENTS_LINK;
+            return true;
+        } else{
+            $(this).popover({
+                placement: "bottom",
+                trigger: "manual",
+                content: "You must login to view this page",
+                container: "body"
+            }).popover("show");
+            setTimeout(function(){
+                $(this).popover("destroy");
+            }, 2000);
+            $(".content").show();
+            return false;
+        }
+    });
+
+
 });
 
 var loginValidate = function(){
@@ -40,7 +62,8 @@ var loginValidate = function(){
         }).popover("show");
         return false;
     }
-
+    window.location.href = window.location.href;
+    return false;
 };
 
 var registerValidate= function(){

@@ -2,7 +2,6 @@ var CREATE_LINK = "create";
 var MY_EVENTS_LINK = "my_events";
 
 $(document).ready(function() {
-
     squarifyMe('.box');
     $(".dropdown-toggle").dropdown();
     $("#btnCreate").click(function(){
@@ -17,6 +16,19 @@ $(document).ready(function() {
 
     });
     $("#btnMyEvents").click(function(){
-        document.location.href = MY_EVENTS_LINK;
+        if (user){
+            document.location.href = MY_EVENTS_LINK;
+        } else{
+            $("#btnMyEvents").popover({
+                placement: "top",
+                trigger: "manual",
+                content: "You must login to view this page",
+                container: "body"
+            }).popover("show");
+            setTimeout(function(){
+                $("#btnMyEvents").popover("destroy");
+            }, 2000);
+            $(".content").show();
+        }
     });
 });

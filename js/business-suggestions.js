@@ -24,13 +24,15 @@ $.extend({
 
 
 var message;
+var eventObject;
 $(document).ready(function() {
+    window.onresize = function(event){
+        squarifyAll();
+    };
     $("#frame").hide();
     $("#messageRow").hide();
     $("#resize").width("99%");
-    squarifyAll();
     var businessList = getBusinesses({eventID: $.getUrlVar("event_id")});
-    $("#matches").text(businessList.length);
      $("#noResults").hide();
     if (businessList.length === 0){
         $("#noResults").show();
@@ -41,17 +43,32 @@ $(document).ready(function() {
 
     $("#btnNext").hover(function(){
         var hs = $(".horizontal-slide");
-        hs.stop().animate({scrollLeft: hs.scrollLeft() + 100000}, 100000);
+        hs.stop().animate({scrollLeft: hs.scrollLeft() + 20000}, 100000, "linear");
     },function(){
         $(".horizontal-slide").stop();
+    }).mousedown(function(){
+        var hs = $(".horizontal-slide");
+        hs.stop().animate({scrollLeft: hs.scrollLeft() + 40000}, 100000, "linear");
+    }).mouseup(function(){
+        var hs = $(".horizontal-slide");
+        hs.stop();
+        hs.stop().animate({scrollLeft: hs.scrollLeft() + 20000}, 100000, "linear");
     });
 
     $("#btnPrevious").hover(function(){
         var hs = $(".horizontal-slide");
-        hs.stop().animate({scrollLeft: hs.scrollLeft() -+ 100000}, 100000);
+        hs.stop().animate({scrollLeft: hs.scrollLeft() -+ 20000}, 100000, "linear");
     },function(){
         $(".horizontal-slide").stop();
+    }).mousedown(function(){
+        var hs = $(".horizontal-slide");
+        hs.stop().animate({scrollLeft: hs.scrollLeft() - 40000}, 100000, "linear");
+    }).mouseup(function(){
+        var hs = $(".horizontal-slide");
+        hs.stop();
+        hs.stop().animate({scrollLeft: hs.scrollLeft() - 20000}, 100000, "linear");
     });
+
 
     $("#btnContact").click(function(){
         $("#messageRow").css("top", $(".navbar").height() + "px");
@@ -82,6 +99,18 @@ $(document).ready(function() {
         message.from = $("#btnAccountText").text();
         message.content = $("#messageContent").val();
         message.eventID = $.getUrlVar("event_id");
+        if (message.recipients.length === 0){
+            $("#btnSend").popover({
+                placement: "top",
+                trigger: "manual",
+                content: "Please select a recipient",
+                container: "body"
+            }).popover("show");
+            setTimeout(function(){
+                $("#btnSend").popover("destroy");
+            }, 2000);
+            return;
+        }
         $.post(CREATE_MESSAGE, message, function(data){
             data = $.parseJSON(data);
             if (data.error){
@@ -94,8 +123,8 @@ $(document).ready(function() {
                     $("#resize").width("99%");
                     $("#suggestionRow").popover("destroy");
                     $("#messageRow").hide();
-                    squarifyAll();
                     $("tr").find(".icon-remove").click();
+                    squarifyAll();
                 });
             }
         });
@@ -110,11 +139,9 @@ $(document).ready(function() {
         }
     });
 
-    setSuggestions(businessList);
-    squarifyAll();
     $.get("./get_event", {id: $.getUrlVar("event_id")}, function(data){
         data = $.parseJSON(data);
-        console.log(data);
+        eventObject = data;
         if (data.types !== null){
             $("#theme").val(data.types.join(", "));
         }else{
@@ -125,12 +152,22 @@ $(document).ready(function() {
         } else{
             $("#charities").val("None Specified");
         }
+        if (data.donations !== null){
+            $("#donations").val(data.donations.join(", "));
+        } else{
+            $("#donations").val("None Specified");
+        }
+
         if (data.date !== "0"){
             $("#date").val((new Date(parseInt(data.date, 10))).toString().split(" ").slice(0, 4).join(" "));
         } else{
             $("#date").val("None Specified");
         }
+        setSuggestions(businessList);
+        squarifyAll();
+
     });
+    squarifyAll();
 });
 
 Number.prototype.mod = function(n) {
@@ -139,8 +176,8 @@ Number.prototype.mod = function(n) {
 
 var setSuggestions = function(businessList){
     var i = 0;
+    var matches = 0;
     while (i < businessList.length){
-        console.log("looping");
         var img = $('<img class="imageThumbnail thumbnail"/>');
         img.attr("src", businessList[i].imageLink);
         img.attr("index", i);
@@ -148,10 +185,32 @@ var setSuggestions = function(businessList){
         img.height("100%");
         var row = $("<li class='span2'>");
         row.append(img);
-        $(".horizontal-slide").append(row);
+        var donationMatches = getDonationMatches(businessList[i]);
+        if (donationMatches.length > 0 || eventObject.donations === null){
+            matches ++;
+            var popoverContent;
+            if (donationMatches.length > 0){
+                popoverContent = businessList[i].name + " matches the donation types: " + donationMatches.join(", ");
+            } else{
+                popoverContent = businessList[i].name + " does not match your event\'s donation types";
+            }
+            img.popover({placement: "top",
+                             trigger: "manual",
+                             content:popoverContent,
+                             container: "body"
+            });
+            img.hover(function(){
+                x = this;
+                $(this).popover("show");
+            },function(){
+                $(this).popover("hide");
+            });
+            $(".horizontal-slide").append(row);
+        }
         i++;
     }
 
+    $("#matches").text(matches);
     $(".imageThumbnail").click(function(){
         $("#firstFrame").hide();
         $("#frame").show();
@@ -206,6 +265,8 @@ var squarifyAll = function(){
     squareItUp($('.imageThumbnail'));
     squareItUp($('#btnMessage'));
     squareItUp($('#businessIcon'));
+    $(".arrowContainer").css("margin-top",
+                              $(".span2").width() / 2 - $(".arrow").height() / 2);
 };
 
 var addRecipient = function(businessName){
@@ -239,4 +300,20 @@ var addRecipient = function(businessName){
         });
 
     }
+};
+
+var getDonationMatches = function(business){
+    var bDonations = business.donations;
+    var eDonations = eventObject.donations;
+
+    var arr = bDonations.concat(eDonations);
+    var sorted_arr = arr.sort(); // You can define the comparing function here. 
+                                 // JS by default uses a crappy string compare.
+    var results = [];
+    for (var i = 0; i < arr.length - 1; i++) {
+        if (sorted_arr[i + 1] == sorted_arr[i]) {
+            results.push(sorted_arr[i]);
+        }
+    }
+    return results;
 };

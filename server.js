@@ -74,7 +74,7 @@ app.get("/user_exists", function(req, res){
 });
 
 app.post("/create_message", function(req, res){
-    var from , recipients, content, eventID, prev;
+    var from, recipients, content, eventID, prev;
     from = req.body.from;
     recipients = req.body.recipients;
     content = req.body.content;
@@ -240,8 +240,33 @@ app.get("/get_businesses", function(req, res){
         });
 
     });
+});
 
+app.get("/get_messages", function(req, res){
 
+    var userID = req.session.username; // how to access?
+    console.log(userID);
+    var messageList = [];
+
+    db.messages.find({from: userID}, function(err, messages){
+        if (err){
+            throw err;
+        }
+        for (var i = 0; i < messages.length; i++ ) {
+            messageList.push(messages[i]);
+        }
+        console.log(messageList);
+        res.end(JSON.stringify(messageList));
+    });
+
+    //    // message jquery object
+    //    var message = {
+    //        from: from,
+    //        to: to,
+    //        content: content,
+    //        eventID: eventID,
+    //        prev: prev
+    //    };
 });
 
 app.post("/add_event", function(req, res){

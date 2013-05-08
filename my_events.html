@@ -41,6 +41,7 @@
             <ul class="nav pull-right">
                 <li class="active"><a href="./home">Home</a></li>
                 <li><a href="./create">Create Event</a></li>
+                <li><a href="./my_events">My Events</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" id="btnAccount"><i class="icon-user icon-white"></i><i id="btnAccountText">Login</i><b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -50,6 +51,9 @@
                 </li>
             </ul>
         </div>
+    </div>
+    <div id="background">
+        <div class="stretch-image"></div>
     </div>
 
 
@@ -76,7 +80,7 @@
                 <div class="row-fluid">
                     <div class="span4 splitpane">
                         <div class="pane-container">
-                            <ol id="selectable">
+                            <ol class="selectable" id="msg-selectable">
                                 <li id="message1" class="ui-widget-content">
                                     <div class="row-fluid">
                                         <div class="span10 thread-business">
@@ -146,16 +150,16 @@
                     <div class="span8 splitpane">
                         <div class="pane-container">
                             <div class="row-fluid">
-                                <div id="business-label" class="span6"></div>
-                                <div id="date-label" class="offset4 span2"></div>
+                                <div id="msg-business-label" class="span6 business-label" ></div>
+                                <div id="msg-date-label" class="offset4 span2 date-label" ></div>
                             </div>
                             <div class="row-fluid">
-                                <div id="event-label" class="span12">
+                                <div id="msg-event-label" class="span12 event-label">
                                 </div>
                             </div>
-                            <div id="message-content" class="row-fluid">
+                            <div id="msg-message-content" class="message-content row-fluid">
                                 <div class="span11">    
-                                    <div class="full-display-thread" id="message-body">
+                                    <div class="full-display-thread" id="msg-message-body">
                                         <h3>No message currently selected</h3>
                                     </div>
                                 </div>
@@ -174,7 +178,7 @@
                 <div class="row-fluid">
                     <div class="span4 splitpane">
                         <div class="pane-container">
-                            <ol id="selectable">
+                            <ol class="selectable" id="event-selectable">
                                 <li id="message1" class="ui-widget-content">
                                     <div class="row-fluid">
                                         <div class="span10 thread-business">
@@ -244,17 +248,17 @@
                     <div class="span8 splitpane">
                         <div class="pane-container">
                             <div class="row-fluid">
-                                <div id="business-label" class="span6"></div>
-                                <div id="date-label" class="offset4 span2"></div>
+                                <div id="event-business-label" class="event-label span6"></div>
+                                <div id="event-date-label" class="offset4 span2 date-label"></div>
                             </div>
                             <div class="row-fluid">
-                                <div id="event-label" class="span12">
+                                <div id="event-event-label" class="span12 event-label">
                                 </div>
                             </div>
-                            <div id="message-content" class="row-fluid">
+                            <div id="event-message-content" class="row-fluid message-content">
                                 <div class="span11">    
-                                    <div class="full-display-thread" id="message-body">
-                                        <h3>No message currently selected</h3>
+                                    <div class="full-display-thread message-body" id="event-message-body">
+                                        <h3>No event currently selected</h3>
                                     </div>
                                 </div>
                             </div>
@@ -269,13 +273,68 @@
                 <div id="tab-header" class="span12"><span id="tab-header-words">View your connections, get inspired!</span></div>
             </div>
             <div class="hero-unit">
+
+                <div class="row-fluid">
+                    <div class="span4 splitpane">
+                        <div class="pane-container">
+                            <ol class="selectable" id="vis-selectable">
+                                <li id="message1" class="ui-widget-content">
+                                    <div class="row-fluid">
+                                        <div class="span12 thread-business">
+                                            Charity connections word-cloud
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid thread-event-container">
+                                        <div class="span12 thread-event">
+                                            View the charities you've contacted. 
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li id="message1" class="ui-widget-content">
+                                    <div class="row-fluid">
+                                        <div class="span12 thread-business">
+                                            Business connections word-cloud
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid thread-event-container">
+                                        <div class="span12 thread-event">
+                                            View the businesses you've contacted. 
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="span8 splitpane">
+                        <div class="pane-container">
+                            <div class="row-fluid">
+                                <div id="vis-business-label" class="span6"></div>
+                                <div id="vis-date-label" class="offset4 span2"></div>
+                            </div>
+                            <div class="row-fluid">
+                                <div id="vis-event-label" class="span12">
+                                </div>
+                            </div>
+                            <div id="vis-message-content" class="row-fluid">
+                                <div class="span11">    
+                                    <div class="full-display-thread" id="vis-message-body">
+                                        <iframe src="create.html"></iframe>
+                                        <!--<h3>No visualization currently selected</h3>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!--
                 <ul id="visual-list">
-                    <!--<li><a href="charity-wc.html">Your charity wordcloud</a></li>-->
                     <li><a class="overlay-link" href="charity-wc.html" rel="#charity-wc">Your charity wordcloud</a><li>
                     <li><a class="overlay-link" href="business-wc.html" rel="#business-wc">Your business wordcloud</a></li>
                     <li><a>Your heatmap</a></li>
                     <li><a>Your bubblemap</a></li>
                 </ul>
+                -->
             </div>
         </div>
         <div class="simple-overlay" id="charity-wc">
