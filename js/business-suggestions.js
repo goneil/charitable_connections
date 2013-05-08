@@ -43,17 +43,32 @@ $(document).ready(function() {
 
     $("#btnNext").hover(function(){
         var hs = $(".horizontal-slide");
-        hs.stop().animate({scrollLeft: hs.scrollLeft() + 100000}, 100000);
+        hs.stop().animate({scrollLeft: hs.scrollLeft() + 20000}, 100000, "linear");
     },function(){
         $(".horizontal-slide").stop();
+    }).mousedown(function(){
+        var hs = $(".horizontal-slide");
+        hs.stop().animate({scrollLeft: hs.scrollLeft() + 40000}, 100000, "linear");
+    }).mouseup(function(){
+        var hs = $(".horizontal-slide");
+        hs.stop();
+        hs.stop().animate({scrollLeft: hs.scrollLeft() + 20000}, 100000, "linear");
     });
 
     $("#btnPrevious").hover(function(){
         var hs = $(".horizontal-slide");
-        hs.stop().animate({scrollLeft: hs.scrollLeft() -+ 100000}, 100000);
+        hs.stop().animate({scrollLeft: hs.scrollLeft() -+ 20000}, 100000, "linear");
     },function(){
         $(".horizontal-slide").stop();
+    }).mousedown(function(){
+        var hs = $(".horizontal-slide");
+        hs.stop().animate({scrollLeft: hs.scrollLeft() - 40000}, 100000, "linear");
+    }).mouseup(function(){
+        var hs = $(".horizontal-slide");
+        hs.stop();
+        hs.stop().animate({scrollLeft: hs.scrollLeft() - 20000}, 100000, "linear");
     });
+
 
     $("#btnContact").click(function(){
         $("#messageRow").css("top", $(".navbar").height() + "px");
