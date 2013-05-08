@@ -6,7 +6,7 @@ $(function() {
     var messageContainerID = "#msg-selectable";
     var eventContainerID = "#event-selectable";
     var eventFrameContainerID = "#event-frame-container";
-    //generateEventPane(eventFrameContainerID);
+    generateEventPane(eventFrameContainerID);
     
     generateNewThread(messageContainerID,"Mockasins", "today", "eating");
     generateNewThread(eventContainerID,"Mockasins", "today", "eating");
@@ -24,8 +24,7 @@ $(function() {
             date.html(thread.find(".thread-date").html());
             business.html(thread.find(".thread-business").html());
             eventName.html(thread.find(".thread-event").html());
-            alert(message_content.html());
-            message_content.html(""
+            message_content.html("hi"
             )
         }                   
     });
@@ -60,8 +59,7 @@ $(function() {
             date.html(thread.find(".thread-date").html());
             business.html(thread.find(".thread-business").html());
             eventName.html(thread.find(".thread-event").html());
-            message_content.html(
-            "Hi Blah yes"
+            //clearContainer(message_content);
             )
         }                   
     });
@@ -100,6 +98,36 @@ function generateEventPane(containerID) {
 function clearContainer(containerID) {
     $(containerID).empty();
 }
+
+/*
+
+
+ <li id="message1" class="ui-widget-content">
+                                    <div class="row-fluid">
+                                        <div class="span12 thread-business">
+                                            Charity connections word cloud
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid thread-event-container">
+                                        <div class="span12 thread-event">
+                                            View the charities you've supported. 
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li id="message1" class="ui-widget-content">
+                                    <div class="row-fluid">
+                                        <div class="span12 thread-business">
+                                            Business connections word cloud
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid thread-event-container">
+                                        <div class="span12 thread-event">
+                                            View the businesses you've contacted. 
+                                        </div>
+                                    </div>
+                                </li>
+*/
 
 
 var getMessages = function(){
