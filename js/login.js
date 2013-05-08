@@ -40,7 +40,8 @@ var loginValidate = function(){
         }).popover("show");
         return false;
     }
-
+    window.location.href = window.location.href;
+    return false;
 };
 
 var registerValidate= function(){

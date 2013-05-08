@@ -111,30 +111,21 @@
                 </div>
                 <div class="row-fluid" id="infoContainer">
                     <div class="row-fluid">
-                        <div class="span2 infoLabel">
-                            Location:
-                        </div>
-                        <div class="span1"></div>
-                        <div class="span9">
-                            <p id="businesslocation" class="infoText"></p>
+                        <div class="span12 infoLabel">
+                            <b>Location:</b>
+                            <span id="businesslocation" class="infoText"></span>
                         </div>
                     </div>
                     <div class="row-fluid">
-                        <div class="span2 infoLabel">
-                            Description:
-                        </div>
-                        <div class="span1"></div>
-                        <div class="span9">
-                            <p id="businessinfo" class="infoText"></p>
+                        <div class="span12 infoLabel">
+                            <b>Description:</b>
+                            <span id="businessinfo" class="infoText"></span>
                         </div>
                     </div>
                     <div class="row-fluid">
-                        <div class="span2 infoLabel">
-                            Donations:
-                        </div>
-                        <div class="span1"></div>
-                        <div class="span9">
-                            <p id="businessdonations" class="infoText"></p>
+                        <div class="span12 infoLabel">
+                            <b>Donations:</b>
+                            <span id="businessdonations" class="infoText"></span>
                         </div>
                     </div>
                     <div class="row-fluid">
@@ -151,22 +142,14 @@
 
         <div class="row-fluid" id="suggestionRow">
             <div class="span1 arrowContainer">
-                <div class="pagination">
-                    <ul>
-                        <li><a id="btnPrevious" class="arrow">&laquo;</a></li>
-                    </ul>
-                </div>
+                <button id="btnPrevious" class="arrow btn pull-right">&laquo;</button>
             </div>
             <div class="span10">
                 <ul class="horizontal-slide">
                 </ul>
             </div>
             <div class="span1 arrowContainer">
-                <div class="pagination">
-                    <ul>
-                        <li><a id="btnNext" class="arrow">&raquo;</a></li>
-                    </ul>
-                </div>
+                        <button id="btnNext" class="arrow btn pull-left">&raquo;</button>
             </div>
         </div>
     </div> <!-- /container -->
@@ -210,6 +193,13 @@
                   <input type="text" id="charities" placeholder="Jimmy Fund">
                 </div>
               </div>
+              <div class="control-group">
+                <label class="control-label" for="donations">Donations:</label>
+                <div class="controls">
+                  <input type="text" id="donations" placeholder="General">
+                </div>
+              </div>
+
               <div class="control-group">
                 <label class="control-label" for="date">Date</label>
                 <div class="controls">
