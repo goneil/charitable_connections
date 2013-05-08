@@ -192,7 +192,9 @@ var setSuggestions = function(businessList){
             if (donationMatches.length > 0){
                 popoverContent = businessList[i].name + " matches the donation types: " + donationMatches.join(", ");
             } else{
-                popoverContent = businessList[i].name + " does not match your event\'s donation types";
+                if (eventObject.donations !== null){
+                    popoverContent = businessList[i].name + " does not match your event\'s donation types";
+                }
             }
             img.popover({placement: "top",
                              trigger: "manual",

@@ -240,9 +240,11 @@ $(document).ready(function() {
             success:function(data){
                 data = $.parseJSON(data);
                 window.location.href = "./business_suggestions?event_id=" + data.id;
+                return;
             },
             async: false
         });
+        return;
 
     }else{
         $("#btnNext").removeAttr("href");
