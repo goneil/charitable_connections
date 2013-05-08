@@ -244,6 +244,34 @@ app.get("/get_businesses", function(req, res){
     });
 });
 
+
+app.get("/get_events", function(req, res){
+
+    var userID = req.session.username; // how to access?
+    console.log(userID);
+    var eventList= [];
+
+    db.events.find({user: userID}, function(err, events){
+        if (err){
+            throw err;
+        }
+        for (var i = 0; i < events.length; i++ ) {
+            eventList.push(events[i]);
+        }
+        console.log(eventList);
+        res.end(JSON.stringify(eventList));
+    });
+
+    //    // message jquery object
+    //    var message = {
+    //        from: from,
+    //        to: to,
+    //        content: content,
+    //        eventID: eventID,
+    //        prev: prev
+    //    };
+});
+
 app.get("/get_messages", function(req, res){
 
     var userID = req.session.username; // how to access?
