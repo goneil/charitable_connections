@@ -95,6 +95,7 @@ var $new_thread_date= $('<div class="span2 thread-date" />');
 var $new_thread_container = $('<div class="row-fluid thread-event-container" />');
 var $new_thread_event = $('<div class="span12 thread-event" />');
 
+                                /*
                                     <div class="row-fluid">
                                         <div class="span10 thread-business">
                                             Trader Joe's
@@ -108,6 +109,7 @@ var $new_thread_event = $('<div class="span12 thread-event" />');
                                             Ice-Cream Scoopathon for Dana Farber
                                         </div>
                                     </div>
+                                    */
 
 
 
