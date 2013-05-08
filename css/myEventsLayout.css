@@ -327,63 +327,298 @@ ul {
 
 //////////////////////////////
 
-#eventFrame{
-    //margin: 0 !important;
-    border: 3px solid red !important;
+
+
+
+#date,
+#location{
+    display: block;
+    padding-left: 2%;
+    padding-right: 2%;
+    overflow: scroll;
+}
+
+#searchDiv{
+    margin-left: 5px;
+    width: 100%;
+}
+
+#search-box{
+    background-color: #feedbf;
+    width: 100%;
+}
+
+.choice{
+    margin:5px;
+    width: 23%;
+}
+
+.choice_label{
     text-align: center;
-    font-size: 50px;
+    word-wrap: break-word;
+    font-size: 1em;
+    line-height: 1em;
+}
+
+.charity_icon, .event_icon, .donation_icon{
+    margin: .5%;
+    padding: 1%;
+}
+
+
+.pane_label{
+    text-align: left;
+    vertical-align: top;
+    padding: .3em;
+    color: #3e6b85;
+}
+
+.pane{
+    opacity: .6;
+}
+
+#charity_icons, #event_icons, 
+#donation_icons{
+    position: absolute;
+    width: 50%;
+}
+
+.log_icon{
+    width:35%;
+}
+
+#logistics_icons{
+    display: table-row;
+    position: absolute;
+    width: 50%;
+}
+
+#logs{
+    width: 100%;
+    text-align: center;
+    overflow: scroll;
+}
+
+#loc_icon{
+    display: inline-block;
+    background-image: url(../img/city_sign.png);
+    background-size:100%;
+    margin: 1%;
+    padding: 1%;
+    vertical-align: middle;
+}
+
+#loc_label, #date_label{
+    display: table-cell;
+    vertical-align: middle;
+    font-family: sans-serif;
+    font-size: .8em;
+}
+
+#date_label{
+    display: table-cell;
+    vertical-align: bottom;
+    font-family: sans-serif;
+    font-size: .8em;
+    line-height: 1.3em;
+    font-size: 1.1em;
+}
+
+#date_icon{
+    display: inline-block;
+    background-image: url(../img/cal_icon2.png);
+    background-size:100%;
+    margin: 1%;
+    padding: 1%;
+    vertical-align: middle;
+}
+
+#charity_pane{
+    border-top-style: none;
+    border-left-style: none;
+    border-right: 2px solid #3e6b85;
+    border-bottom: 2px solid #3e6b85;
+    width: 50%;
+    vertical-align: top;
+}
+
+#logistics_pane{
+    border-bottom: 2px solid #3e6b85;
+    width: 50%;
+    vertical-align: top;
+}
+
+#event_pane{
+    border-right: 2px solid #3e6b85;
+    vertical-align: top;
+}
+
+#donations_pane{
+    vertical-align: top;
+}
+
+
+#progressBar{
+    text-align: center;
+    margin-top: 1.5%;
+}
+
+#task1, #task2, #task3, #task4{
+    padding: 0px;
+    margin: 0px !important;
+    width: 23%;
+    display: inline-block;
+    text-align: center;
+    border-style: solid;
+}
+
+.btn{
+    padding: .6em .9em;
+}
+
+#btnPrevSpan{
+    margin-left: 0;
+    margin-right: 6px;
+    margin-top: 1.5%;
+}
+
+#btnNextSpan{
+    margin-top: 1.5%;
+    margin-left: 1.85em;
+}
+
+#btnPrev{
+    padding: .6em .9em;
+    float: right;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#btnNext{
+    padding: .6em .9em;
+    float: left;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#helperTitle{
+    margin-left: 1em;
+    text-align: left;
+    font-size: 1.5em;
+    font-family: sans-serif;
+    margin-bottom: .3em;
+    margin-top: 1.5%;
+}
+
+
+#choicesTitle{
+    margin-left: 0;
+    text-align: left;
+    font-size: 1.5em;
+    font-family: sans-serif;
+    margin-bottom: .3em;
+    margin-right: 6px;
+    margin-top: 1.5%;
+}
+
+#eventFrame{
+    margin: 0;
+    //border-style: solid;
+    text-align: center;
+    font-size: 20px;
+    position: relative;
+    //background-color: #FFFFFF;
 }
 
 #eventTable{
     position:absolute;
     width: 100%;
+    table-layout: fixed;
+    //border: 3px solid red;
 }
 
-#charity_pane {
+#eventTable tr {
+    width: 50% !important;
+    height: 50px !important;
+}
+    
+
+#logistics{
+    background-color: #FFFFFF;
+    margin-top: 0;
+    border-style: solid;
+    margin-left: 0;
 }
 
-.pane {
+#choicesFrame{
+    background-color: #FFFFFF;
+    margin-top: 0;
+    margin-left: 0;
+    border-style: solid;
 }
 
+#searchForm{
+    margin-bottom: 5px;
+}
+#searchResultsDiv{
+    float: left;
+    overflow: scroll;
+}
 
+.choicesList .ui-selecting {
+    background: #FECA40;
+}
 
+.choicesList .ui-selected {
+    background: #F39814;
+    color: white;
+}
 
+.choicesList{
+    list-style-type: none;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+}
 
+.choicesList li {
+    cursor: hand;
+    cursor: pointer;
+    margin: 1.75%;
+    padding: 2.5%;
+    float: left;
+    width: 40%;
+    height: 40%;
+    background: #feedbf;
+    border: solid;
+    border-width: .1em;
+    border-radius: 5%;
+    border-color: #a87b03;
+}
 
+#help_overlay {
+    text-align: center;
+    font-size: 2em;
+    position: absolute;
+    top: 40%;
+    word-wrap: break-word;
+    line-height: 1em;
+    width: 100%;
+    opacity: .5;
+}
 
-/*
- <div class="span11" id="eventFrame">
-                                <div id="help_overlay"> Your event details will appear here </div>
-                                    <table id="eventTable">
-                                    <tr>
-                                        <td id="charity_pane" class="pane">
-                                            <div class="pane_label">Charity</div>
-                                            <div id="charity_icons"></div>
-                                        </td>
-                                        <td id="logistics_pane" class="pane">
-                                            <div class="pane_label">Logistics</div>
-                                            <div id="logistics_icons">
-                                                <div id="date_icon" class="log_icon">
-                                                    <div id ="date_label"></div>
-                                                </div>
-                                                <div id="loc_icon" class="log_icon">
-                                                    <div id="loc_label">Welcome To</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td id="event_pane" class="pane">
-                                            <div class="pane_label">Event</div>
-                                            <div id="event_icons"></div>
-                                        </td>
-                                        <td id="donations_pane" class="pane">
-                                            <div class="pane_label">Donations</div>
-                                            <div id="donation_icons"></div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            
+#datepicker{
+    margin-top: 1em;
+    margin-right: .2em;
+
+}
+                     
 

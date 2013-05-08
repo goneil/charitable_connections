@@ -4,17 +4,14 @@ $(function() {
     var messages = getMessages();
     //generateThreads(messages);
     var messageContainerID = "#msg-selectable";
-
-    /*
-
-
-
-    */
-
-
+    var eventContainerID = "#event-selectable";
+    var eventFrameContainerID = "#event-frame-container";
+    //generateEventPane(eventFrameContainerID);
+    
     generateNewThread(messageContainerID,"Mockasins", "today", "eating");
+    generateNewThread(eventContainerID,"Mockasins", "today", "eating");
 
-    $("#msg-selectable").selectable({
+    $(messageContainerID).selectable({
         selected: function(event, ui) { 
             var thread = $(ui.selected);
             var messageID = parseInt(thread.attr("id").split("message")[1]);
@@ -27,12 +24,13 @@ $(function() {
             date.html(thread.find(".thread-date").html());
             business.html(thread.find(".thread-business").html());
             eventName.html(thread.find(".thread-event").html());
-            message_content.html(content            
+            alert(message_content.html());
+            message_content.html(""
             )
         }                   
     });
 
-    $("#event-selectable").selectable({
+    $(eventContainerID).selectable({
         selected: function(event, ui) { 
             var thread = $(ui.selected);
             var date = $("#event-date-label");
@@ -68,22 +66,7 @@ $(function() {
         }                   
     });
  });   
-                                /*
-                                    <div class="row-fluid">
-                                        <div class="span10 thread-business">
-                                            Trader Joe's
-                                        </div>
-                                        <div class="span2 thread-date">
-                                            Apr 30
-                                        </div>
-                                    </div>
-                                    <div class="row-fluid thread-event-container">
-                                        <div class="span12 thread-event">
-                                            Ice-Cream Scoopathon for Dana Farber
-                                        </div>
-                                    </div>
-                                    */
-
+                             
 /*
 function generateMessageThreads(messageList, containerID, business, date, eventName) {
     for (int i = 0; i < messageList.length; i++) {
@@ -106,6 +89,12 @@ function generateNewThread(containerID, business, date, eventName) {
 function getNewThreadID(containerID) {
     var children = $(containerID).children("li");
     return children.length + 1;
+}
+
+function generateEventPane(containerID) {
+    clearContainer(containerID);
+    var eventFrame = '<div class="span12" id="eventFrame"><table id="eventTable"><tr><td id="charity_pane" class="pane"><div class="pane_label">Charity</div><div id="charity_icons"></div></td><td id="logistics_pane" class="pane"><div class="pane_label">Logistics</div><div id="logistics_icons"><div id="date_icon" class="log_icon"><div id ="date_label"></div></div><div id="loc_icon" class="log_icon"><div id="loc_label">Welcome To</div></div></div></td></tr><tr><td id="event_pane" class="pane"><div class="pane_label">Event</div><div id="event_icons"></div></td><td id="donations_pane" class="pane"><div class="pane_label">Donations</div><div id="donation_icons"></div></td></tr></table></div>';
+    $(containerID).append(eventFrame);
 }
 
 function clearContainer(containerID) {

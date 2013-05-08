@@ -121,39 +121,23 @@
                         </div>
                     </div>
                     <div class="span8 splitpane">
-                        <div class="pane-container">
-                            <div class="offset1 span10" id="eventFrame">
-                                <table id="eventTable">
-                                    <tr>
-                                        <td id="charity_pane" class="pane">
-                                            <div class="pane_label">Charity</div>
-                                            <div id="charity_icons"></div>
-                                        </td>
-                                        <td id="logistics_pane" class="pane">
-                                            <div class="pane_label">Logistics</div>
-                                            <div id="logistics_icons">
-                                                <div id="date_icon" class="log_icon">
-                                                    <div id ="date_label"></div>
-                                                </div>
-                                                <div id="loc_icon" class="log_icon">
-                                                    <div id="loc_label">Welcome To</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td id="event_pane" class="pane">
-                                            <div class="pane_label">Event</div>
-                                            <div id="event_icons"></div>
-                                        </td>
-                                        <td id="donations_pane" class="pane">
-                                            <div class="pane_label">Donations</div>
-                                            <div id="donation_icons"></div>
-                                        </td>
-                                    </tr>
-                                </table>
+                        <div id="event-frame-container" class="pane-container">
+                            <div class="row-fluid">
+                                <div id="msg-business-label" class="span6 business-label" ></div>
+                                <div id="msg-date-label" class="offset4 span2 date-label" ></div>
                             </div>
+                            <div class="row-fluid">
+                                <div id="msg-event-label" class="span12 event-label">
+                                </div>
+                            </div>
+                            <div id="msg-message-content" class="message-content row-fluid">
+                                <div class="span11">    
+                                    <div class="full-display-thread" id="msg-message-body">
+                                        <h3>No event currently selected</h3>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
