@@ -39,23 +39,6 @@ $(document).ready(function() {
         $("#results").hide();
     }
     
-    addMode = false; // should be global
-        $("#btnAdd").click(function(){
-            addMode = !addMode;
-            if (addMode){
-                if ($("suggestionRow").attr("data-original-title")!==""){
-                    $("#suggestionRow").popover(
-                        {placement: "top",
-                         trigger: "manual",
-                         content:"Click business icons to add them as recipients to your message. Click the add button again to stop adding businesses."
-                        }
-                    ).popover("show");
-                }                    
-            }else{
-                $("#suggestionRow").popover("toggle");
-            }
-        });
-
     $("#btnNext").hover(function(){
         var hs = $(".horizontal-slide");
         hs.stop().animate({scrollLeft: hs.scrollLeft() + 20000}, 100000, "linear");
@@ -95,16 +78,22 @@ $(document).ready(function() {
         if (Object.keys(recipients).length === 0){
             addRecipient($("#businessName").text());
         }
+
+        if ($(this).text().trim() == "Add to Message"){
+            addRecipient($("#businessName").text().trim());
+        }else{
+            $(this).html('<i class="icon-share"></i>Add to Message');
+        }
             
     });
     $("#btnRemove").click(function(){
         var rows = $("tr");
         $("#messageRow").hide();
         $("#resize").width("99%");
-        addMode = false;
         $("#suggestionRow").popover("destroy");
         squarifyAll();
         rows.find(".icon-remove").click();
+        $("#btnContact").html('<i class="icon-share"></i>Compose Message');
     });
 
 
@@ -131,8 +120,7 @@ $(document).ready(function() {
             if (data.error){
                 $(".error").text("Message failed to send, try again");
             } else{
-                addMode = false;
-
+                $("#btnContact").html('<i class="icon-share"></i>Compose Message');
                 $("#messageRow").animate({right: "-800px"}, function(){
                     $("#messageRow").attr("style", "");
                     $("#resize").width("99%");
@@ -233,20 +221,16 @@ var setSuggestions = function(businessList){
         $("#frame").show();
         squarifyAll();
         var business = businessList[$(this).attr("index")];
-        if (addMode === false){
-            var img = $("<img>");
-            img.attr("src", $(this).attr("src"));
-            img.width("100%");
-            img.height("100%");
+        var img = $("<img>");
+        img.attr("src", $(this).attr("src"));
+        img.width("100%");
+        img.height("100%");
 
-            $("#businessIcon").html(img);
-            $("#businessName").html(business.name);
-            $("#businesslocation").text(business.location);
-            $("#businessinfo").text(business.description);
-            $("#businessdonations").text(business.donations.join(", "));
-        } else{
-            addRecipient(business.name);
-        }
+        $("#businessIcon").html(img);
+        $("#businessName").html(business.name);
+        $("#businesslocation").text(business.location);
+        $("#businessinfo").text(business.description);
+        $("#businessdonations").text(business.donations.join(", "));
     });
 };
 
