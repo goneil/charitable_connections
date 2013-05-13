@@ -49,7 +49,7 @@ $(function() {
     $(messageContainerID).selectable({
         selected: function(event, ui) { 
             var thread = $(ui.selected);
-            var messageID = parseInt(thread.attr("id").split("message")[1]);
+            var messageID = parseInt(thread.attr("id").split("message")[1]) - 1;
             var content = messages[messageID].content;
             var date = $("#msg-date-label");
             var business = $("#msg-business-label");

@@ -15,7 +15,7 @@ h6,
 
 body{
     font-family:serif !important;
-    background: url(../img/background_tile.png) repeat;
+    background: url(../img/background_tile.png) repeat !important;
 }
 
 .navbar{
