@@ -10,7 +10,18 @@ h1 {
 html, body, #container {
     height: 100%;
     padding: 0;
-    background: url(../img/flowers.jpg) no-repeat 100% !important;
+    /*background: url(../img/flowers.jpg) no-repeat 100% !important;*/
+}
+
+.ui-selectee, .thread-date{
+    cursor: hand;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /*
