@@ -1,6 +1,7 @@
 .title{
     text-align: center;
 }
+
 .hero-unit{
     margin-top: 10px;
     padding: 20px;
@@ -28,6 +29,14 @@
 }
 
 .infoText{
+}
+
+#title{
+    background-color: rgba(255, 237, 191, .6);
+    padding-bottom: .2em;
+    padding-right: .2em;
+    padding-left: .2em;
+    padding-top: .1em;
 }
 
 #frame, #firstFrame{
