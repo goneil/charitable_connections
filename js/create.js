@@ -64,12 +64,15 @@ var charities = [
 ];
 
 var event_types = [
+    { label: "Arts", image:"img/event/arts.png"},
     { label: "Automotive", image: "img/event/car.png" },
     { label: "Basketball", image: "img/event/bball.png" },
     { label: "Cooking", image: "img/event/cooking.png" },
     { label: "Education", image: "img/event/edu.png" },
+    { label: "Music", image: "img/event/music.png"},
     { label: "Reading", image: "img/event/reading.png" },
-    { label: "Soccer", image: "img/event/soccer.png" }
+    { label: "Soccer", image: "img/event/soccer.png" },
+    { label: "Sports", image: "img/event/sports.png"}
 ];
 
 var donation_types = [
@@ -309,7 +312,7 @@ var highlightButton = function(num){
 function changeChoicesList(btnNum){
     if(btnNum === 0){
         //makeChoiceList(charities);
-        $("#choicesTitle").html("Select your charity");
+        $("#choices-text").html("Select your charity");
         $("#choicesFrame").show();
         $("#charityList").show();
         $("#eventList").hide();
@@ -320,7 +323,7 @@ function changeChoicesList(btnNum){
     }
     else if(btnNum === 2){
         //makeChoiceList(event_types);
-        $("#choicesTitle").html("Select your event types");
+        $("#choices-text").html("Select your event types");
         $("#choicesFrame").show();
         $("#charityList").hide();
         $("#logistics").hide();
@@ -330,7 +333,7 @@ function changeChoicesList(btnNum){
     }
     else if(btnNum === 3){
         //makeChoiceList(donation_types);
-        $("#choicesTitle").html("Select desired donation types");
+        $("#choices-text").html("Select desired donation types");
         $("#choicesFrame").show();
         $("#charityList").hide();
         $("#eventList").hide();
@@ -345,7 +348,7 @@ function changeChoicesList(btnNum){
         console.log($("#logs").width());
         console.log($(inputWidth));
         $("#gmaps-input-address").css("left",($("#logistics").width() - (inputWidth + 15))/2 );
-        $("#choicesTitle").html("Indicate date and location");
+        $("#choices-text").html("Indicate date and location");
         $("#choicesFrame").hide();
         $("#logistics").show();
         //$("#location").hide();
