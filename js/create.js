@@ -310,6 +310,7 @@ var highlightButton = function(num){
 
 // changes contents of choice list based on button number
 function changeChoicesList(btnNum){
+    $("#search-box").val("");
     if(btnNum === 0){
         //makeChoiceList(charities);
         $("#choices-text").html("Select your charity");
